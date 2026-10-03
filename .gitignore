@@ -16,3 +16,18 @@ out/
 ASP_ascii_strings.json
 # Metti la ROM originale in rom/ (ignorata)
 rom/
+
+# --- snesrecomp ---
+# Output generato dal recompilatore: derivato dalla ROM, mai committare
+/src/gen/
+/recomp/funcs.h
+*.srm
+/build-*/
+/dist/
+/saves/
+/rom_probe.json
+/rom.cfg
+/keybinds.ini
+/config.ini
+/input.ini
+.DS_Store
