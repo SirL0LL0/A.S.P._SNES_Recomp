@@ -1,0 +1,3282 @@
+A.S.P. — FILE DI REVISIONE FINALE (v7)
+========================================================================
+
+Contiene tutto il testo della patch, originale e italiano affiancati:
+  PARTE 1  blocco compresso (256 schermate: titoli, briefing, sergente, notiziari, finali, titoli di coda)
+  PARTE 2  stringhe in chiaro (id = indirizzo SNES, come nella scheda Stringhe)
+  PARTE 3  scritte grafiche con il font a tile (scheda Grafica)
+  PARTE 4  grafica disegnata ridisegnata (applicata a ogni build)
+Le correzioni si fanno nel tool (schede Titoli/Schermate/Finali/Stringhe/Grafica), poi
+'Salva progetto' e 'COSTRUISCI TUTTO'. Il progetto contiene gia' il blocco italiano.
+
+PARTE 1 — BLOCCO COMPRESSO
+------------------------------------------------------------------------
+=== record   0  titoli  (righe da 30)
+  EN |      DESTROY RADAR SITES     |
+  IT |     DISTRUGGI SITI RADAR     |
+  EN |       THE BALLOON IS UP      |
+  IT |       INIZIA L'ATTACCO       |
+
+=== record   1  titoli  (righe da 30)
+  EN |            DESTROY           |
+  IT |          DISTRUGGI           |
+  EN |         SCUD LAUNCHERS       |
+  IT |       LANCIATORI SCUD        |
+
+=== record   2  titoli  (righe da 30)
+  EN |            DISABLE           |
+  IT |          DISATTIVA           |
+  EN |       OIL SUPPLY DEPOTS      |
+  IT |     DEPOSITI CARBURANTE      |
+
+=== record   3  titoli  (righe da 30)
+  EN |            ATTACK            |
+  IT |           ATTACCA            |
+  EN |        ZARAK AIR BASES       |
+  IT |     BASI AEREE DI ZARAK      |
+
+=== record   4  titoli  (righe da 30)
+  EN |     REGAIN CONTROL           |
+  IT |     RIPRENDI CONTROLLO       |
+  EN |        OF THE GULF HARBOR    |
+  IT |     DEL PORTO DEL GOLFO      |
+
+=== record   5  titoli  (righe da 30)
+  EN |            DESTROY           |
+  IT |          DISTRUGGI           |
+  EN |   N.B.C. WEAPONS FACTORIES   |
+  IT |   FABBRICHE DI ARMI N.B.C.   |
+
+=== record   6  titoli  (righe da 30)
+  EN |            STRIKE            |
+  IT |           COLPISCI           |
+  EN |      THE RED GUARD UNITS     |
+  IT |     UNITA' GUARDIA ROSSA     |
+
+=== record   7  titoli  (righe da 30)
+  EN |            DESTROY           |
+  IT |          DISTRUGGI           |
+  EN |           ZARAK HQs          |
+  IT |         QG DI ZARAK          |
+
+=== record   8  schermate missione  (righe da 56)
+  EN |YOUR FIRST MISSION IS TO OPEN AN AVENUE OF APPROACH FOR |
+  IT |LA TUA PRIMA MISSIONE E' APRIRE UNA VIA DI ACCESSO      |
+  EN |OUR GROUND TROOPS BY DESTROYING ENEMY RADAR SITES.      |
+  IT |PER LE NOSTRE TRUPPE DISTRUGGENDO I SITI RADAR          |
+  EN |CHECK SATELLITE PHOTOS FOR LOCATIONS.                   |
+  IT |NEMICI. CONTROLLA LE FOTO SATELLITARI PER LE            |
+  EN |MISSION TARGETS ARE FLASHING.                           |
+  IT |POSIZIONI. I BERSAGLI DELLA MISSIONE LAMPEGGIANO.       |
+
+=== record   9  schermate missione  (righe da 56)
+  EN |              AS YOU CAN SEE, RADAR BASES ARE LOCATED   |
+  IT |              COME PUOI VEDERE, LE BASI RADAR SI TROVANO|
+  EN |              IN AREAS 1 AND 3. YOU MUST DESTROY 80% TO |
+  IT |              NELLE AREE 1 E 3. DEVI DISTRUGGERNE L'80% |
+  EN |              ENSURE THE SAFETY OF APPROACHING COALITION|
+  IT |              PER GARANTIRE LA SICUREZZA DELLE FORZE DI |
+  EN |              FORCES. YOU HAVE ONLY 60 HRS.             |
+  IT |              COALIZIONE IN AVANZATA. HAI SOLO 60 ORE.  |
+
+=== record  10  schermate missione  (righe da 56)
+  EN | MISSION AREA : 1 AND 3                                 |
+  IT | AREA MISSIONE : 1 E 3                                  |
+  EN | TIME LIMIT   : 60 Hrs.                                 |
+  IT | TEMPO LIMITE  : 60 Ore                                 |
+  EN | OBJECTIVE    : RADAR BASES                             |
+  IT | OBIETTIVO     : BASI RADAR                             |
+  EN | M. D. R.     : 80%                                     |
+  IT | T. D. M.      : 80%                                    |
+
+=== record  11  schermate missione  (righe da 56)
+  EN |THIS MISSION IS OF GRAVE IMPORTANCE. YOU MUST PREVENT   |
+  IT |QUESTA MISSIONE E' DI FONDAMENTALE IMPORTANZA.          |
+  EN |CIVILIAN AND MILITARY CASUALTIES CAUSED BY SCUD MISSILES|
+  IT |DEVI EVITARE PERDITE CIVILI E MILITARI DA SCUD.         |
+  EN |NUMEROUS SCUD LAUNCHES ARE OVERTAKING OUR PATRIOT       |
+  IT |NUMEROSI LANCI SCUD STANNO SUPERANDO IL NOSTRO          |
+  EN |DEFENSE PERIMETER.                                      |
+  IT |PERIMETRO DIFENSIVO PATRIOT.                            |
+
+=== record  12  schermate missione  (righe da 56)
+  EN |              TO DO THIS, HUNT DOWN AND DESTROY SCUD    |
+  IT |              PER FARLO, CACCIA E DISTRUGGI GLI SCUD    |
+  EN |              TYPE Bs. THEY ARE NOT VISIBLE ON SATELLITE|
+  IT |              TIPO B. NON SONO VISIBILI DAL SATELLITE   |
+  EN |              BUT CAN BE LOCATED IN AREAS 4 & 5.        |
+  IT |              MA SI TROVANO NELLE AREE 4 E 5.           |
+  EN |              YOU MUST DESTROY 80% OF THESE TARGETS.    |
+  IT |              DEVI DISTRUGGERE L'80% DI QUESTI BERSAGLI.|
+
+=== record  13  schermate missione  (righe da 56)
+  EN | MISSION AREA : 4 AND 5                                 |
+  IT | AREA MISSIONE : 4 E 5                                  |
+  EN | TIME LIMIT   : 48 Hrs.                                 |
+  IT | TEMPO LIMITE  : 48 Ore                                 |
+  EN | OBJECTIVE    : SCUD MISSILE LAUNCHERS                  |
+  IT | OBIETTIVO     : LANCIATORI DI MISSILI SCUD             |
+  EN | M. D. R.     : 80% or 40 LAUNCHERS                     |
+  IT | T. D. M.      : 80% o 40 LANCIATORI                    |
+
+=== record  14  schermate missione  (righe da 56)
+  EN |HAMPER ENEMY MOBILITY BY DISRUPTING FUEL SUPPLY PUMPING |
+  IT |OSTACOLA LA MOBILITA' NEMICA COLPENDO I DEPOSITI        |
+  EN |DEPOTS. THE PIPELINES ARE LOCATED IN AREAS 1 AND 4.     |
+  IT |DI POMPAGGIO CARBURANTE. GLI OLEODOTTI SONO             |
+  EN |AN M.D.R. OF 80% IS REQUIRED TO SUFFICIENTLY HINDER THE |
+  IT |NELLE AREE 1 E 4. SERVE UN T.D.M. DELL'80% PER          |
+  EN |MOBILITY OF THE ENEMY.                                  |
+  IT |OSTACOLARE A SUFFICIENZA LA MOBILITA' DEL NEMICO.       |
+
+=== record  15  schermate missione  (righe da 56)
+  EN |              THEY ARE HEAVILY GUARDED WITH T-80'S.     |
+  IT |              SONO FORTEMENTE PROTETTI DA T-80.         |
+  EN |              DESTROY SURROUNDING ANTI-AIRCRAFT TO      |
+  IT |              DISTRUGGI LA CONTRAEREA CIRCOSTANTE PER   |
+  EN |              ASSIST SQUADRONS THAT FOLLOW.             |
+  IT |              AIUTARE I SQUADRONI SUCCESSIVI.           |
+  EN |              ACHIEVE M.D.R. AND WATCH YOUR TIME.       |
+  IT |              RAGGIUNGI IL T.D.M. E OCCHIO AL TEMPO.    |
+
+=== record  16  schermate missione  (righe da 56)
+  EN | MISSION AREA  : 1 AND 4                                |
+  IT | AREA MISSIONE : 1 E 4 TEMPO LIMITE : 48 Ore OBIETTIVO  |
+  EN | TIME LIMIT    : 48 Hrs.                                |
+  IT | : STRUTTURE PETROLIFERE E TRUPPE T. D. M. : 80%        |
+  EN | OBJECTIVE     : OIL FACILITIES AND TROOPS              |
+  IT |                                                        |
+  EN | M. D. R.      : 80%                                    |
+  IT |                                                        |
+
+=== record  17  schermate missione  (righe da 56)
+  EN |CRYPTOGRAPHERS HAVE REVEALED THAT THE ZARAKS ARE        |
+  IT |I CRITTOGRAFI HANNO RIVELATO CHE GLI ZARAK              |
+  EN |PREPARING TO LAUNCH AN AIR ASSAULT ON THE TOWN OF       |
+  IT |STANNO PREPARANDO UN ATTACCO AEREO SU TAFUJI,           |
+  EN |TAFUJI, LOCATED NEAR THE BORDER. ALLIED GROUND TROOPS   |
+  IT |SITUATA VICINO AL CONFINE. TRUPPE DI TERRA ALLEATE      |
+  EN |HAVE BEEN SENT TO DEFEND THE BORDER.                    |
+  IT |SONO STATE INVIATE A DIFENDERE IL CONFINE.              |
+
+=== record  18  schermate missione  (righe da 56)
+  EN |              ARMAMENTS ARE STILL STORED IN THE HANGARS.|
+  IT |              GLI ARMAMENTI SONO ANCORA NEGLI HANGAR.   |
+  EN |              CONCENTRATE ON SUPPORT BUILDINGS AND      |
+  IT |              CONCENTRATI SUGLI EDIFICI DI SUPPORTO E   |
+  EN |              MUNITIONS BUNKERS. YOU HAVE ONLY 60 HRS   |
+  IT |              BUNKER DI MUNIZIONI. HAI SOLO 60 ORE      |
+  EN |              TO COMPLETE THIS MISSION.                 |
+  IT |              PER COMPLETARE QUESTA MISSIONE.           |
+
+=== record  19  schermate missione  (righe da 56)
+  EN | MISSION AREA : 7 AND 8                                 |
+  IT | AREA MISSIONE : 7 E 8                                  |
+  EN | TIME LIMIT   : 60 Hrs.                                 |
+  IT | TEMPO LIMITE  : 60 Ore                                 |
+  EN | OBJECTIVE    : AIRCRAFT FACILITIES                     |
+  IT | OBIETTIVO     : STRUTTURE AEREE                        |
+  EN | M. D. R.     : 80%                                     |
+  IT | T. D. M.      : 80%                                    |
+
+=== record  20  schermate missione  (righe da 56)
+  EN |THE ZARAKIE FORCES HAVE TAKEN CONTROL OF THE OIL        |
+  IT |LE FORZE DI ZARAK HANNO PRESO IL CONTROLLO              |
+  EN |PRODUCTION FACILITIES IN THE GULF HARBOR. WE MUST       |
+  IT |DELLE STRUTTURE PETROLIFERE DEL PORTO DEL GOLFO.        |
+  EN |LIBERATE THE PORT AND RESCUE THE CIVILIANS. ZARAK       |
+  IT |DOBBIAMO LIBERARE IL PORTO E SALVARE I CIVILI. ZARAK    |
+  EN |IS PREPARED TO LAUNCH A COUNTER OFFENSIVE.              |
+  IT |E' PRONTO A LANCIARE UNA CONTROFFENSIVA.                |
+
+=== record  21  schermate missione  (righe da 56)
+  EN |              YOU MUST DESTROY ALL ENEMY GROUND TROOPS  |
+  IT |              DEVI DISTRUGGERE TUTTE LE TRUPPE          |
+  EN |              IN THE GULF HARBOR AND SUPPORTING         |
+  IT |              NEMICHE NEL PORTO DEL GOLFO E NELLE       |
+  EN |              BASES, TO PREVENT THEM FROM CARRYING      |
+  IT |              BASI DI SUPPORTO, PER IMPEDIRE LORO       |
+  EN |              OUT THEIR ECOTERRORIST THREATS.           |
+  IT |              DI ATTUARE MINACCE DI ECOTERRORISMO.      |
+
+=== record  22  schermate missione  (righe da 56)
+  EN | MISSION AREA : 5 AND  6                                |
+  IT | AREA MISSIONE : 5 E 6                                  |
+  EN | TIME LIMIT   : 60 Hrs.                                 |
+  IT | TEMPO LIMITE  : 60 Ore                                 |
+  EN | OBJECTIVE    : GROUND FORCES AND BASES                 |
+  IT | OBIETTIVO     : FORZE TERRESTRI E BASI                 |
+  EN | M. D. R.     : 80%                                     |
+  IT | T. D. M.      : 80%                                    |
+
+=== record  23  schermate missione  (righe da 56)
+  EN |INTELLIGENCE HAS REVEALED ZARAK'S PLAN TO USE N.B.C.    |
+  IT |I SERVIZI SEGRETI HANNO RIVELATO IL PIANO               |
+  EN |WEAPONS ON CIVILIANS AND COALITION FORCES. YOU MUST     |
+  IT |DI ZARAK DI USARE ARMI N.B.C. SU CIVILI E               |
+  EN |DESTROY THESE FACTORIES BEFORE THE DISTRIBUTION OF THESE|
+  IT |COALIZIONE. DEVI DISTRUGGERE QUESTE FABBRICHE           |
+  EN |WEAPONS COMMENCES.                                      |
+  IT |PRIMA CHE L'USO DI QUESTE ARMI ABBIA INIZIO.            |
+
+=== record  24  schermate missione  (righe da 56)
+  EN |              YOU MUST DESTROY ALL FACILITIES AND LEAVE |
+  IT |              DEVI DISTRUGGERE TUTTE LE STRUTTURE E NON |
+  EN |              NOTHING FOR THEM TO REBUILD. IF YOU ARE   |
+  IT |              LASCIARE NULLA DA RICOSTRUIRE. SE NON     |
+  EN |              NOT SUCCESSFUL, THERE WILL BE A LARGE     |
+  IT |              AVRAI SUCCESSO, CI SARA' UN ELEVATO       |
+  EN |              NUMBER OF CASUALTIES.                     |
+  IT |              NUMERO DI VITTIME.                        |
+
+=== record  25  schermate missione  (righe da 56)
+  EN | MISSION AREA : 3                                       |
+  IT | AREA MISSIONE : 3                                      |
+  EN | TIME LIMIT   : 36 Hrs.                                 |
+  IT | TEMPO LIMITE  : 36 Ore                                 |
+  EN | OBJECTIVE    : ALL CHEMICAL FACTORIES AND TROOPS       |
+  IT | OBIETTIVO     : FABBRICHE CHIMICHE E TRUPPE            |
+  EN | M. D. R.     : 100%                                    |
+  IT | T. D. M.      : 100%                                   |
+
+=== record  26  schermate missione  (righe da 56)
+  EN |OUR P.D.F. SCOUTS HAVE REACHED THE CITY LIMITS. THEY    |
+  IT |I NOSTRI ESPLORATORI P.D.F. SONO IN CITTA'. RIPORTANO   |
+  EN |REPORT A LARGE MILITARY PRESENCE WITHIN THE CAPITAL,    |
+  IT |UNA GRANDE PRESENZA MILITARE NELLA CAPITALE,            |
+  EN |A PRESENCE THEY BELIEVE TO BE THE ELITE RED GUARD.      |
+  IT |CHE RITENGONO ESSERE LA GUARDIA ROSSA DI ELITE.         |
+
+=== record  27  schermate missione  (righe da 56)
+  EN |              MILITARY TROOPS ARE BLENDED IN WITH       |
+  IT |              LE TRUPPE MILITARI SONO MESCOLATE         |
+  EN |              CIVILIAN BUILDINGS. YOU MUST BE CAREFUL   |
+  IT |              AGLI EDIFICI CIVILI. DEVI FARE ATTENZIONE |
+  EN |              TO ONLY ATTACK MILITARY TARGETS. DO NOT   |
+  IT |              A COLPIRE SOLO BERSAGLI MILITARI. NON     |
+  EN |              HIT CIVILIAN FACILITIES!                  |
+  IT |              COLPIRE LE STRUTTURE CIVILI!              |
+
+=== record  28  schermate missione  (righe da 56)
+  EN | MISSION AREA : CAPITAL OF ZARAK (AREA 2)               |
+  IT | AREA MISSIONE : CAPITALE DI ZARAK (AREA                |
+  EN | TIME LIMIT   : 36 Hrs.                                 |
+  IT | 2) TEMPO LIMITE : 36 Ore OBIETTIVO : FORZE             |
+  EN | OBJECTIVE    : ENEMY GROUND FORCES AND BASES           |
+  IT | TERRESTRI E BASI NEMICHE T. D. M. : 80%                |
+  EN | M. D. R.     : 80%                                     |
+  IT |                                                        |
+
+=== record  29  schermate missione  (righe da 56)
+  EN |ZARAKIE FORCES HAVE RETREATED TO THEIR HEAVILY          |
+  IT |LE FORZE DI ZARAK SI SONO RITIRATE NEL LORO             |
+  EN |FORTIFIED HEADQUARTERS. SATELLITE INFO REVEALS THAT     |
+  IT |FORTIFICATISSIMO QUARTIER GENERALE. I SATELLITI         |
+  EN |THEY ARE PROTECTED BY THEIR BEST WEAPONS AND HAVE       |
+  IT |MOSTRANO CHE SONO PROTETTI DALLE LORO ARMI MIGLIORI     |
+  EN |NUCLEAR STRIKE CAPABILITY.                              |
+  IT |E HANNO CAPACITA' D'ATTACCO NUCLEARE.                   |
+
+=== record  30  schermate missione  (righe da 56)
+  EN |              YOU MUST HIT HARD AND FAST BEFORE THEY    |
+  IT |              DEVI COLPIRE DURO E RAPIDO PRIMA CHE      |
+  EN |              STRIKE AT CIVILIAN AND MILITARY TARGETS.  |
+  IT |              COLPISCANO BERSAGLI CIVILI E MILITARI.    |
+  EN |              YOU HAVE ONLY 24 HOURS, SO BE SWIFT AND   |
+  IT |              HAI SOLO 24 ORE, SII RAPIDO E             |
+  EN |              PRECISE. YOU MUST DESTROY ALL HQs WEAPONS |
+  IT |              PRECISO. DEVI DISTRUGGERE LE ARMI DEL QG  |
+
+=== record  31  schermate missione  (righe da 56)
+  EN | MISSION AREA : ZARAK HEADQUARTERS                      |
+  IT | AREA MISSIONE : QUARTIER GENERALE DI ZARAK             |
+  EN | TIME LIMIT   : 24 HRS                                  |
+  IT | TEMPO LIMITE  : 24 ORE                                 |
+  EN | OBJECTIVE    : DESTROY HQs AND WEAPONS                 |
+  IT | OBIETTIVO     : DISTRUGGI QG E ARMI                    |
+  EN | M.D.R.       : 100%                                    |
+  IT | T.D.M.        : 100%                                   |
+
+=== record  32  schermate missione  (righe da 56)
+  EN |THERE ARE MANY ENEMY RADAR SITES IN AREA 1,             |
+  IT |CI SONO MOLTI SITI RADAR NEMICI NELL'AREA 1,            |
+  EN |USED TO OBSERVE OUR FORCES. MOST OF THEM ARE LOCATED IN |
+  IT |USATI PER OSSERVARE LE NOSTRE FORZE. LA MAGGIOR         |
+  EN |THE SOUTHERN PART OF THIS AREA AND APPEAR TO BE         |
+  IT |PARTE SI TROVA NELLA PARTE SUD DI QUESTA ZONA E         |
+  EN |PROTECTED BY A LARGE AMOUNT OF GROUND TROOPS.           |
+  IT |SEMBRA ESSERE PROTETTA DA MOLTE TRUPPE DI TERRA.        |
+
+=== record  33  schermate missione  (righe da 56)
+  EN |THERE ARE MANY ENEMY RADAR SITES IN AREA 3,             |
+  IT |CI SONO MOLTI SITI RADAR NEMICI NELL'AREA               |
+  EN |USED TO OBSERVE OUR FORCES. THEY ARE LOCATED NEAR THE   |
+  IT |3, USATI PER OSSERVARE LE NOSTRE FORZE. SI              |
+  EN |SOUTHERN AND WESTERN AREA MOUNTAINS AND ARE PROTECTED   |
+  IT |TROVANO VICINO AI MONTI A SUD E AD OVEST                |
+  EN |BY MANY GROUND TROOPS.                                  |
+  IT |E SONO PROTETTI DA MOLTE TRUPPE TERRESTRI.              |
+
+=== record  34  schermate missione  (righe da 56)
+  EN |IT IS NECESSARY TO DESTROY THE RADAR SITES TO PROTECT   |
+  IT |E' NECESSARIO DISTRUGGERE I SITI RADAR PER              |
+  EN |OUR TROOPS AND ENSURE THEIR SUCCESS. TAKE CAUTION WHILE |
+  IT |PROTEGGERE LE NOSTRE TRUPPE E GARANTIRNE IL             |
+  EN |APPROACHING, AS THERE ARE MANY ANTI-AIRCRAFT VEHICLES   |
+  IT |SUCCESSO. PRESTA ATTENZIONE DURANTE L'AVVICINAMENTO,    |
+  EN |AROUND THESE SITES.                                     |
+  IT |CI SONO MEZZI CONTRAEREI INTORNO A QUESTI SITI.         |
+
+=== record  35  schermate missione  (righe da 56)
+  EN |YOU HAVE NOT YET REACHED THE TARGET DESTRUCTION RATE.   |
+  IT |NON HAI ANCORA RAGGIUNTO IL TASSO DI DISTRUZIONE.       |
+  EN |HELP TO SUPPORT OUR GROUND FORCES BY ELIMINATING THE    |
+  IT |AIUTA LE TRUPPE DI TERRA ELIMINANDO I SITI RADAR        |
+  EN |RADAR SITES AND OTHER ENEMY TARGETS.                    |
+  IT |E GLI ALTRI BERSAGLI NEMICI.                            |
+  EN |GOOD HUNTING!!                                          |
+  IT |BUONA CACCIA!!                                          |
+
+=== record  36  schermate missione  (righe da 56)
+  EN |ALTHOUGH YOU HAVE ATTEMPTED YOUR MISSION SEVERAL TIMES, |
+  IT |SEBBENE TU ABBIA TENTATO LA MISSIONE PIU' VOLTE, NON    |
+  EN |YOU HAVE STILL NOT REACHED THE TARGET RATE              |
+  IT |HAI ANCORA RAGGIUNTO IL TASSO DI DISTRUZIONE            |
+  EN |OF DESTRUCTION. IF YOU DO NOT COMPLETE THE MISSION SOON,|
+  IT |PREVISTO. SE NON COMPLETI LA MISSIONE A BREVE,          |
+  EN |OUR TROOPS WILL SUFFER MANY CASUALTIES.                 |
+  IT |LE NOSTRE TRUPPE SUBIRANNO MOLTE PERDITE.               |
+
+=== record  37  schermate missione  (righe da 56)
+  EN |IF YOU DO NOT MEET THE M.D.R. ON THIS ATTEMPT,          |
+  IT |SE NON RAGGIUNGI IL T.D.M. IN QUESTO TENTATIVO,         |
+  EN |WE WILL BE VULNERABLE TO ATTACK AND WILL                |
+  IT |SAREMO VULNERABILI AGLI ATTACCHI E RICEVEREMO           |
+  EN |RECEIVE AN ORDER TO RETREAT. YOU MUST DESTROY           |
+  IT |L'ORDINE DI RITIRATA. DEVI DISTRUGGERE                  |
+  EN |THESE RADAR SITES THIS TIME.                            |
+  IT |QUESTI SITI RADAR QUESTA VOLTA.                         |
+
+=== record  38  schermate missione  (righe da 56)
+  EN |IN AREA 4 THERE ARE MANY FACILITIES, INCLUDING          |
+  IT |NELL'AREA 4 CI SONO MOLTE STRUTTURE, TRA CUI            |
+  EN |AIRFIELDS, GROUND TROOPS AND MUNITIONS SITES. 25        |
+  IT |AEROPORTI, TRUPPE TERRESTRI E DEPOSITI MUNIZIONI.       |
+  EN |SCUD MISSILE TRACKS IN GROUPS OF 5 ARE LOCATED          |
+  IT |25 CAMION DI MISSILI SCUD DIVISI IN GRUPPI DA 5         |
+  EN |IN THIS AREA.                                           |
+  IT |SI TROVANO IN QUESTA ZONA.                              |
+
+=== record  39  schermate missione  (righe da 56)
+  EN |IT IS ALSO BELIEVED THAT THERE ARE 25 MISSILE TRACKS IN |
+  IT |SI RITIENE ANCHE CHE CI SIANO 25 CAMION MISSILE         |
+  EN |THIS AREA. INTELLIGENCE SUGGESTS THAT THEY ARE MORE     |
+  IT |IN QUESTA ZONA. I SERVIZI INDICANO CHE SONO SITUATI     |
+  EN |CENTRALLY LOCATED.  USE CAUTION HOWEVER, AS THERE       |
+  IT |PIU' AL CENTRO. USA PRUDENZA PERO', PERCHE' CI SONO     |
+  EN |ARE MANY ANTI-AIRCRAFT VEHICLES OUT THERE.              |
+  IT |MOLTI VEICOLI CONTRAEREI IN ZONA.                       |
+
+=== record  40  schermate missione  (righe da 56)
+  EN |ZARAK IS LAUNCHING MISSILES AT NEIGHBORING COUNTRIES    |
+  IT |ZARAK STA LANCIANDO MISSILI SUI PAESI VICINI            |
+  EN |AND CIVILIANS. THESE SCUD LAUNCHERS ARE MOBILE,         |
+  IT |E SUI CIVILI. QUESTI LANCIATORI SCUD SONO MOBILI,       |
+  EN |SO AS YOU ENCOUNTER THEM, DESTROY THEM!                 |
+  IT |QUINDI APPENA LI INCONTRI, DISTRUGGILI!                 |
+  EN |THIS IS A VERY IMPORTANT MISSION.                       |
+  IT |QUESTA E' UNA MISSIONE MOLTO IMPORTANTE.                |
+
+=== record  41  schermate missione  (righe da 56)
+  EN |ZARAK HAS STARTED FIRING AT NEIGHBORING COUNTRIES. THE  |
+  IT |ZARAK HA INIZIATO A SPARARE SUI PAESI CONTERMINI. I     |
+  EN |SCUD TRACKS ARE LOCATED AROUND AREA 4 BORDERS           |
+  IT |CAMION SCUD SI TROVANO AI CONFINI DELL'AREA 4           |
+  EN |AND THE CENTER OF AREA 5.                               |
+  IT |E AL CENTRO DELL'AREA 5.                                |
+  EN |GOOD HUNTING, A.S.P.!!!!                                |
+  IT |BUONA CACCIA, A.S.P.!!!!                                |
+
+=== record  42  schermate missione  (righe da 56)
+  EN |DESPITE MANY ATTEMPTS, YOU STILL HAVE NOT               |
+  IT |NONOSTANTE MOLTI TENTATIVI, NON HAI ANCORA              |
+  EN |COMPLETED YOUR MISSION. NOW, SCUD MISSILE TRACKS        |
+  IT |COMPLETATO LA MISSIONE. ORA I CAMION SCUD NON           |
+  EN |ARE NOT ONLY LOCATED NEAR MILITARY FACILITIES,          |
+  IT |SONO SOLO VICINO A STRUTTURE MILITARI,                  |
+  EN |BUT ALSO AROUND CIVILIAN AREAS.                         |
+  IT |MA ANCHE INTORNO A ZONE CIVILI.                         |
+
+=== record  43  schermate missione  (righe da 56)
+  EN |MANY SCUD TRACKS ARE LEFT. IF YOU DO NOT COMPLETE THE   |
+  IT |RESTANO MOLTI CAMION SCUD. SE NON COMPLETI LA           |
+  EN |MISSION THIS TIME, THE DAMAGE THEY WILL CAUSE WILL      |
+  IT |MISSIONE QUESTA VOLTA, I DANNI CHE CAUSERANNO           |
+  EN |BE TOO SEVERE. IF THIS OCCURS, WE WILL RECEIVE THE      |
+  IT |SARANNO TROPPO GRAVI. SE CIO' ACCADE, RICEVEREMO        |
+  EN |ORDER TO RETREAT AND SURELY LOSE THIS WAR.              |
+  IT |L'ORDINE DI RITIRATA E PERDEREMO LA GUERRA.             |
+
+=== record  44  schermate missione  (righe da 56)
+  EN |THERE ARE 5 PIPELINE PUMPING STATIONS IN AREA 1 LEADING |
+  IT |CI SONO 5 STAZIONI DI POMPAGGIO NELL'AREA 1 CHE VANNO   |
+  EN |TO THE ENEMY MILITARY FACILITIES. ALTHOUGH THE RADAR    |
+  IT |ALLE STRUTTURE MILITARI NEMICHE. SEBBENE I RADAR        |
+  EN |SITES HAVE BEEN DESTROYED, YOU NEED TO USE CAUTION AS   |
+  IT |SIANO STATI DISTRUTTI, DEVI FARE ATTENZIONE PERCHE'     |
+  EN |THERE ARE A LOT OF ANTI-AIRCRAFT VEHICLES IN AREA.      |
+  IT |CI SONO MOLTI VEICOLI CONTRAEREI IN ZONA.               |
+
+=== record  45  schermate missione  (righe da 56)
+  EN |IN THIS AREA THERE ARE 5 PIPELINE PUMPING STATIONS,     |
+  IT |IN QUESTA ZONA CI SONO 5 STAZIONI DI POMPAGGIO,         |
+  EN |4 OF THEM LEADING TO ENEMY MILITARY FACILITIES.         |
+  IT |4 DELLE QUALI PORTANO A STRUTTURE MILITARI.             |
+  EN |THERE ARE MANY GROUND-TO-AIR WEAPONS AND AT             |
+  IT |CI SONO MOLTE ARMI TERRA-ARIA E ALMENO                  |
+  EN |LEAST 5 MIGS, SO BE CAREFUL.                            |
+  IT |5 MIG, QUINDI FAI ATTENZIONE.                           |
+
+=== record  46  schermate missione  (righe da 56)
+  EN |THERE ARE MANY GROUND-TO-AIR MISSILES NEAR              |
+  IT |CI SONO MOLTI MISSILI TERRA-ARIA VICINO ALLE            |
+  EN |ENEMY PUMPING STATIONS BECAUSE THEY LEAD TO             |
+  IT |STAZIONI DI POMPAGGIO POICHE' CONDUCONO A STRUTTURE     |
+  EN |MILITARY FACILITIES. BEWARE OF MOUNTED RAPIER           |
+  IT |MILITARI. ATTENTO AI SISTEMI RAPIER MONTATI             |
+  EN |SYSTEMS AND DANGEROUS ANTI-AIRCRAFT ROCKETS.            |
+  IT |E AI PERICOLOSI RAZZI CONTRAEREI.                       |
+
+=== record  47  schermate missione  (righe da 56)
+  EN |DESTROYING ENEMY TROOPS AROUND THE STATIONS WOULD       |
+  IT |DISTRUGGERE LE TRUPPE INTORNO ALLE STAZIONI AIUTERA'    |
+  EN |HELP PROTECT OUR TROOPS AND PREVENT THE ZARAKIES        |
+  IT |A PROTEGGERE I NOSTRI E IMPEDIRA' A ZARAK DI            |
+  EN |FROM REBUILDING LATER. DESTROYING THE FUEL PUMPING      |
+  IT |RICOSTRUIRE DOPO. DISTRUGGERE LE STAZIONI DI            |
+  EN |STATIONS WILL HAMPER THE ENEMY CONSIDERABLY.            |
+  IT |POMPAGGIO OSTACOLERA' IL NEMICO NOTEVOLMENTE.           |
+
+=== record  48  schermate missione  (righe da 56)
+  EN |THE ENEMY IS TRYING TO RELOCATE THEIR FUEL SUPPLY       |
+  IT |IL NEMICO STA CERCANDO DI SPOSTARE I PUNTI DI           |
+  EN |POINTS. DESTROY THESE PUMPING STATIONS BEFORE THEY      |
+  IT |RIFORNIMENTO. DISTRUGGI QUESTE STAZIONI PRIMA CHE       |
+  EN |RELOCATE THE SUPPLY POINTS TO UNDESTROYED PUMPING       |
+  IT |SPOSTINO I RIFORNIMENTI IN QUELLE ANCORA                |
+  EN |STATIONS. GOOD HUNTING!!!!                              |
+  IT |INTEGRE. BUONA CACCIA!!!!                               |
+
+=== record  49  schermate missione  (righe da 56)
+  EN |THE ENEMY HAS ALMOST RELOCATED THEIR FUEL SUPPLY        |
+  IT |IL NEMICO HA QUASI SPOSTATO I PUNTI DI                  |
+  EN |POINTS. IF YOU DO NOT DESTROY THE PUMPING STATIONS      |
+  IT |RIFORNIMENTO. SE NON DISTRUGGI LE STAZIONI QUESTA       |
+  EN |THIS TIME, WE WILL BE FORCED TO RETREAT AND YOU WILL    |
+  IT |VOLTA, SAREMO COSTRETTI ALLA RITIRATA E                 |
+  EN |FAIL THIS MISSION.                                      |
+  IT |FALLIRAI LA MISSIONE.                                   |
+
+=== record  50  schermate missione  (righe da 56)
+  EN |AREA 7 IS VERY DANGEROUS BECAUSE MANY OF ZARAK'S        |
+  IT |L'AREA 7 E' MOLTO PERICOLOSA PERCHE' MOLTE BASI         |
+  EN |MILITARY BASES ARE LOCATED HERE. YOUR MISSION IS        |
+  IT |MILITARI DI ZARAK SONO QUI. LA TUA MISSIONE E'          |
+  EN |TO DESTROY THE AIRFIELDS BEFORE ZARAK                   |
+  IT |DISTRUGGERE GLI AEROPORTI PRIMA CHE ZARAK               |
+  EN |LAUNCHES THEIR AIR ATTACK ON TAFUJI.                    |
+  IT |LANCI IL SUO ATTACCO AEREO SU TAFUJI.                   |
+
+=== record  51  schermate missione  (righe da 56)
+  EN |YOUR MISSION IS TO DESTROY THE AIR BASES IN AREA 8.     |
+  IT |LA TUA MISSIONE E' DISTRUGGERE LE BASI AEREE NELL'AREA  |
+  EN |THERE ARE MANY CIVILIAN OIL FACILITIES THERE, SO BE     |
+  IT |8. CI SONO MOLTE STRUTTURE PETROLIFERE CIVILI           |
+  EN |CAREFUL NOT TO DESTROY THEM DURING THE ATTACK.          |
+  IT |LI', ATTENTO A NON DISTRUGGERLE DURANTE L'ATTACCO.      |
+
+=== record  52  schermate missione  (righe da 56)
+  EN |ZARAK HAS INVADED TAFUJI AND IS PREPARING TO SEND       |
+  IT |ZARAK HA INVASO TAFUJI E SI PREPARA A MANDARE           |
+  EN |AIRCRAFT TO DESTROY SURROUNDING COUNTRIES. YOU          |
+  IT |AEREI PER DISTRUGGERE I PAESI VICINI. DEVI              |
+  EN |MUST DESTROY THE AIR FACILITIES BEFORE THEIR AIRCRAFT   |
+  IT |DISTRUGGERE LE STRUTTURE AEREE PRIMA CHE GLI            |
+  EN |TAKE OFF. GOOD HUNTING, A.S.P.!!!!                      |
+  IT |AEREI DECOLLINO. BUONA CACCIA, A.S.P.!!!!               |
+
+=== record  53  schermate missione  (righe da 56)
+  EN |THE ZARAKIES ARE ACQUIRING MORE AIRCRAFT. YOU MUST      |
+  IT |GLI ZARAKIANI STANNO OTTENENDO ALTRI AEREI. DEVI        |
+  EN |DESTROY THE AIR FACILITIES BEFORE THEY ARE ABLE TO FUEL |
+  IT |DISTRUGGERE LE STRUTTURE AEREE PRIMA CHE POSSANO        |
+  EN |THESE AIRCRAFT AND LAUNCH THEIR ATTACK.                 |
+  IT |RIFORNIRLI E LANCIARE L'ATTACCO.                        |
+  EN |ALL THE BEST, WARTHOG!!                                 |
+  IT |BUONA FORTUNA, WARTHOG!!                                |
+
+=== record  54  schermate missione  (righe da 56)
+  EN |YOU HAVE STILL NOT BEEN SUCCESSFUL. THE A-10 WITH       |
+  IT |NON HAI ANCORA AVUTO SUCCESSO. L'A-10 CON LE            |
+  EN |THE CLUSTER BOMBS WILL BE MOST EFFICIENT FOR            |
+  IT |BOMBE A GRAPPOLO SARA' PIU' EFFICACE PER ATTACCARE      |
+  EN |ATTACKING A BROAD AREA. BE CAREFUL NOT TO BOMB THE      |
+  IT |UN'AMPIA AREA. ATTENTO A NON BOMBARDARE LE              |
+  EN |COALITION FORCES. GO FOR IT, A.S.P.!!!!                 |
+  IT |FORZE DELLA COALIZIONE. FORZA, A.S.P.!!!!               |
+
+=== record  55  schermate missione  (righe da 56)
+  EN |THE ENEMY HAS LAUNCHED THEIR FIRST ATTACK AND ARE       |
+  IT |IL NEMICO HA LANCIATO IL PRIMO ATTACCO E STA            |
+  EN |STRIKING OTHER COUNTRIES. IF YOU DON'T DESTROY THE AIR  |
+  IT |COLPENDO ALTRI PAESI. SE NON DISTRUGGI LE STRUTTURE     |
+  EN |FACILITIES BEFORE THEY LAUNCH THEIR SECOND WAVE, THEY   |
+  IT |AEREE PRIMA DELLA SECONDA ONDATA, CI                    |
+  EN |WILL OBLITERATE US.                                     |
+  IT |ANNIENTERANNO.                                          |
+
+=== record  56  schermate missione  (righe da 56)
+  EN |THERE ARE MANY BASES IN AREA 5 THAT PROVIDE SUPPORT TO  |
+  IT |CI SONO MOLTE BASI NELL'AREA 5 CHE OFFRONO SUPPORTO     |
+  EN |THE ENEMY FORCES THAT HAVE INVADED THE HARBOR. YOU      |
+  IT |ALLE FORZE NEMICHE CHE HANNO INVASO IL PORTO. DEVI      |
+  EN |MUST DESTROY THESE SUPPORTING BASES OR YOU WILL HAVE    |
+  IT |DISTRUGGERE QUESTE BASI DI SUPPORTO O AVRAI             |
+  EN |A HARD TIME CLEARING THE HARBOR.                        |
+  IT |DIFFICOLTA' A LIBERARE IL PORTO.                        |
+
+=== record  57  schermate missione  (righe da 56)
+  EN |IN AREA 6 THERE ARE CIVILIAN OIL FACILITIES THAT THE    |
+  IT |NELL'AREA 6 CI SONO STRUTTURE CIVILI PETROLIFERE        |
+  EN |ENEMY HAS TAKEN OVER. YOUR MISSION IS TO DESTROY        |
+  IT |CHE IL NEMICO HA OCCUPATO. LA TUA MISSIONE E'           |
+  EN |THE BASES AND ENEMY GROUND TROOPS CONTROLLING           |
+  IT |DISTRUGGERE LE BASI E LE TRUPPE NEMICHE CHE             |
+  EN |THE HARBOR BEFORE THEY BUILD PERMANENT BASES.           |
+  IT |CONTROLLANO IL PORTO PRIMA CHE CREINO BASI.             |
+
+=== record  58  schermate missione  (righe da 56)
+  EN |MANY GROUND-TO-AIR TROOPS AROUND THE BASES AND IN THE   |
+  IT |MOLTE TRUPPE TERRA-ARIA INTORNO ALLE BASI E NEL PORTO   |
+  EN |HARBOR ARE HOLDING CIVILIANS. SINCE IT IS NEAR THE END  |
+  IT |TENGONO IN OSTAGGIO CIVILI. ESSENDO QUASI LA FINE       |
+  EN |OF THE WAR, WE THINK THAT THE ENEMY IS LIKELY TO TAKE   |
+  IT |DELLA GUERRA, IL NEMICO POTREBBE PRENDERE               |
+  EN |DRASTIC MEASURES AND HARM MANY CIVILIANS.               |
+  IT |MISURE DRASTICHE E COLPIRLI.                            |
+
+=== record  59  schermate missione  (righe da 56)
+  EN |THE ENEMY HAS ANNOUNCED THAT IF THE U.N. FORCES         |
+  IT |IL NEMICO HA ANNUNCIATO CHE SE LE FORZE ONU             |
+  EN |CONTINUE TO ATTACK, THEY WILL DUMP OIL INTO THE OCEAN.  |
+  IT |CONTINUANO L'ATTACCO, VERSERANNO PETROLIO IN MARE.      |
+  EN |YOU MUST ATTACK SWIFT AND HARD, DESTROYING THE ENEMY IN |
+  IT |DEVI ATTACCARE RAPIDO E DURO, DISTRUGGENDO IL           |
+  EN |THE AREA BEFORE THEY CAN RELEASE THE OIL.               |
+  IT |NEMICO IN ZONA PRIMA CHE RILASCI IL PETROLIO.           |
+
+=== record  60  schermate missione  (righe da 56)
+  EN |THE ENEMY HAS BEGUN TO DUMP OIL INTO THE OCEAN AND HAS  |
+  IT |IL NEMICO HA INIZIATO A VERSARE PETROLIO IN MARE E HA   |
+  EN |LIT THE OIL WELLS ON FIRE. THE ENVIRONMENTAL DAMAGES    |
+  IT |INCENDIATO I POZZI. I DANNI AMBIENTALI NON SONO         |
+  EN |ARE NOT YET SEVERE, BUT YOU MUST DESTROY THE ENEMY      |
+  IT |ANCORA GRAVI, MA DEVI DISTRUGGERE IL NEMICO             |
+  EN |QUICKLY, BEFORE THE DAMAGES BECOME OVERWHELMING.        |
+  IT |PRESTO, PRIMA CHE DIVENTINO DEVASTANTI.                 |
+
+=== record  61  schermate missione  (righe da 56)
+  EN |THIS IS YOUR LAST CHANCE TO DESTROY THE ENEMY           |
+  IT |QUESTA E' LA TUA ULTIMA POSSIBILITA' PER DISTRUGGERE IL |
+  EN |AND COMPLETE THIS MISSION WITH MINIMAL DAMAGE.          |
+  IT |NEMICO E COMPLETARE LA MISSIONE CON DANNI MINIMI.       |
+  EN |IF YOU FAIL THIS TIME, WE WILL BE RESPONSIBLE FOR       |
+  IT |SE FALLISCI ORA, SAREMO RESPONSABILI DELLA              |
+  EN |LOSING THE WAR. GOOD HUNTING, ASP!!!!                   |
+  IT |PERDITA DELLA GUERRA. BUONA CACCIA, ASP!!!!             |
+
+=== record  62  schermate missione  (righe da 56)
+  EN |AREA 3 IS FILLED WITH N.B.C. WEAPON FACTORIES. THE      |
+  IT |L'AREA 3 E' PIENA DI FABBRICHE N.B.C. IL NEMICO USERA'  |
+  EN |ENEMY IS GOING TO USE THESE CHEMICALS ON U.N. FORCES AND|
+  IT |QUESTI AGENTI CHIMICI SULLE FORZE ONU E                 |
+  EN |PROBABLY ON CIVILIANS IN NEARBY COUNTRIES. YOUR SQUAD   |
+  IT |PROBABILMENTE SUI CIVILI DEI PAESI VICINI. LA TUA       |
+  EN |HAS BEEN REASSIGNED TO THE NEWLY FORMED P.D.F.          |
+  IT |SQUADRA E' RIASSEGNATA ALLA NUOVA P.D.F.                |
+
+=== record  63  schermate missione  (righe da 56)
+  EN |P.D.F. SCIENTISTS HAVE LAUNCHED AN S.D.S. SATELLITE SET |
+  IT |GLI SCIENZIATI P.D.F. HANNO LANCIATO UN SATELLITE       |
+  EN |TO APPEAR FOR A SHORT PERIOD OVER THE NORTHWEST CORNER  |
+  IT |S.D.S. CHE APPARIRA' A NORD-OVEST DELL'AREA PER BREVE   |
+  EN |OF THIS AREA. REMEMBER THAT SCUD LAUNCHERS ARE MOBILE   |
+  IT |TEMPO. RICORDA CHE I LANCIATORI SCUD SONO MOBILI        |
+  EN |AND THAT YOU ARE AUTHORIZED TO ENGAGE THEM ON SIGHT.    |
+  IT |E SEI AUTORIZZATO AD INGAGGIARLI A VISTA.               |
+
+=== record  64  schermate missione  (righe da 56)
+  EN |BESIDES THE N.B.C. FACTORIES, MANY OTHER MILITARY BASES |
+  IT |OLTRE ALLE FABBRICHE N.B.C., SONO STATE AVVISTATE       |
+  EN |HAVE BEEN OBSERVED. THIS WILL INCREASE THE DIFFICULTY   |
+  IT |MOLTE ALTRE BASI MILITARI. QUESTO AUMENTERA' LA         |
+  EN |OF THIS MISSION. THE A-10 WITH CLUSTER BOMBS SHOULD BE  |
+  IT |DIFFICOLTA'. L'A-10 CON BOMBE A GRAPPOLO SARA'          |
+  EN |THE WEAPON OF CHOICE.                                   |
+  IT |L'ARMA PIU' INDICATA.                                   |
+
+=== record  65  schermate missione  (righe da 56)
+  EN |IF ZARAK IS ABLE TO LAUNCH N.B.C. FILLED SCUDS, OUR     |
+  IT |SE ZARAK RIUSCIRA' A LANCIARE SCUD N.B.C., LE NOSTRE    |
+  EN |TROOPS WILL HAVE TO WEAR PROTECTIVE GEAR. THIS WILL     |
+  IT |TRUPPE DOVRANNO USARE TUTE PROTETTIVE. QUESTO           |
+  EN |LIMIT THE MOBILITY OF OUR TROOPS, WITH RESULTS THAT     |
+  IT |LIMITERA' LA MOBILITA' DELLE TRUPPE, CON RISULTATI      |
+  EN |MAY CAUSE THE DEFEAT OF THE P.D.F. FORCES.              |
+  IT |CHE POTREBBERO PORTARE ALLA SCONFITTA P.D.F.            |
+
+=== record  66  schermate missione  (righe da 56)
+  EN |THIS IS YOUR LAST CHANCE TO COMPLETE THIS MISSION.      |
+  IT |QUESTA E' L'ULTIMA POSSIBILITA' PER COMPLETARE LA       |
+  EN |IF YOU ARE NOT SUCCESSFUL WITH THIS SORTIE, WE WILL     |
+  IT |MISSIONE. SE NON AVRAI SUCCESSO CON QUESTA SORTITA,     |
+  EN |RECEIVE THE ORDER TO RETREAT AND LOSE THE WAR.          |
+  IT |RICEVEREMO L'ORDINE DI RITIRATA E PERDEREMO.            |
+  EN |GET THEM, A.S.P.!!!!                                    |
+  IT |PRENDILI, A.S.P.!!!!                                    |
+
+=== record  67  schermate missione  (righe da 56)
+  EN |AREA 2 HAS A CIVILIAN POPULATION CENTER. IN THIS        |
+  IT |L'AREA 2 HA UN CENTRO URBANO CIVILE. IN QUESTA          |
+  EN |MISSION, YOU MUST DESTROY THE MILITARY BASES AROUND THE |
+  IT |MISSIONE DEVI DISTRUGGERE LE BASI MILITARI INTORNO      |
+  EN |CITY AND THE TROOPS IN THE CAPITAL. BE CAREFUL NOT TO   |
+  IT |ALLA CITTA' E LE TRUPPE NELLA CAPITALE.                 |
+  EN |STRIKE CIVILIAN BUILDINGS.                              |
+  IT |ATTENTO A NON COLPIRE EDIFICI CIVILI.                   |
+
+=== record  68  schermate missione  (righe da 56)
+  EN |THE WAR HAS REACHED A TURNING POINT. WE CAN END IT IF   |
+  IT |LA GUERRA E' A UNA SVOLTA. POSSIAMO FINIRLA SE          |
+  EN |WE CAUSE ENOUGH DAMAGE TO THE ENEMY BASES AND THEIR     |
+  IT |CAUSIAMO ABBASTANZA DANNI ALLE BASI E AL LORO           |
+  EN |HEADQUARTERS. AN AWACS HAS REPORTED AN UNIDENTIFIED     |
+  IT |QUARTIER GENERALE. UN AWACS HA SEGNALATO UN UFO         |
+  EN |FLYING OBJECT TRACKED IN AREA 5.                        |
+  IT |TRACCIATO NELL'AREA 5.                                  |
+
+=== record  69  schermate missione  (righe da 56)
+  EN |ZARAK HAS MILITARY TROOPS IN THE CAPITAL THAT NEED TO BE|
+  IT |ZARAK HA TRUPPE MILITARI NELLA CAPITALE CHE VANNO       |
+  EN |DESTROYED. WHILE ENGAGING THESE TARGETS, MANY WILL HIDE |
+  IT |DISTRUTTE. DURANTE GLI ATTACCHI, MOLTI SI NASCONDERANNO |
+  EN |BEHIND CIVILIAN BUILDINGS. AVOID THESE TROOPS TO        |
+  IT |DIETRO EDIFICI CIVILI. EVITA QUESTI BERSAGLI            |
+  EN |ELIMINATE THE RISK OF CIVILIAN FACILITY DAMAGE.         |
+  IT |PER RIDURRE IL RISCHIO DI DANNEGGIARE I CIVILI.         |
+
+=== record  70  schermate missione  (righe da 56)
+  EN |THE ENEMY HQs DOES NOT SEEM TO BE IN THIS AREA,         |
+  IT |IL QG NEMICO NON SEMBRA ESSERE IN QUESTA ZONA, MA       |
+  EN |BUT SINCE CRYPTOLOGISTS HAVE REPORTED THAT THERE ARE    |
+  IT |POICHE' I CRITTOGRAFI RIPORTANO ARMI NUCLEARI NEL QG,   |
+  EN |NUCLEAR WEAPONS IN THE HQs, CONTINUE ENGAGING THE ENEMY |
+  IT |CONTINUA AD INGAGGIARE IL NEMICO E A CERCARE            |
+  EN |AND SEARCHING FOR THEIR HQs IN THIS AREA.               |
+  IT |IL LORO QG IN QUESTA ZONA.                              |
+
+=== record  71  schermate missione  (righe da 56)
+  EN |INTELLIGENCE HAS REVEALED THAT THE HQs IS NORTHEAST OF  |
+  IT |I SERVIZI SEGRETI INDICANO CHE IL QG E' A NORD-EST      |
+  EN |THIS AREA. YOU MUST FINISH THIS MISSION QUICKLY IN      |
+  IT |DI QUESTA ZONA. DEVI FINIRE PRESTO QUESTA MISSIONE      |
+  EN |ORDER TO MAKE IT TO THE HQs AND DESTROY THE NUCLEAR     |
+  IT |PER RAGGIUNGERE IL QG E DISTRUGGERE LE ARMI             |
+  EN |WEAPONS. STRANGE ENEMY ACTIVITY HAS BEEN REPORTED.      |
+  IT |NUCLEARI. NOTATA ANOMALA ATTIVITA' NEMICA.              |
+
+=== record  72  schermate missione  (righe da 56)
+  EN |ZARAK'S NUCLEAR WEAPON EQUIPPED HQs IS IN THIS AREA,    |
+  IT |IL QG NUCLEARE DI ZARAK SI TROVA IN QUESTA ZONA,        |
+  EN |SURROUNDED BY GROUND-TO-AIR WEAPONS. YOU MUST           |
+  IT |CIRCONDATO DA ARMI TERRA-ARIA. DEVI DISTRUGGERE         |
+  EN |DESTROY THESE NUCLEAR WEAPONS ALONG WITH THE            |
+  IT |QUESTE ARMI NUCLEARI INSIEME AI PERICOLOSI              |
+  EN |DANGEROUS MODIFIED RAPIER SYSTEMS.                      |
+  IT |SISTEMI RAPIER MODIFICATI.                              |
+
+=== record  73  schermate missione  (righe da 56)
+  EN |SINCE THE HQs IS SURROUNDED BY NUMEROUS ENEMY TROOPS,   |
+  IT |POICHE' IL QG E' CIRCONDATO DA NUMEROSE TRUPPE, NON     |
+  EN |THIS WILL NOT BE EASY. YOU MUST FLY STRAIGHT IN, DESTROY|
+  IT |SARA' FACILE. DEVI VOLARE DIRETTAMENTE LI',             |
+  EN |THE OPPOSING TROOPS, THEN DESTROY YOUR MAIN TARGETS,    |
+  IT |DISTRUGGERE IL NEMICO E POI I BERSAGLI PRINCIPALI,      |
+  EN |ALL IN 24 HOURS. HURRY UP, A.S.P.!!!!                   |
+  IT |TUTTO IN 24 ORE. SBRIGATI, A.S.P.!!!!                   |
+
+=== record  74  schermate missione  (righe da 56)
+  EN |THERE ARE 5 RAPIER SYSTEMS, EACH MODIFIED TO GIVE       |
+  IT |CI SONO 5 SISTEMI RAPIER, MODIFICATI PER AVERE PIU'     |
+  EN |THEM MORE ARMOR. THE ROUNDS THEY FIRE ARE               |
+  IT |CORAZZA. I PROIETTILI CHE SPARANO SONO COSI'            |
+  EN |SO POWERFUL, YOU MUST FOCUS ON EACH                     |
+  IT |POTENTI CHE DEVI CONCENTRARTI SU CIASCUN                |
+  EN |INDIVIDUAL SYSTEM TO TERMINATE THEM.                    |
+  IT |SISTEMA PER ELIMINARLO.                                 |
+
+=== record  75  schermate missione  (righe da 56)
+  EN |THE ENEMY'S FINAL WEAPON IS REPORTED TO BE A NUCLEAR    |
+  IT |L'ARMA FINALE DEL NEMICO SEMBRA ESSERE UN MISSILE       |
+  EN |I.C.B.M. LONG RANGE MISSILE. IT CAN DESTROY A CITY IN   |
+  IT |NUCLEARE I.C.B.M. A LUNGO RAGGIO. PUO' DISTRUGGERE      |
+  EN |ONE STRIKE. DON'T WASTE TIME, THIS IS VERY CRITICAL.    |
+  IT |UNA CITTA' IN UN COLPO. NON PERDERE TEMPO, E'           |
+  EN |SMASH THEM, A.S.P.!!!!                                  |
+  IT |CRITICO. DISTRUGGILI, A.S.P.!!!!                        |
+
+=== record  76  schermate missione  (righe da 56)
+  EN |THIS IS YOUR LAST CHANCE TO COMPLETE YOUR MISSION OR    |
+  IT |QUESTA E' LA TUA ULTIMA POSSIBILITA' PER COMPLETARE LA  |
+  EN |THEY WILL FULFILL THEIR DOOMSDAY THREAT AND THE         |
+  IT |MISSIONE O ATTUERANNO LA MINACCIA FINALE E GLI ALIENI   |
+  EN |ALIENS THAT ARE BEHIND THIS WAR WILL CONTROL THE WORLD. |
+  IT |CHE GUIDANO QUESTA GUERRA DOMINERANNO IL MONDO.         |
+
+=== record  77  sergente  (righe da 56)
+  EN |YOUR FIRST MISSION TO DESTROY THE RADAR BASES IS        |
+  IT |LA TUA PRIMA MISSIONE PER DISTRUGGERE LE BASI RADAR     |
+  EN |COMPLETE. YOUR SUCCESS HAS INHIBITED THE ENEMY'S        |
+  IT |E' COMPLETA. IL TUO SUCCESSO HA OSTACOLATO LA           |
+  EN |ABILITY TO LOCATE OUR TROOPS.                           |
+  IT |CAPACITA' DEL NEMICO DI LOCALIZZARE I NOSTRI.           |
+
+=== record  78  sergente  (righe da 56)
+  EN |AS LONG AS THERE ARE ANY RADAR BASES STILL INTACT, THE  |
+  IT |FINCHE' CI SARANNO BASI RADAR INTATTE, IL NEMICO        |
+  EN |ENEMY MAY STILL LOCATE US. WE HAVE GAINED A LITTLE MORE |
+  IT |POTRA' VEDERCI. ABBIAMO GUADAGNATO TEMPO GRAZIE         |
+  EN |TIME IN OUR SUCCESS OF 80%, BUT SINCE THE WAR HAS JUST  |
+  IT |ALL'80% DI DISTRUZIONE, MA LA GUERRA E' APPENA          |
+  EN |BEGUN, THERE ARE STILL DANGERS OUT THERE.               |
+  IT |                                                        |
+
+=== record  79  sergente  (righe da 56)
+  EN |IT SEEMS THAT YOU HAVE DESTROYED MORE RADAR BASES THAN  |
+  IT |INIZIATA E I PERICOLI RESTANO. SEMBRA CHE TU            |
+  EN |TARGETED. THIS GIVES OUR GROUND FORCES AN ADVANTAGE.    |
+  IT |ABBIA DISTRUTTO PIU' BASI RADAR DEL PREVISTO.           |
+  EN |REMEMBER THAT YOUR CONTINUAL MISSION IS TO SUPPORT THE  |
+  IT |QUESTO DA' UN VANTAGGIO ALLE TRUPPE TERRESTRI.          |
+  EN |GROUND TROOPS.                                          |
+  IT |RICORDA CHE IL TUO COMPITO CONTINUO E'                  |
+
+=== record  80  sergente  (righe da 56)
+  EN |WE HAVE BAD NEWS. AN AWACS HAS BEEN SHOT DOWN BY THE    |
+  IT |SUPPORTARE LE TRUPPE DA TERRA. ABBIAMO CATTIVE          |
+  EN |ENEMY. THIS WILL MAKE IT DIFFICULT TO LOCATE ENEMY      |
+  IT |NOTIZIE. UN AWACS E' STATO ABBATTUTO DAL                |
+  EN |TROOPS. PLEASE NOTIFY OPS OF ANY UNUSUAL ACTIVITY.      |
+  IT |NEMICO. QUESTO RENDERA' DIFFICILE INDIVIDUARE           |
+
+=== record  81  sergente  (righe da 56)
+  EN |HOWEVER, IT TOOK MORE TIME THAN ORIGINALLY ESTIMATED.   |
+  IT |LE TRUPPE. SEGNALA OGNI ATTIVITA' ANOMALA.              |
+  EN |REMEMBER THAT SINCE TIME IS VERY IMPORTANT, AVOID       |
+  IT |TUTTAVIA, HA RICHIESTO PIU' TEMPO DEL PREVISTO.         |
+  EN |WASTING IT. COMPLETE YOUR MISSION, THEN GET OUT!        |
+  IT |RICORDA CHE IL TEMPO E' FONDAMENTALE, NON               |
+
+=== record  82  sergente  (righe da 56)
+  EN |YOUR MISSION TO DESTROY THE SCUD MISSILES WAS           |
+  IT |SPRECARLO. COMPLETA LA MISSIONE E VAI VIA! LA           |
+  EN |SUCCESSFUL. ALTHOUGH THE THREAT OF SCUD ATTACKS IS      |
+  IT |MISSIONE PER DISTRUGGERE I MISSILI SCUD E' STATA        |
+  EN |LOWER, IT IS NOT ELIMINATED. KEEP SCUD BUSTING!!!!      |
+  IT |CONCLUSA CON SUCCESSO. ANCHE SE LA MINACCIA E'          |
+
+=== record  83  sergente  (righe da 56)
+  EN |EVEN THOUGH YOU HAVE COMPLETED THE MISSION, THERE ARE   |
+  IT |MINORE, NON E' ELIMINATA. CONTINUA A CACCIARE!!         |
+  EN |STILL A LOT OF SCUD MISSILES OUT THERE.                 |
+  IT |ANCHE SE HAI COMPLETATO LA MISSIONE, CI SONO ANCORA     |
+  EN |CONTINUE TO DESTROY THE SCUD LAUNCHERS WHENEVER         |
+  IT |MOLTI MISSILI SCUD IN GIRO. CONTINUA A                  |
+  EN |POSSIBLE, EVEN WHILE ENGAGING IN OTHER MISSIONS.        |
+  IT |DISTRUGGERE I LANCIATORI QUANDO POSSIBILE,              |
+
+=== record  84  sergente  (righe da 56)
+  EN |ALTHOUGH YOU HAVE DESTROYED MORE SCUD LAUNCHERS         |
+  IT |ANCHE DURANTE ALTRE MISSIONI. ANCHE SE HAI              |
+  EN |THAN THE MISSION CALLED FOR, THE SCUD MISSILES CAN      |
+  IT |DISTRUTTO PIU' LANCIATORI SCUD DEL RICHIESTO,           |
+  EN |CAUSE MUCH DAMAGE. ACCORDINGLY, YOUR CONSTANT           |
+  IT |ESSI POSSONO ANCORA CAUSARE MOLTI DANNI. DI             |
+  EN |MISSION IS TO DESTROY SCUD LAUNCHERS WHENEVER LOCATED.  |
+  IT |CONSEGUENZA, IL TUO COMPITO E' DISTRUGGERLI             |
+
+=== record  85  sergente  (righe da 56)
+  EN |MANY SCUD LAUNCHERS WERE ABLE TO LAUNCH MISSILES BEFORE |
+  IT |OGNI VOLTA CHE LI INDIVIDUI. MOLTI LANCIATORI           |
+  EN |THEY WERE DESTROYED. THEY HAVE REACHED U.N. FORCES,     |
+  IT |SCUD SONO RIUSCITI A SPARARE PRIMA DI                   |
+  EN |CAUSING SEVERE DAMAGE. YOU MUST ACT QUICKLY.            |
+  IT |ESSERE DISTRUTTI, COLPENDO LE FORZE ONU E               |
+  EN |TIME IS PRECIOUS, SO DON'T HANG ABOUT!                  |
+  IT |CAUSANDO DANNI GRAVI. AGISCI PIU' PRESTO, IL            |
+
+=== record  86  sergente  (righe da 56)
+  EN |IT HAS TAKEN MORE TIME TO COMPLETE THIS                 |
+  IT |TEMPO E' PREZIOSO! C'E' VOLUTO PIU' TEMPO DEL PREVISTO  |
+  EN |MISSION THAN WAS EXPECTED. THIS ALLOWED SOME            |
+  IT |PER QUESTA MISSIONE. QUESTO HA PERMESSO IL LANCIO DI    |
+  EN |MISSILES TO BE  LAUNCHED!                               |
+  IT |ALCUNI MISSILI! COMPLETA LE PROSSIME MISSIONI PIU'      |
+  EN |YOU MUST COMPLETE FUTURE MISSIONS FASTER.               |
+  IT |                                                        |
+
+=== record  87  sergente  (righe da 56)
+  EN |YOU'VE SUCCESSFULLY COMPLETED THE MISSION TO DESTROY    |
+  IT |VELOCEMENTE. HAI COMPLETATO CON SUCCESSO LA MISSIONE DI |
+  EN |THE OIL PIPELINE FACILITIES. THIS WILL PREVENT THE ENEMY|
+  IT |DISTRUZIONE DEGLI OLEODOTTI. QUESTO IMPEDIRA' AL        |
+  EN |FROM EASILY GETTING FUEL TO THEIR FORCES.               |
+  IT |NEMICO DI FORNIRE CARBURANTE ALLE SUE FORZE.            |
+
+=== record  88  sergente  (righe da 56)
+  EN |YOU MAY HAVE DESTROYED ONLY A PORTION OF THE            |
+  IT |POTRESTI AVER DISTRUTTO SOLO UNA PARTE DEL              |
+  EN |ENEMIES FUEL SUPPLY. THE ENEMY MAY BE ABLE TO GET FUEL  |
+  IT |CARBURANTE NEMICO. IL NEMICO POTREBBE OTTENERNE         |
+  EN |FROM AN UNKNOWN SUPPLY.                                 |
+  IT |DA UNA FONTE SCONOSCIUTA.                               |
+  EN |ASTRONOMERS HAVE REPORTED STRANGE ATMOSPHERIC ACTIVITY. |
+  IT |GLI ASTRONOMI RIPORTANO ANOMALIE ATMOSFERICHE.          |
+
+=== record  89  sergente  (righe da 56)
+  EN |IT WILL TAKE THE ENEMY A LONG TIME TO REBUILD THEIR     |
+  IT |CI VORRA' MOLTO TEMPO AL NEMICO PER RICOSTRUIRE         |
+  EN |PIPELINE PUMPING STATIONS BECAUSE OF THE LARGE AMOUNT OF|
+  IT |LE STAZIONI DI POMPAGGIO DATO L'ENORME                  |
+  EN |DAMAGE YOU HAVE INFLICTED ON THEM! STILL, THERE IS SOME |
+  IT |DANNO INFLITTO! C'E' PERO' IL TIMORE CHE                |
+  EN |CONCERN THAT THEY MAY BE RECEIVING SOME OUTSIDE HELP.   |
+  IT |STIANO RICEVENDO AIUTI DA FONTI ESTERNE. HAI            |
+  EN |                                                        |
+  IT |DISTRUTTO UN'AMPIA PARTE DI STRUTTURE CIVILI!           |
+
+=== record  90  sergente  (righe da 56)
+  EN |YOU HAVE DESTROYED A LARGE PORTION OF CIVILIAN          |
+  IT |QUESTO RENDERA' MOLTO DIFFICILE LA RICOSTRUZIONE        |
+  EN |FACILITIES! THIS MAKES IT VERY DIFFICULT FOR THE        |
+  IT |PER I CIVILI. DEVI ESSERE PIU' PRECISO! HA              |
+  EN |CIVILIANS TO RESTORE THEIR COUNTRY. YOU MUST BE         |
+  IT |RICHIESTO PIU' TEMPO DEL PREVISTO. PER QUESTO, IL       |
+  EN |MORE ACCURATE!                                          |
+  IT |                                                        |
+
+=== record  91  sergente  (righe da 56)
+  EN |IT HAS TAKEN MORE TIME TO COMPLETE THE MISSION THAN     |
+  IT |COMANDANTE METTE IN DUBBIO LE TUE CAPACITA'             |
+  EN |EXPECTED. BECAUSE OF THIS, THE COMMANDER QUESTIONS      |
+  IT |E TI CHIEDE DI SBRIGARTI! NON PERDERE                   |
+  EN |YOUR CREDIBILITY AS A GOOD PILOT AND IS ADVISING YOU TO |
+  IT |TEMPO PER COMPLETARE LE MISSIONI!! HAI                  |
+  EN |SPEED IT UP! DON'T WASTE ANY TIME TO COMPLETE YOUR MISSI|
+  IT |DISTRUTTO CON SUCCESSO LA MAGGIOR PARTE DELLE           |
+  EN |ON!!                                                    |
+  IT |                                                        |
+
+=== record  92  sergente  (righe da 56)
+  EN |YOU HAVE SUCCESSFULLY DESTROYED A MAJORITY OF THE       |
+  IT |TRUPPE CHE INVADEVANO TAFUJI E LE TRUPPE ONU SONO       |
+  EN |ENEMY TROOPS INVADING TAFUJI AND U.N. TROOPS HAVE BEEN  |
+  IT |AL CONFINE. POSSIAMO ASSUMERE CHE L'INVASIONE           |
+  EN |SENT TO THE BORDER. WE CAN ASSUME THAT THE INVASION     |
+  IT |SIA STATA EVITATA.                                      |
+  EN |WILL BE PREVENTED.                                      |
+  IT |                                                        |
+
+=== record  93  sergente  (righe da 56)
+  EN |WITHOUT THE AIR BASES, ZARAK WOULD NOT HAVE THE AIR     |
+  IT |SENZA LE BASI AEREE, ZARAK NON HA IL SUPPORTO           |
+  EN |SUPPORT NEEDED TO TAKE THE BORDER OF TAFUJI. DON'T      |
+  IT |AEREO PER PRENDERE IL CONFINE DI TAFUJI. NON            |
+  EN |FORGET THAT PART OF YOUR CONTINUOUS MISSION IS TO       |
+  IT |DIMENTICARE CHE IL TUO COMPITO E' SUPPORTARE            |
+  EN |SUPPORT OUR TROOPS FROM THE AIR.                        |
+  IT |                                                        |
+
+=== record  94  sergente  (righe da 56)
+  EN |YOU HAVE DESTROYED MORE BASES THAN WERE EXPECTED.       |
+  IT |LE NOSTRE TRUPPE DALL'ALTO. HAI DISTRUTTO               |
+  EN |THIS WILL MAKE IT EASIER FOR THE COALITION FORCES TO    |
+  IT |PIU' BASI DEL PREVISTO. QUESTO RENDERA'                 |
+  EN |PLAY THEIR ROLE IN DESTROYING ENEMY TARGETS.            |
+  IT |PIU' FACILE PER LA COALIZIONE FARE LA SUA               |
+
+=== record  95  sergente  (righe da 56)
+  EN |HOWEVER, YOU HAVE ALSO HIT A LOT OF CIVILIAN FACILITIES.|
+  IT |PARTE NEL DISTRUGGERE I BERSAGLI NEMICI. TUTTAVIA,      |
+  EN |THIS IS GOING TO MAKE THE A.S.P. LOOK BAD, AFFECTING    |
+  IT |HAI COLPITO ANCHE MOLTI EDIFICI CIVILI. QUESTO          |
+  EN |YOUR PROMOTION. YOU MUST BE MORE CAREFUL!!              |
+  IT |METTE IN CATTIVA LUCE L'A.S.P. E DANNEGGIA              |
+
+=== record  96  sergente  (righe da 56)
+  EN |HOWEVER, BECAUSE IT TOOK MORE TIME THAN EXPECTED,       |
+  IT |LA TUA PROMOZIONE. DEVI ESSERE PIU' PRUDENTE!!          |
+  EN |WE SUSTAINED MANY CASUALTIES IN TAFUJI. THE LONGER      |
+  IT |TUTTAVIA, POICHE' HA RICHIESTO PIU' TEMPO, ABBIAMO      |
+  EN |YOU TAKE TO COMPLETE THE MISSION, THE MORE PEOPLE       |
+  IT |SUBITO MOLTE PERDITE A TAFUJI. PIU' TEMPO IMPIEGHI,     |
+  EN |WILL BE HARMED.  YOU MUST ACT WITH MORE SWIFTNESS!!     |
+  IT |PIU' PERSONE SOFFRIRANNO. AGISCI CON MAGGIORE           |
+
+=== record  97  sergente  (righe da 56)
+  EN |WE HAVE SUCCESSFULLY RETAKEN THE HARBOR.                |
+  IT |RAPIDITA'!! ABBIAMO RICONQUISTATO IL PORTO CON SUCCESSO.|
+  EN |WE WERE ABLE TO RESCUE THE CIVILIANS AND LIMIT THE      |
+  IT |SIAMO RIUSCITI A SALVARE I CIVILI E A LIMITARE I        |
+  EN |AMOUNT OF ENVIRONMENTAL DAMAGE. A ZARAK P.O.W.          |
+  IT |DANNI AMBIENTALI. UN PRIGIONIERO DI ZARAK               |
+  EN |REPORTED STRANGE ACTIVITY AMONG THEIR LEADERS.          |
+  IT |RIPORTA STRANE ATTIVITA' TRA I LORO LEADER.             |
+
+=== record  98  sergente  (righe da 56)
+  EN |CONGRATULATIONS, YOU WERE ABLE TO DESTROY MORE          |
+  IT |CONGRATULAZIONI, HAI DISTRUTTO PIU' FORZE NEMICHE       |
+  EN |ENEMY FORCES THAN THE MISSION CALLED FOR, WITH LESS     |
+  IT |DEL PREVISTO, CON MENO PERDITE DELL'ATTESO.             |
+  EN |CASUALTIES THAN EXPECTED. THIS WILL HELP OUR GROUND     |
+  IT |QUESTO AIUTERA' LE TRUPPE DI TERRA AD ATTACCARE IL      |
+  EN |FORCES ATTACK THE ENEMY HQs AND END THIS WAR.           |
+  IT |                                                        |
+
+=== record  99  sergente  (righe da 56)
+  EN |CONGRATULATIONS, YOU WERE ABLE TO DESTROY MORE          |
+  IT |QG E A CONCLUDERE LA GUERRA. CONGRATULAZIONI,           |
+  EN |ENEMY FORCES THAN THE MISSION CALLED FOR, AND WITH LESS |
+  IT |HAI DISTRUTTO PIU' FORZE NEMICHE DEL PREVISTO           |
+  EN |CASUALTIES THAN EXPECTED. THIS WILL HELP OUR GROUND     |
+  IT |E CON MENO PERDITE DELL'ATTESO. QUESTO                  |
+  EN |FORCED ATTACK THE ENEMY HQs AND END THIS WAR.           |
+  IT |AIUTERA' LE TRUPPE DI TERRA AD ATTACCARE IL QG          |
+
+=== record 100  sergente  (righe da 56)
+  EN |HOWEVER, YOU HAVE ALSO DESTROYED SEVERAL CIVILIAN       |
+  IT |E A CONCLUDERE QUESTA GUERRA. TUTTAVIA, HAI DISTRUTTO   |
+  EN |FACILITIES. IT IS YOUR RESPONSIBILITY TO BE MORE        |
+  IT |DIVERSE STRUTTURE CIVILI. E' TUA RESPONSABILITA' ESSERE |
+  EN |ACCURATE WHEN COMPLETING YOUR MISSIONS, OTHERWISE THE   |
+  IT |PIU' PRECISO NELLE MISSIONI, ALTRIMENTI IL COMANDANTE TI|
+  EN |COMMANDER WILL BE SURE TO REPLACE YOU!                  |
+  IT |                                                        |
+
+=== record 101  sergente  (righe da 56)
+  EN |THE ENEMY HAS BEGUN TO LEAK OIL INTO THE OCEAN.         |
+  IT |SOSTITUIRA' SICURAMENTE! IL NEMICO HA INIZIATO          |
+  EN |THIS MAKES IT INCREASINGLY DIFFICULT FOR AMPHIBIOUS     |
+  IT |A VERSARE PETROLIO IN MARE. QUESTO OSTACOLA GLI         |
+  EN |FORCES TO LAND AND IS THE START OF GREAT ENVIRONMENTAL  |
+  IT |SBARCHI ANFIBI ED E' L'INIZIO DI UN GRAVE DANNO         |
+  EN |DAMAGE. REPORT ANY SIGN OF ZARAK RECEIVING HELP.        |
+  IT |AMBIENTALE. SEGNALA SE ZARAK RICEVE AIUTI ESTERNI.      |
+
+=== record 102  sergente  (righe da 56)
+  EN |YOU HAVE SUCCESSFULLY DESTROYED THE CHEMICAL WEAPON     |
+  IT |HAI DISTRUTTO CON SUCCESSO LE FABBRICHE DI ARMI         |
+  EN |FACTORIES. UNLESS THE ENEMY HAS HIDDEN CHEMICAL WEAPONS |
+  IT |CHIMICHE. A MENO CHE IL NEMICO NON ABBIA ARMI           |
+  EN |OR IS GETTING SPECIAL WEAPONS FROM AN OUTSIDE SOURCE,   |
+  IT |NASCOSTE O AIUTI ESTERNI, NON POTRA' USARE CHIMICA      |
+  EN |THEY WILL NOT BE ABLE TO USE CHEMICALS ON OUR TROOPS.   |
+  IT |CONTRO LE NOSTRE TRUPPE.                                |
+
+=== record 103  sergente  (righe da 56)
+  EN |SINCE YOU HAVE DESTROYED THE CHEMICAL WEAPON FACTORIES, |
+  IT |POICHE' HAI DISTRUTTO LE FABBRICHE CHIMICHE, IL         |
+  EN |THE MORALE OF THE ENEMY TROOPS IS LOW. THEY ARE LESS    |
+  IT |MORALE NEMICO E' BASSO. SONO MENO ENTUSIASTI DELLA      |
+  EN |ENTHUSIASTIC ABOUT THIS WAR. HOWEVER, INTELLIGENCE      |
+  IT |GUERRA. TUTTAVIA, I SERVIZI INDICANO LA PRESENZA        |
+  EN |INDICATES THAT THEY MAY HAVE A HIDDEN WEAPON SOMEWHERE. |
+  IT |                                                        |
+
+=== record 104  sergente  (righe da 56)
+  EN |SINCE YOU HAVE DESTROYED THE CHEMICAL WEAPON FACTORIES, |
+  IT |DI UN'ARMA NASCOSTA DA QUALCHE PARTE. POICHE'           |
+  EN |THE MORALE OF THE ENEMY TROOPS IS LOW. THEY ARE LESS    |
+  IT |HAI DISTRUTTO LE FABBRICHE CHIMICHE, IL MORALE          |
+  EN |ENTHUSIASTIC ABOUT THIS WAR. HOWEVER, INTELLIGENCE      |
+  IT |NEMICO E' BASSO. SONO MENO ENTUSIASTI DELLA             |
+  EN |INDICATES THAT THEY MAY HAVE A HIDDEN WEAPON SOMEWHERE. |
+  IT |GUERRA. TUTTAVIA, I SERVIZI INDICANO LA PRESENZA        |
+
+=== record 105  sergente  (righe da 56)
+  EN |ALTHOUGH YOUR DESTRUCTION OF ENEMY CHEMICAL WEAPON      |
+  IT |DI UN'ARMA NASCOSTA DA QUALCHE PARTE. SEBBENE           |
+  EN |FACTORIES GREATLY LESSEN THE THREAT OF CHEMICAL ATTACKS |
+  IT |LA DISTRUZIONE DELLE FABBRICHE RIDUCA IL                |
+  EN |ON OUR GROUND TROOPS, BEWARE THAT THE ENEMY MAY HAVE A  |
+  IT |RISCHIO CHIMICO PER LE NOSTRE TRUPPE, ATTENTO           |
+  EN |SECRET WEAPON!!                                         |
+  IT |                                                        |
+
+=== record 106  sergente  (righe da 56)
+  EN |SINCE IT HAS TAKEN YOU MORE TIME TO DESTROY THE CHEMICAL|
+  IT |PERCHE' IL NEMICO POTREBBE AVERE UN'ARMA SEGRETA!!      |
+  EN |WEAPON FACTORIES THEN EXPECTED, THE ENEMY WAS ABLE      |
+  IT |AVENDO IMPIEGATO PIU' TEMPO DEL PREVISTO, IL NEMICO     |
+  EN |TO USE SOME OF THE WEAPONS ON OUR FRONT LINE TROOPS.    |
+  IT |E' RIUSCITO A USARE ALCUNE ARMI SUL FRONTE. QUESTO      |
+  EN |THIS FORCED OUR TROOPS TO EQUIP FOR N.B.C. WARFARE.     |
+  IT |HA COSTRETTO I NOSTRI AD EQUIPAGGIARSI PER IL           |
+
+=== record 107  sergente  (righe da 56)
+  EN |THE MISSION TO ATTACK THE CAPITAL WAS SUCCESSFUL, BUT   |
+  IT |COMBATTIMENTO N.B.C. L'ATTACCO ALLA CAPITALE E'         |
+  EN |WE HAVE DISCOVERED ENEMY HQs IN THE NORTHEAST           |
+  IT |RIUSCITO, MA ABBIAMO SCOPERTO IL QG NEMICO A NORD-EST   |
+  EN |OF AREA 2. THIS IS TO BE CONSIDERED AN ADDITION TO      |
+  IT |DELL'AREA 2. QUESTA E' UN'AGGIUNTA ALL'AREA DI          |
+  EN |BATTLE AREA 2. BE ON THE LOOKOUT FOR ALIEN WEAPONS!     |
+  IT |BATTAGLIA 2. FAI ATTENZIONE AD EVENTUALI ARMI ALIENI!   |
+
+=== record 108  sergente  (righe da 56)
+  EN |YOU HAVE MADE IT MUCH EASIER TO FLY TO THE ENEMY HQs IN |
+  IT |HAI RESO PIU' FACILE IL VOLO VERSO IL QG                |
+  EN |THE NORTHEAST BY DESTROYING MANY ENEMY MILITARY BASES   |
+  IT |NEMICO A NORD-EST DISTRUGGENDO BASI E TRUPPE.           |
+  EN |AND TROOPS. BUT WE KNOW VERY LITTLE ABOUT THESE ALIENS  |
+  IT |TUTTAVIA SAPPIAMO POCO SU QUESTI ALIENI E               |
+  EN |AND THEIR WEAPONS, SO PROCEED WITH EXTREMELY CAUTION.   |
+  IT |LE LORO ARMI, PROCEDI CON MOLTA CAUTELA. HAI            |
+  EN |                                                        |
+  IT |DISTRUTTO MOLTE FORZE DI ZARAK, RIDUCENDO LA            |
+
+=== record 109  sergente  (righe da 56)
+  EN |YOU HAVE DESTROYED MUCH OF THE ZARAKIE FORCES,          |
+  IT |RESISTENZA PER NOI E PER LE TRUPPE DA TERRA.            |
+  EN |CREATING LESS OPPOSITION FOR YOU AND OUR GROUND TROOPS. |
+  IT |SEBBENE IL NEMICO PERDA COSTANZA, GLI ALIENI            |
+  EN |ALTHOUGH THE ENEMY IS LOSING THEIR FIGHTING SPIRIT, THE |
+  IT |SEMBRANO INFLUENZARE LA GUARDIA ROSSA. MOLTI            |
+  EN |ALIENS SEEM TO HAVE SOME INFLUENCE OVER THE RED GUARD.  |
+  IT |CIVILI SONO STATI COLPITI DURANTE L'ATTACCO             |
+
+=== record 110  sergente  (righe da 56)
+  EN |MANY CIVILIANS HAVE BEEN HIT DURING THE DESTRUCTION     |
+  IT |ALLE FORZE MILITARI NELLA CAPITALE. SIAMO               |
+  EN |OF MANY ENEMY MILITARY FORCES IN THE CAPITAL. WE        |
+  IT |STATI ACCUSATI DEI LORO FERIMENTI. DA                   |
+  EN |HAVE BEEN BLAMED FOR THEIR INJURIES. AS A PROFESSIONAL, |
+  IT |PROFESSIONISTA, DEVI ESSERE PIU' PRECISO!! IL           |
+  EN |YOU MUST BE MORE ACCURATE!!                             |
+  IT |TEMPO IMPIEGATO A DISTRUGGERE LE FORZE ATTORNO          |
+
+=== record 111  sergente  (righe da 56)
+  EN |YOUR TIME-CONSUMING DESTRUCTION OF ENEMY MILITARY FORCES|
+  IT |ALLA CAPITALE HA PERMESSO AL NEMICO DI SPOSTARE         |
+  EN |AROUND THE CAPITAL ALLOWED THE ENEMY TO MOVE MORE TROOPS|
+  IT |TRUPPE A NORD-EST. PER QUESTO MOTIVO, RAGGIUNGERE       |
+  EN |SECURELY AROUND THE NORTHEAST HQs. BECAUSE OF THIS,     |
+  IT |IL QG NON SARA' UN'IMPRESA FACILE.                      |
+  EN |IT WILL NOT BE AN EASY TASK TO REACH THIS HQs.          |
+  IT |                                                        |
+
+=== record 112  sergente  (righe da 56)
+  EN |(                                                       |
+  IT |(                                                       |
+
+=== record 113  sergente  (righe da 56)
+  EN |WE INTERRUPT YOU WITH A SPECIAL NEWS REPORT.            |
+  IT |INTERROMPIAMO PER UN GIORNALE RADIO SPECIALE.           |
+
+=== record 114  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 115  notiziari  (righe da 52)
+  EN |STANDBY FOR ANOTHER SPECIAL NEWS BROADCAST.         |
+  IT |IN ATTESA DI UN ALTRO NOTIZIARIO SPECIALE.          |
+
+=== record 116  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 117  notiziari  (righe da 52)
+  EN |THE ZARAK NATIONAL NEWS AGENCY REPORTS THAT U.N.    |
+  IT |L'AGENZIA ZARAK RIPORTA CHE I PRIGIONIERI ONU       |
+  EN |PRISONERS ARE BEING USED AS HUMAN SHIELDS.          |
+  IT |SONO USATI COME SCUDI UMANI.                        |
+
+=== record 118  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 119  notiziari  (righe da 52)
+  EN |IF THIS IS TRUE, THE PRISONERS WILL FACE THE DANGER |
+  IT |SE CIO' E' VERO, I PRIGIONIERI RISCHIANO DI         |
+  EN |OF BEING STRUCK BY COALITION FIRE.                  |
+  IT |ESSERE COLPITI DAL FUOCO DELLA COALIZIONE.          |
+
+=== record 120  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 121  notiziari  (righe da 52)
+  EN |IN ORDER TO KEEP FROM HARMING OUR OWN TROOPS, THE   |
+  IT |PER EVITARE DI COLPIRE I NOSTRI, LA COALIZIONE      |
+  EN |COALITION MUST USE EXTREME ACCURACY.                |
+  IT |DEVE USARE ESTREMA PRECISIONE.                      |
+
+=== record 122  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 123  notiziari  (righe da 52)
+  EN |ZARAKIE TROOPS HAVE INVADED THE TOWN OF TAFUJI.     |
+  IT |LE TRUPPE DI ZARAK HANNO INVASO TAFUJI.             |
+
+=== record 124  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 125  notiziari  (righe da 52)
+  EN |THE STRATEGIC LOCATION OF TAFUJI MAKES IT A LIKELY  |
+  IT |LA POSIZIONE STRATEGICA DI TAFUJI LA RENDE          |
+  EN |CANDIDATE AS A ZARAK HQs.                           |
+  IT |UN CANDIDATO PROBABILE PER IL QG DI ZARAK.          |
+
+=== record 126  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 127  notiziari  (righe da 52)
+  EN |THE COALITION HAS SENT TROOPS THERE TO PREVENT THIS |
+  IT |LA COALIZIONE HA INVIATO TRUPPE LI' PER             |
+  EN |INVASION FROM BEING SUCCESSFUL.                     |
+  IT |IMPEDIRE IL SUCCESSO DI QUESTA INVASIONE.           |
+
+=== record 128  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 129  notiziari  (righe da 52)
+  EN |A COALITION SPOKESMAN HAS REVEALED AN ACCIDENTAL    |
+  IT |UN PORTAVOCE HA RIVELATO UN BOMBARDAMENTO           |
+  EN |BOMBING OF AN OIL TANKER IN THE GULF HARBOR.        |
+  IT |ACCIDENTALE DI UNA PETROLIERA NEL GOLFO.            |
+
+=== record 130  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 131  notiziari  (righe da 52)
+  EN |U.N. HQs HAS ANNOUNCED THAT ENEMY TROOPS ARE        |
+  IT |IL QG ONU HA ANNUNCIATO CHE IL NEMICO E'            |
+  EN |RESPONSIBLE FOR THIS OIL TANKER ATTACK.             |
+  IT |RESPONSABILE DELL'ATTACCO ALLA PETROLIERA.          |
+
+=== record 132  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 133  notiziari  (righe da 52)
+  EN |THIS COULD AFFECT THE ONGOING U.N. OPERATION,       |
+  IT |QUESTO POTREBBE INFLUENZARE L'OPERAZIONE ONU,       |
+  EN |DEPENDING ON THE FACTS!                             |
+  IT |IN BASE AI FATTI RISCONTRATI!                       |
+
+=== record 134  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 135  notiziari  (righe da 52)
+  EN |ACCORDING TO REPORTS, ZARAK IS DESTROYING OIL PLANTS|
+  IT |SECONDO I REPORT, ZARAK STA DISTRUGGENDO            |
+  EN |IN THE GULF HARBOR IN RETALIATION TO THE COALITION. |
+  IT |IMPIANTI PETROLIFERI PER RAPPRESAGLIA.              |
+
+=== record 136  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 137  notiziari  (righe da 52)
+  EN |BARRELS OF OIL ARE POURING INTO THE HARBOR.         |
+  IT |BARILI DI PETROLIO FLUISCONO NEL PORTO.             |
+  EN |PEOPLE IN THE AREA ARE TRYING TO STOP THE LEAKING.  |
+  IT |LA POPOLAZIONE CERCA DI FERMARE LA PERDITA.         |
+
+=== record 138  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 139  notiziari  (righe da 52)
+  EN |BASED ON FUTURE INVESTIGATION, THIS COULD BE BLAMED |
+  IT |IN BASE AI RILIEVI, QUESTO POTREBBE ESSERE          |
+  EN |ON COALITION OPERATIONS.                            |
+  IT |IMPUTATO ALLE OPERAZIONI DELLA COALIZIONE.          |
+
+=== record 140  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 141  notiziari  (righe da 52)
+  EN |UNCONFIRMED REPORTS STATE THAT THE RETREATING ZARAK |
+  IT |FONTI NON CONFERMATE DICONO CHE ZARAK STA           |
+  EN |TROOPS ARE SETTING FIRE TO THE MASSIVE OIL FIELDS.  |
+  IT |INCENDIANDO I VASTI CAMPI PETROLIFERI.              |
+
+=== record 142  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 143  notiziari  (righe da 52)
+  EN |DUE TO THE SMOKE, THE KUMAI SKY HAS TURNED BLACK    |
+  IT |A CAUSA DEL FUMO, IL CIELO DI KUMAI E' NERO E       |
+  EN |AND THE POLLUTED AIR IS AFFECTING THE PEOPLE.       |
+  IT |L'ARIA INQUINATA COLPISCE LA POPOLAZIONE.           |
+
+=== record 144  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 145  notiziari  (righe da 52)
+  EN |SCIENTIST HAVE ALSO REPORTED A VERY STRANGE CHANGE  |
+  IT |GLI SCIENZIATI RIPORTANO CAMBIAMENTI ANOMALI        |
+  EN |IN THE ATMOSPHERE, SUGGESTING ALIEN CRAFT ACTIVITY. |
+  IT |NELL'ATMOSFERA, IPOTIZZANDO ATTIVITA' ALIENI.       |
+
+=== record 146  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 147  notiziari  (righe da 52)
+  EN |MILITARY REPORTS REVEAL THAT ZARAKIE                |
+  IT |REPORT MILITARI RIVELANO CHE LE FABBRICHE           |
+  EN |CHEMICAL PLANTS ARE PLANNING TO DISTRIBUTE WEAPONS. |
+  IT |CHIMICHE DI ZARAK DISTRIBUIRANNO ARMI.              |
+
+=== record 148  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 149  notiziari  (righe da 52)
+  EN |IF THE CHEMICAL WEAPONS ARE USED, WE CAN EXPECT A   |
+  IT |SE LE ARMI CHIMICHE SARANNO USATE, CI               |
+  EN |LARGE NUMBER OF CASUALTIES.                         |
+  IT |SI ASPETTA UN ELEVATO NUMERO DI VITTIME.            |
+
+=== record 150  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 151  notiziari  (righe da 52)
+  EN |U.N. FORCES HAVE BEGUN DISTRIBUTION OF GAS MASKS    |
+  IT |LE FORZE ONU HANNO INIZIATO A DISTRIBUIRE           |
+  EN |TO CIVILIANS AND COALITION TROOPS.                  |
+  IT |MASCHERE ANTIGAS A CIVILI E TRUPPE.                 |
+
+=== record 152  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 153  notiziari  (righe da 52)
+  EN |EARLY REPORTS CLAIM THAT AN ALLIED AWACs HAS BEEN   |
+  IT |UN AWACS ALLEATO E' STATO ABBATTUTO SU ZARAK        |
+  EN |SHOT DOWN OVER ZARAK BY ENEMY GROUND TROOPS.        |
+  IT |DAI MEZZI CONTRAEREI TERRESTRI NEMICI.              |
+
+=== record 154  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 155  notiziari  (righe da 52)
+  EN |A CONFIDENTIAL REPORT STATES THAT UFOs HAVE BEEN    |
+  IT |UN REPORT RISERVATO INDICA AVVISTAMENTI UFO         |
+  EN |SPOTTED IN THE AREA THAT THE AWACs WAS SHOT DOWN.   |
+  IT |NELLA ZONA DELL'ABBATTIMENTO DELL'AWACS.            |
+
+=== record 156  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 157  notiziari  (righe da 52)
+  EN |THE INTERNATIONAL RED CROSS HAS NOTIFIED THE ZARAK  |
+  IT |LA CROCE ROSSA HA CHIESTO A ZARAK UN                |
+  EN |GOVERNMENT TO ENSURE FAIR TREATMENT OF SURVIVORS.   |
+  IT |TRATTAMENTO GIUSTO PER I SOPRAVVISSUTI.             |
+
+=== record 158  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 159  notiziari  (righe da 52)
+  EN |SEVERAL NEIGHBORING COUNTRIES HAVE REPORTED         |
+  IT |DIVERSI PAESI CONTERMINI RIPORTANO DANNI            |
+  EN |DAMAGE FROM NUMEROUS SCUD MISSILE ATTACKS.          |
+  IT |CAUSATI DA NUMEROSI ATTACCHI DI SCUD.               |
+
+=== record 160  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 161  notiziari  (righe da 52)
+  EN |ALTHOUGH THE SCUDs ARE NOT VERY ACCURATE, THEY ARE  |
+  IT |ANCHE SE NON MOLTO PRECISI, GLI SCUD SONO           |
+  EN |REPORTED TO BE EXTREMELY DANGEROUS.                 |
+  IT |CONSIDERATI ESTREMAMENTE PERICOLOSI.                |
+
+=== record 162  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 163  notiziari  (righe da 52)
+  EN |THE U.N. HAS BEGUN MOVING PATRIOT MISSILE LAUNCHERS |
+  IT |L'ONU HA INIZIATO A SPOSTARE I LANCIATORI           |
+  EN |INTO NEIGHBORING COUNTRIES.                         |
+  IT |PATRIOT NEI PAESI LIMITROFI.                        |
+
+=== record 164  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 165  notiziari  (righe da 52)
+  EN |CIVILIAN FACILITIES HAVE BEEN DAMAGED DURING ALLIED |
+  IT |STRUTTURE CIVILI SONO STATE DANNEGGIATE DURANTE     |
+  EN |BOMBING MISSIONS INTENDED FOR MILITARY TARGETS.     |
+  IT |BOMBARDAMENTI MIRATI A BERSAGLI MILITARI.           |
+
+=== record 166  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 167  notiziari  (righe da 52)
+  EN |DESPITE CIVILIAN CASUALTIES, ZARAK CONTINUES TO MOVE|
+  IT |NONOSTANTE LE VITTIME CIVILI, ZARAK SPOSTA          |
+  EN |TROOPS IN CLOSE PROXIMITY TO CIVILIAN LOCATIONS.    |
+  IT |TRUPPE VICINO A STRUTTURE ABITATE.                  |
+
+=== record 168  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 169  notiziari  (righe da 52)
+  EN |SCIENTISTS ARE STUDYING A STRANGE METAL FOUND ON    |
+  IT |GLI SCIENZIATI STUDIANO UN METALLO STRANO           |
+  EN |THE BATTLE FIELD.                                   |
+  IT |RITROVATO SUL CAMPO DI BATTAGLIA.                   |
+
+=== record 170  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 171  notiziari  (righe da 52)
+  EN |POLICE CONTINUE TO CLASH WITH DEMONSTRATORS AS      |
+  IT |SCONTRI TRA POLIZIA E DIMOSTRANTI, MENTRE           |
+  EN |PUBLIC OPINION STARTS TO TURN AGAINST U.N. TROOPS.  |
+  IT |L'OPINIONE PUBBLICA SI SCHIERA CONTRO L'ONU.        |
+
+=== record 172  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 173  notiziari  (righe da 52)
+  EN |THIS WAS BROUGHT ON BY ACCIDENTAL CIVILIAN DAMAGE   |
+  IT |CIO' E' STATO CAUSATO DAI DANNI CIVILI              |
+  EN |DURING MILITARY OPERATIONS.                         |
+  IT |ACCIDENTALI DURANTE LE OPERAZIONI MILITARI.         |
+
+=== record 174  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 175  notiziari  (righe da 52)
+  EN |ALTHOUGH THERE IS MUCH CEASE WAR PRESSURE, THERE    |
+  IT |NONOSTANTE IL PRESSANTE INVITO AL CESSATE IL        |
+  EN |ARE NO SIGNS OF COALITION BACKDOWN.                 |
+  IT |FUOCO, LA COALIZIONE NON SI RITIRA.                 |
+
+=== record 176  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 177  notiziari  (righe da 52)
+  EN |ACCORDING TO REPORTS, GROUND FORCES HAVE EXPERIENCED|
+  IT |SECONDO I REPORT, LE TRUPPE DI TERRA HANNO          |
+  EN |CASUALTIES FROM FRIENDLY FIRE.                      |
+  IT |SUBITO PERDITE PER FUOCO AMICO.                     |
+
+=== record 178  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 179  notiziari  (righe da 52)
+  EN |AS A RESULT OF THESE CASUALTIES, THE COALITION      |
+  IT |A CAUSA DI QUESTE PERDITE, LA COALIZIONE HA         |
+  EN |HAS DEVISED NEW METHODS OF IDENTIFICATION.          |
+  IT |SVILUPPATO NUOVI SISTEMI DI RICONOSCIMENTO.         |
+
+=== record 180  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 181  notiziari  (righe da 52)
+  EN |IN ADDITION, A.S.P. PILOTS WILL RECEIVE ADDITIONAL  |
+  IT |INOLTRE, I PILOTI A.S.P. RICEVERANNO                |
+  EN |TRAINING IN TARGET RECOGNITION.                     |
+  IT |ADDESTRAMENTO AGGIUNTIVO SUI BERSAGLI.              |
+
+=== record 182  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 183  notiziari  (righe da 52)
+  EN |ACCORDING TO REPORTS, U.N. AIR STRIKES HAVE BEEN    |
+  IT |I BOMBARDAMENTI AEREI ONU SONO STATI MOLTO          |
+  EN |VERY SUCCESSFUL AT DESTROYING THE ENEMY.            |
+  IT |EFFICACI NEL DISTRUGGERE IL NEMICO.                 |
+
+=== record 184  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 185  notiziari  (righe da 52)
+  EN |THE U.N. IS USING THE AGM-65 MAVERICK               |
+  IT |L'ONU STA USANDO L'AGM-65 MAVERICK                  |
+  EN |TO VISUALLY GUIDE MISSILES TO THEIR TARGETS.        |
+  IT |PER GUIDARE VISIVAMENTE I MISSILI SUI BERSAGLI.     |
+
+=== record 186  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 187  notiziari  (righe da 52)
+  EN |AFTER LAUNCH FROM AN AIRCRAFT SUCH AS THE A-10, THE |
+  IT |DOPO IL LANCIO DA AEREI COME L'A-10, L'AGM-65       |
+  EN |AGM-65 IS PILOTED FROM A REMOTE CAMERA.             |
+  IT |E' GUIDATO TRAMITE TELECAMERA REMOTA.               |
+
+=== record 188  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 189  notiziari  (righe da 52)
+  EN |ACCORDING TO REPORTS, A COALITION F-15 PILOT        |
+  IT |UN PILOTA DI F-15 DELLA COALIZIONE HA               |
+  EN |RECEIVED THE DISTINGUISHED FLYING CROSS.            |
+  IT |RICEVUTO LA DISTINGUISHED FLYING CROSS.             |
+
+=== record 190  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 191  notiziari  (righe da 52)
+  EN |THE REPORTED PILOT HAD SHOT DOWN MORE THAN 5        |
+  IT |IL PILOTA HA ABBATTUTO PIU' DI 5 AEREI              |
+  EN |AIRCRAFT DURING NUMEROUS DOG FIGHTS.                |
+  IT |IN NUMEROSI DUELLI AEREI.                           |
+
+=== record 192  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 193  notiziari  (righe da 52)
+  EN |THE REWARD OF THE FLYING CROSS IS AN ACHIEVEMENT    |
+  IT |L'ONORIFICENZA DELLA FLYING CROSS E' UN             |
+  EN |THAT WILL BE FOREVER REMEMBERED AND RESPECTED.      |
+  IT |RICONOSCIMENTO CHE SARA' PER SEMPRE RISPETTATO.     |
+
+=== record 194  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 195  notiziari  (righe da 52)
+  EN |REPORTS SAY THAT COALITION AIR TROOPS FAILED TO     |
+  IT |I REPORT DICONO CHE LE FORZE AEREE HANNO            |
+  EN |DESTROY THE ENEMY RADAR BASES.                      |
+  IT |FALLITO NEL DISTRUGGERE LE BASI RADAR.              |
+
+=== record 196  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 197  notiziari  (righe da 52)
+  EN |THIS HAS FORCED A SLOWDOWN OF OUR ADVANCE ON.       |
+  IT |QUESTO HA RALLENTATO LA NOSTRA AVANZATA             |
+
+=== record 198  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 199  notiziari  (righe da 52)
+  EN |THE FRONT AND A HIGHER QUALITY PILOT SELECTION.     |
+  IT |SUL FRONTE E SELEZIONATO MEGLIO I PILOTI.           |
+
+=== record 200  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 201  notiziari  (righe da 52)
+  EN |ACCORDING TO REPORTS FROM A P.D.F. SPOKESMAN,       |
+  IT |SECONDO UN PORTAVOCE P.D.F., UN MISSILE SCUD        |
+  EN |A SCUD MISSILE HAS LANDED IN A BATTALION AREA.      |
+  IT |E' CADUTO NELLA ZONA DI UN BATTAGLIONE.             |
+
+=== record 202  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 203  notiziari  (righe da 52)
+  EN |THE DAMAGE CAUSED BY THIS MISSILE HAS FORCED THE    |
+  IT |I DANNI CAUSATI DAL MISSILE HANNO COSTRETTO IL      |
+  EN |P.D.F. TO TEMPORARILY RETREAT.                      |
+  IT |P.D.F. ALLA RITIRATA TEMPORANEA.                    |
+
+=== record 204  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 205  notiziari  (righe da 52)
+  EN |GRAVELY, THIS MAY LEAD TO LOSING A WAR WHICH MIGHT  |
+  IT |QUESTO POTREBBE PORTARE A PERDERE UNA GUERRA        |
+  EN |HAVE BEEN WON IF THE PILOT HAD DESTROYED THE SCUD.  |
+  IT |CHE SI POTEVA VINCERE DISTRUGGENDO GLI SCUD.        |
+
+=== record 206  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 207  notiziari  (righe da 52)
+  EN |A SPOKESMAN FOR THE P.D.F. REPORTS THAT THE MISSION |
+  IT |UN PORTAVOCE P.D.F. RIPORTA CHE LA MISSIONE PER     |
+  EN |TO CUT OFF THE ENEMY'S FUEL SUPPLY HAS FAILED.      |
+  IT |BLOCCARE IL CARBURANTE NEMICO E' FALLITA.           |
+
+=== record 208  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 209  notiziari  (righe da 52)
+  EN |IF THIS MISSION WERE SUCCESSFUL, IT WOULD HAVE LED  |
+  IT |SE AVESSE AVUTO SUCCESSO, AVREBBE PORTATO A UNA     |
+  EN |TO A SWIFT VICTORY. INSTEAD, THIS FAILURE HAS LEFT  |
+  IT |RAPIDA VITTORIA. INVECE IL FALLIMENTO HA LASCIATO   |
+
+=== record 210  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 211  notiziari  (righe da 52)
+  EN |THE ENEMY IN A STRONGER POSITION.                   |
+  IT |IL NEMICO IN UNA POSIZIONE PIU' FORTE. LA COALIZIONE|
+  EN |THE COALITION WILL HAVE TO SEND IN IT'S TOP ACES.   |
+  IT |DOVRA' MANDARE I SUOI ASSI MIGLIORI.                |
+
+=== record 212  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 213  notiziari  (righe da 52)
+  EN |THE TOWN OF TAFUJI IN KUAGI TRABIA HAS BEEN INVADED |
+  IT |LA CITTA' DI TAFUJI A KUAGI TRABIA E' STATA INVASA  |
+  EN |BY THE ENEMY. GROUND AND AIR TROOPS WERE SENT TO.   |
+  IT |DAL NEMICO. TRUPPE DI TERRA E AEREE ERANO STATE     |
+
+=== record 214  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 215  notiziari  (righe da 52)
+  EN |PREVENT THIS INVASION, BUT ALLIED PILOTS HAVE FAILED|
+  IT |INVIATE PER IMPEDIRE L'INVASIONE, MA I PILOTI       |
+  EN |TO DO THEIR PART. THE ENEMY WILL SURELY USE THIS    |
+  IT |ALLEATI HANNO FALLITO. IL NEMICO USERA'             |
+
+=== record 216  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 217  notiziari  (righe da 52)
+  EN |STRATEGICALLY LOCATED TOWN AS A STAGING AREA TO     |
+  IT |QUESTA CITTA' STRATEGICA COME BASE PER INVADERE LA  |
+  EN |INVADE THE CAPITAL.                                 |
+  IT |CAPITALE.                                           |
+
+=== record 218  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 219  notiziari  (righe da 52)
+  EN |ACCORDING TO REPORTS, CIVILIAN OIL PLANTS HAVE BEEN |
+  IT |SECONDO I REPORT, GLI IMPIANTI PETROLIFERI          |
+  EN |BOMBED BY THE ENEMY. COALITION TROOPS WERE SENT TO  |
+  IT |SONO STATI BOMBARDATI DAL NEMICO.                   |
+
+=== record 220  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 221  notiziari  (righe da 52)
+  EN |PREVENT THE INVASION, BUT WERE NOT SUCCESSFUL.      |
+  IT |TRUPPE INVIATE PER IMPEDIRE L'INVASIONE NON         |
+  EN |CONSEQUENTLY, AN ENVIRONMENTAL CATASTROPHE          |
+  IT |HANNO AVUTO SUCCESSO. DI CONSEGUENZA                |
+
+=== record 222  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 223  notiziari  (righe da 52)
+  EN |HAS BEEN CREATED. AS A RESULT, THE COALITION HAS    |
+  IT |SI E' CREATA UNA CATASTROFE AMBIENTALE.             |
+  EN |REPLACED THE PILOTS.                                |
+  IT |LA COALIZIONE HA SOSTITUITO I PILOTI.               |
+
+=== record 224  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 225  notiziari  (righe da 52)
+  EN |P.D.F. TROOPS HAVE SUFFERED SEVERE DAMAGE BECAUSE   |
+  IT |LE TRUPPE P.D.F. HANNO SUBITO GRAVI DANNI           |
+  EN |THEY WERE FORCED TO WEAR GASMASKS THAT              |
+  IT |PERCHE' COSTRETTE A USARE MASCHERE ANTIGAS          |
+
+=== record 226  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 227  notiziari  (righe da 52)
+  EN |HINDERED THEIR MOBILITY. IF THE AIR TROOPS WOULD    |
+  IT |CHE LIMITAVANO LA MOBILITA'. DISTRUGGERE LE         |
+  EN |HAVE DESTROYED THE CHEMICAL FACTORIES, THIS WOULD   |
+  IT |FABBRICHE CHIMICHE AVREBBE EVITATO CIO'.            |
+
+=== record 228  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 229  notiziari  (righe da 52)
+  EN |HAVE  BEEN PREVENTED. INSTEAD, THE COALITION HAS    |
+  IT |INVECE, LA COALIZIONE E' STATA COSTRETTA            |
+  EN |BEEN TO RETREAT.                                    |
+  IT |ALLA RITIRATA.                                      |
+
+=== record 230  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 231  notiziari  (righe da 52)
+  EN |ACCORDING TO A SPOKESMAN, P.D.F. FORCES HAVE FAILED |
+  IT |SECONDO UN PORTAVOCE, LE FORZE P.D.F. HANNO         |
+  EN |TO DESTROY THE MILITARY FACILITIES SURROUNDING      |
+  IT |FALLITO NEL DISTRUGGERE LE STRUTTURE                |
+
+=== record 232  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 233  notiziari  (righe da 52)
+  EN |THE HQs NORTHEAST OF THE CITY. THIS WAS MOSTLY THE  |
+  IT |ATTORNO AL QG A NORD-EST DELLA CITTA'. CIO' E'      |
+
+=== record 234  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 235  notiziari  (righe da 52)
+  EN |RESPONSIBILITY OF THE A.S.P. PILOTS. AS A RESULT OF |
+  IT |PRINCIPALMENTE COLPA DEI PILOTI A.S.P.              |
+  EN |THIS FAILURE, THE P.D.F. IS FORCED TO RETREAT.      |
+  IT |A CAUSA DEL FALLIMENTO, SI DEVE RITIRARE.           |
+
+=== record 236  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 237  notiziari  (righe da 52)
+  EN |WE REGRET TO INFORM YOU THAT THE COALITION AIR      |
+  IT |CI RAMMARICHIAMO DI INFORMARVI CHE LE FORZE         |
+  EN |TROOPS WERE UNABLE TO DESTROY THE ZARAK HQs.        |
+  IT |AEREE NON HANNO DISTRUTTO IL QG DI ZARAK.           |
+
+=== record 238  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 239  notiziari  (righe da 52)
+  EN |IN A FINAL ACT ZARAK LAUNCHED A NUCLEAR WARHEAD AND |
+  IT |COME ATTO FINALE ZARAK HA LANCIATO UNA              |
+  EN |DESTROYED THE COALITION FORCES.                     |
+  IT |TESTATA NUCLEARE DISTRUGGENDO LA COALIZIONE.        |
+
+=== record 240  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 241  notiziari  (righe da 52)
+  EN |WHAT WILL THE WORLD DO, SINCE THE ZARAK             |
+  IT |COSA FARA' IL MONDO, ORA CHE GLI ALIENI CHE         |
+  EN |CONTROLLING ALIENS WILL NOW CONTROL THE WORLD??     |
+  IT |GUIDANO ZARAK CONTROLLANO IL PIANETA??              |
+
+=== record 242  finali  (righe da 48)
+  EN |YOUR STRATEGIC PLANNING WAS SUPERB! YOU HAVE    |
+  IT |LA TUA PIANIFICAZIONE STRATEGICA E' STATA       |
+  EN |CONTROLLED YOUR AIRCRAFT WITH SUPERIOR SKILL,   |
+  IT |ECCELLENTE! HAI MANOVRATO IL TUO AEREO CON      |
+  EN |ACCURATELY PINPOINTING, THEN                    |
+  IT |ABILITA' SUPERIORE, INDIVIDUANDO E DISTRUGGENDO |
+  EN |SUCCESSFULLY DESTROYING YOUR TARGETS.           |
+  IT |CON SUCCESSO I TUOI BERSAGLI. LA GESTIONE       |
+  EN |THE MANAGEMENT AND STRATEGIC USE OF YOUR WEAPON |
+  IT |DELLE TUE RISORSE HA MOSTRATO UNA GRANDE        |
+  EN |RESOURCES DISPLAYED GREAT KNOWLEDGE.            |
+  IT |COMPETENZA. ENTRERAI SICURAMENTE NELLA          |
+  EN |YOU WILL SURELY GO DOWN IN HISTORY AS ONE OF THE|
+  IT |STORIA COME UNO DEI PIU' GRANDI GUERRIERI.      |
+  EN |GREAT WARRIORS.                                 |
+  IT |                                                |
+
+=== record 243  finali  (righe da 48)
+  EN |YOUR STRATEGIC PLANNING, WEAPON CONSERVATION    |
+  IT |LA TUA PIANIFICAZIONE, IL RISPARMIO DI          |
+  EN |AND LOW DAMAGE LEVEL KEPT WAR COSTS MUCH        |
+  IT |ARMI E I BASSI DANNI HANNO MANTENUTO            |
+  EN |LOWER THAN EXPECTED.                            |
+  IT |I COSTI DI GUERRA MOLTO PIU' BASSI DEL          |
+  EN |YOU WERE ALSO ABLE TO COMPLETE YOUR MISSIONS    |
+  IT |PREVISTO. SEI ANCHE RIUSCITO A COMPLETARE       |
+  EN |SUCCESSFULLY AND QUICKLY.                       |
+  IT |LE MISSIONI CON SUCCESSO E RAPIDAMENTE.         |
+  EN |YOU HAVE THE ATTRIBUTES OF A GREAT BUSINESSMAN, |
+  IT |HAI LE DOTI DI UN GRANDE UOMO D'AFFARI,         |
+  EN |TRAITS WHICH WILL CONTRIBUTE LARGELY TO SOCIETY.|
+  IT |CHE CONTRIBUIRANNO MOLTO ALLA SOCIETA'.         |
+
+=== record 244  finali  (righe da 48)
+  EN |YOU HAVE FULLY DEMONSTRATED THAT YOU WERE       |
+  IT |HAI DIMOSTRATO APPIENO CHE COMBATTEVI PER       |
+  EN |FIGHTING TO DEFEND THE PEOPLE, RATHER THAN TO   |
+  IT |DIFENDERE LA POPOLAZIONE, PIUTTOSTO CHE PER     |
+  EN |DESTROY THE ENEMY.                              |
+  IT |DISTRUGGERE IL NEMICO.                          |
+  EN |FOR YOUR PUBLIC DEVOTION, YOU WILL BE REWARDED  |
+  IT |PER LA TUA DEDIZIONE, SARAI PREMIATO DAL        |
+  EN |BY THE PRESIDENT! WITH THIS DEDICATION,         |
+  IT |PRESIDENTE! CON QUESTO IMPEGNO, DIVENTERAI UN   |
+  EN |YOU WILL BECOME A GREAT POLITICIAN              |
+  IT |GRANDE POLITICO CON IL GRANDE SOSTEGNO E        |
+  EN |WITH GREAT SUPPORT AND RESPECT FROM THE PEOPLE  |
+  IT |RISPETTO DEL POPOLO IN TUTTO IL MONDO.          |
+  EN |WORLDWIDE.                                      |
+  IT |                                                |
+
+=== record 245  finali  (righe da 48)
+  EN |THOUGH IT WAS A TOUGH WAR, YOU HAVE WON BY      |
+  IT |SEBBENE SIA STATA UNA GUERRA DURA, HAI VINTO    |
+  EN |YOUR CAREFUL PLANNING AND THE ADVICE FROM YOUR  |
+  IT |GRAZIE ALLA TUA PIANIFICAZIONE E AI CONSIGLI    |
+  EN |ADVISORS.                                       |
+  IT |DEI TUOI ADDESTRATORI.                          |
+  EN |EVEN THOUGH YOU HAVE WON THE WAR BY THE         |
+  IT |ANCHE SE HAI VINTO DISTRUGGENDO I BERSAGLI      |
+  EN |SUCCESSFUL DESTRUCTION OF THE MISSION TARGETS   |
+  IT |E MANTENENDO BASSE LE PERDITE, NON RIPOSARE!    |
+  EN |WHILE KEEPING CASUALTIES LOW, YOU MUST NOT REST!|
+  IT |IN QUESTO MOMENTO IL NEMICO SI RIORGANIZZA PER  |
+  EN |AT THIS MOMENT, THE ENEMY IS QUIETLY LINGERING, |
+  IT |TENTARE UN NUOVO ATTACCO.                       |
+  EN |REGROUPING AND PLANNING TO COME BACK AGAIN.     |
+  IT |                                                |
+
+=== record 246  finali  (righe da 48)
+  EN |YOUR STRATEGIC AND TIMELY COMPLETION OF YOUR    |
+  IT |IL TUO COMPLETAMENTO TEMPESTIVO DELLE           |
+  EN |MISSIONS KEPT SOME WAR COSTS LOWER THAN PLANNED.|
+  IT |MISSIONI HA RIDOTTO ALCUNI COSTI.               |
+  EN |UNFORTUNATELY, THE DAMAGE SUSTAINED AND THE     |
+  IT |PURTROPPO I DANNI SUBITI E IL NUMERO DI ARMI    |
+  EN |NUMBER OF WEAPONS USED PUT THE WAR'S TOTAL      |
+  IT |USATE PORTANO IL COSTO TOTALE DELLA GUERRA A    |
+  EN |COSTS IN THE BILLIONS.                          |
+  IT |SVARIATI MILIARDI. QUANDO LASCERAI L'ESERCITO   |
+  EN |WHEN YOU LEAVE THE MILITARY YOU WILL MAKE A GOOD|
+  IT |SARAI UN OTTIMO DIRIGENTE D'AZIENDA.            |
+  EN |CORPORATE EXECUTIVE.                            |
+  IT |                                                |
+
+=== record 247  finali  (righe da 48)
+  EN |ALTHOUGH YOU PERFORMED WELL POLITICALLY, THE    |
+  IT |SEBBENE TU ABBIA AGITO BENE POLITICAMENTE,      |
+  EN |LARGE NUMBER OF CIVILIANS LOST AND AMOUNT OF    |
+  IT |L' ELEVATO NUMERO DI CIVILI PERSI E I DANNI     |
+  EN |ENVIRONMENTAL DAMAGE SUSTAINED WERE HIGH,       |
+  IT |AMBIENTALI SONO STATI ALTI, IMPEDENDOTI DI      |
+  EN |PREVENTING YOU FROM MOVING STRAIGHT INTO        |
+  IT |ENTRARE SUBITO NELLA POLITICA NAZIONALE.        |
+  EN |HOUSE POLITICS.                                 |
+  IT |DOVRESTI INIZIARE CON LA POLITICA LOCALE,       |
+  EN |YOU SHOULD PROBABLY PURSUE A CAREER IN MINOR    |
+  IT |COME SINDACO, PER POI FAR STRADA VERSO          |
+  EN |POLITICS, PERHAPS AS A MAYOR OF YOUR HOMETOWN,  |
+  IT |RUOLI PIU' IMPORTANTI NEL GOVERNO.              |
+  EN |THEN WORK YOUR WAY INTO MORE POWERFUL POLITICS. |
+  IT |                                                |
+
+=== record 248  finali  (righe da 48)
+  EN |COALITION FAMILIES HAVE BEEN WAITING WITH YELLOW|
+  IT |LE FAMIGLIE DELLA COALIZIONE HANNO ATTESO CON   |
+  EN |RIBBONS. DUE TO THE HIGH NUMBER OF              |
+  IT |I NASTRI GIALLI. DATO L'ELEVATO NUMERO DI       |
+  EN |CASUALTIES, THEY WERE VERY AFRAID THAT FAMILY   |
+  IT |PERDITE, TEMEVANO CHE I LORO CARI NON           |
+  EN |MEMBERS WOULD NOT RETURN.                       |
+  IT |RITORNASSERO PIU' A CASA.                       |
+  EN |ALTHOUGH YOUR SKILLS WERE ENOUGH TO WIN THE WAR,|
+  IT |ANCHE SE SEI RIUSCITO A VINCERE LA GUERRA,      |
+  EN |YOU SHOULD GO BACK TO WAR COLLEGE TO STUDY      |
+  IT |DOVRESTI TORNARE ALL'ACCADEMIA MILITARE PER     |
+  EN |FURTHER.                                        |
+  IT |STUDIARE ANCORA.                                |
+
+=== record 249  finali  (righe da 48)
+  EN |THE NUMBER OF CASUALTIES AND DAMAGE SUSTAINED   |
+  IT |IL NUMERO DI PERDITE E DANNI SUBITI HA RESO     |
+  EN |RESULTED IN AN EXTREMELY EXPENSIVE WAR.         |
+  IT |QUESTA GUERRA ESTREMAMENTE COSTOSA. ANCHE       |
+  EN |THOUGH YOUR PERFORMANCE WAS ENOUGH TO WIN, YOUR |
+  IT |SE HAI VINTO, LA DIFFICOLTA' A GESTIRE TUTTE    |
+  EN |STRUGGLE TO MANAGE SUCH LARGE RESOURCES         |
+  IT |QUELLE RISORSE NON E' UN BUON SEGNO PER IL      |
+  EN |WOULD NOT BE A SUCCESSFUL TRAIT OF THE          |
+  IT |MONDO DEGLI AFFARI. PERCIO' DOVRESTI VALUTARE   |
+  EN |CORPORATE WORLD.                                |
+  IT |DI APRIRE UNA PICCOLA ATTIVITA' DOPO IL         |
+  EN |THEREFORE, YOU SHOULD CONSIDER OWNING A SMALL   |
+  IT |RITIRO.                                         |
+  EN |BUSINESS AFTER RETIREMENT.                      |
+  IT |                                                |
+
+=== record 250  finali  (righe da 48)
+  EN |THE PEOPLE REGARD YOU AS BEING AVERAGE.         |
+  IT |LA GENTE TI CONSIDERA NELLA MEDIA ED E'         |
+  EN |THEY RESENT THE LARGE NUMBER OF LIVES LOST AND  |
+  IT |RANCOROSA PER IL NUMERO DI VITE PERSE E PER     |
+  EN |THE AMOUNT OF MONEY SPENT.                      |
+  IT |L'AMMONTARE DEL DENARO SPESO. POICHE' NON TI    |
+  EN |SINCE THEY DON'T REGARD YOU AS ANOTHER          |
+  IT |VEDONO COME UN NUOVO EISENHOWER, SE PENSI DI    |
+  EN |EISENHOWER,                                     |
+  IT |ENTRARE IN POLITICA NON DOVRESTI ASPIRARE A UN  |
+  EN |IF YOU'RE THINKING OF ENTERING POLITICS,        |
+  IT |RUOLO SUPERIORE A QUELLO DI CONSIGLIERE.        |
+  EN |YOU SHOULD PROBABLY NOT THINK OF A POSITION     |
+  IT |                                                |
+  EN |BEYOND ASSEMBLYMAN.                             |
+  IT |                                                |
+
+=== record 251  finali  (righe da 48)
+  EN |ALTHOUGH WE WON THE WAR, POOR PUBLIC OPINION    |
+  IT |ANCHE SE ABBIAMO VINTO LA GUERRA, L'OPINIONE    |
+  EN |RESULTED FROM THE MASSIVE AMOUNT OF DAMAGES     |
+  IT |PUBBLICA E' NEGATIVA A CAUSA DEGLI ENORMI       |
+  EN |SUSTAINED AND WILL REMAIN WITH US FOR A LONG    |
+  IT |DANNI SUBITI E LO RESTERA' PER MOLTO            |
+  EN |TIME TO COME.                                   |
+  IT |TEMPO. LE TUE MISSIONI CI LASCIANO CON          |
+  EN |YOUR MISSIONS LEFT US WITH MANY CASUALTIES, MUCH|
+  IT |MOLTE PERDITE, MOLTI DANNI E MOLTA GENTE        |
+  EN |DAMAGE AND LOTS OF SCARED PEOPLE.               |
+  IT |SPAVENTATA. DOVRESTI PROBABILMENTE VALUTARE     |
+  EN |YOU SHOULD PROBABLY CONSIDER TAKING AN         A|
+  IT |DI PRENDERE UN LAVORO AMMINISTRATIVO.           |
+  EN |DMINISTRATIVE JOB.                              |
+  IT |                                                |
+
+=== record 252  finali  (righe da 48)
+  EN |THIS WAS AN EXTREMELY EXPENSIVE WAR!            |
+  IT |QUESTA GUERRA E' STATA ESTREMAMENTE COSTOSA!    |
+  EN |BILLIONS OF DOLLARS REQUIRED TO REPAIR OR       |
+  IT |MILIARDI DI DOLLARI NECESSARI PER RIPARARE O    |
+  EN |REPLACE YOUR AIRCRAFT, PLUS THE COST            |
+  IT |SOSTITUIRE IL TUO AEREO, PIU' IL COSTO DELLE    |
+  EN |OF AMMUNITION, TAKES THE TOTAL WAR COST         |
+  IT |MUNIZIONI, PORTANO IL COSTO TOTALE OLTRE IL     |
+  EN |WELL BEYOND THE EXPECTED AMOUNT!                |
+  IT |PREVISTO! POICHE' MOSTRA MANCANZA DI GESTIONE   |
+  EN |BECAUSE THIS DISPLAYS A LACK OF MONEY           |
+  IT |DEL DENARO, DOVRESTI RESTARE NELL'ESERCITO      |
+  EN |MANAGEMENT,YOU SHOULD PROBABLY STAY IN THE      |
+  IT |RINUNCIANDO A OGNI PIANO NEGLI AFFARI.          |
+  EN |MILITARY AND FLUSH ANY BUSINESS PLANS.          |
+  IT |                                                |
+
+=== record 253  finali  (righe da 48)
+  EN |THE LARGE AMOUNTS OF CIVILIAN CASUALTIES        |
+  IT |GLI ELEVATI DANNI CIVILI E AMBIENTALI HANNO     |
+  EN |AND ENVIRONMENTAL DAMAGE HAS RESULTED IN        |
+  IT |PORTATO A ONDATE DI TERRORISMO RIVOLUZIONARIO.  |
+  EN |REVOLUTIONARY OUTBREAKS OF TERRORISM.           |
+  IT |IL POPOLO CHIEDE PIU' ATTENZIONE DAL PAESE      |
+  EN |THE PEOPLE REQUIRE MORE FROM THEIR COUNTRY AND  |
+  IT |E DAI SUOI LEADER MILITARI! NON ENTRARE         |
+  EN |ITS MILITARY LEADERS! DON'T ENTER POLITICS, AS  |
+  IT |IN POLITICA, SERVIREBBE UN MIRACOLO PER         |
+  EN |IT WOULD REQUIRE A MINOR MIRACLE TO REGAIN      |
+  IT |RIOTTENERE LA FIDUCIA E LA LEALTA' DEL          |
+  EN |PUBLIC TRUST AND LOYALTY.                       |
+  IT |POPOLO.                                         |
+
+=== record 254  finali  (righe da 48)
+  EN |THE P.D.F. HAS LOST THIS WAR....                |
+  IT |LA P.D.F. HA PERSO QUESTA GUERRA....            |
+  EN |THE ALIEN PLOT TO DESTROY ALLIED FORCES AND     |
+  IT |IL PIANO ALIENO PER DISTRUGGERE LE FORZE        |
+  EN |MANIPULATE ZARAK LEADERS HAS BEEN SUCCESSFUL.   |
+  IT |ALLEATE E MANIPOLARE ZARAK HA AVUTO SUCCESSO.   |
+  EN |SURELY THEY WILL USE SIMILAR STRATEGIES IN      |
+  IT |USERANNO SICURAMENTE STRATEGIE SIMILI IN        |
+  EN |OTHER AREAS OF THE GLOBE, EVENTUALLY CONQUERING |
+  IT |ALTRE ZONE DEL GLOBO, CONQUISTANDO LA RAZZA     |
+  EN |THE HUMAN RACE!!                                |
+  IT |UMANA!! IMMAGINA LA GENTE CHE VIVE TRA GLI      |
+  EN |IMAGINE THE PEOPLE LIVING AMONG ALIENS, EATING  |
+  IT |ALIENI, MANGIANDO CIBO STRANO E VIVENDO         |
+  EN |STRANGE FOOD AND EXISTING LIKE RATS IN THE DARK.|
+  IT |COME TOPI. E' LA FINE, O SOLO L'INIZIO....      |
+  EN |IS THIS THE END, OR JUST THE BEGINNING....      |
+  IT |                                                |
+
+=== record 255  credits  (righe da 48)
+  EN |           AIR STRIKE PATROL STAFF              |
+  IT |           STAFF DI AIR STRIKE PATROL           |
+  EN |PRODUCER                                T.SUZUKI|
+  IT |PRODUTTORE                              T.SUZUKI|
+  EN |GAME DESIGN                             K.TAMURA|
+  IT |IDEAZIONE DEL GIOCO                     K.TAMURA|
+  EN |                                       T.KISHINE|
+  IT |                                       T.KISHINE|
+  EN |DIRECTOR                             M.YOSHIHARA|
+  IT |REGIA                                M.YOSHIHARA|
+  EN |PROGRAMMING / SHOOTING               Y.MATSUMOTO|
+  IT |PROGRAMMAZIONE / COMBATTIMENTO       Y.MATSUMOTO|
+  EN |              SIMULATION                T.SUZUKI|
+  IT |              SIMULAZIONE               T.SUZUKI|
+  EN |SOUND AND MUSIC                          J.ENOKI|
+  IT |SUONO E MUSICA                           J.ENOKI|
+  EN |GAME PRODUCER                            J.TSUDA|
+  IT |PRODUTTORE DEL GIOCO                     J.TSUDA|
+  EN |ART DIRECTOR                            K.TAMURA|
+  IT |DIREZIONE ARTISTICA                     K.TAMURA|
+  EN |ART DESIGN                            K.KOMIYAMA|
+  IT |GRAFICA                               K.KOMIYAMA|
+  EN |                                        Y.NOMURA|
+  IT |                                        Y.NOMURA|
+  EN |                                        P.TAVATA|
+  IT |                                        P.TAVATA|
+  EN |                                       T.YOSHIBA|
+  IT |                                       T.YOSHIBA|
+  EN |                                       N.MISHIMA|
+  IT |                                       N.MISHIMA|
+  EN |                                         R.TSUDA|
+  IT |                                         R.TSUDA|
+  EN |                                       T.KISHINE|
+  IT |                                       T.KISHINE|
+  EN |3D MODELS                               K.SUZUKI|
+  IT |MODELLI 3D                              K.SUZUKI|
+  EN |MASY/CASY SYSTEM                     M.YOSHIHARA|
+  IT |SISTEMA MASY/CASY                    M.YOSHIHARA|
+  EN |ENGINEERING SUPPORT                   H.WATANABE|
+  IT |SUPPORTO TECNICO                      H.WATANABE|
+  EN |                                        N.HARADA|
+  IT |                                        N.HARADA|
+  EN |                                     T.MOCHIZUKI|
+  IT |                                     T.MOCHIZUKI|
+  EN |PRODUCT MANAGER                           M.OHNO|
+  IT |RESPONSABILE PRODOTTO                     M.OHNO|
+  EN |                                        T.TSUBOI|
+  IT |                                        T.TSUBOI|
+  EN |                                       T.SHIZUMA|
+  IT |                                       T.SHIZUMA|
+  EN |                                         S.FUJII|
+  IT |                                         S.FUJII|
+  EN |PRODUCTION ASSISTANT                  M.IWATSUKA|
+  IT |ASSISTENTE DI PRODUZIONE              M.IWATSUKA|
+  EN |QUALITY ASSURANCE                    T.KIRIBUCHI|
+  IT |CONTROLLO QUALITA'                   T.KIRIBUCHI|
+  EN |ADVERTISEMENT                         Y.ISHIYAMA|
+  IT |PUBBLICITA'                           Y.ISHIYAMA|
+  EN |ADVERTISE CG MODELING                  Y.KIKUCHI|
+  IT |MODELLI CG PUBBLICITA'                 Y.KIKUCHI|
+  EN |PRODUCT TESTING                          M.CHIBA|
+  IT |COLLAUDO                                 M.CHIBA|
+  EN |                                      Y.NAKAMURA|
+  IT |                                      Y.NAKAMURA|
+  EN |                                      N.NAKAMURA|
+  IT |                                      N.NAKAMURA|
+  EN |                                         M.MIURA|
+  IT |                                         M.MIURA|
+  EN |                                        A.MIZUNO|
+  IT |                                        A.MIZUNO|
+  EN |SPECIAL THANKS TO                     D.NAKAJIMA|
+  IT |RINGRAZIAMENTI                        D.NAKAJIMA|
+  EN |                          CHUCK 'PACKART' VOWELL|
+  IT |                          CHUCK 'PACKART' VOWELL|
+  EN |                        TRACI 'CHIPMACK' McCARTY|
+  IT |                        TRACI 'CHIPMACK' McCARTY|
+  EN |                        CAROL 'CAL KITTY' HARRIS|
+  IT |                        CAROL 'CAL KITTY' HARRIS|
+  EN |                  CRAIG 'STRETCH McGEE' LUNDSKOG|
+  IT |                  CRAIG 'STRETCH McGEE' LUNDSKOG|
+  EN |                       ROLF 'SCOUTS OUT' HINTZKE|
+  IT |                       ROLF 'SCOUTS OUT' HINTZKE|
+  EN |                         ROBERT 'NINJA MAN' BARR|
+  IT |                         ROBERT 'NINJA MAN' BARR|
+  EN |                                      JAY ZINNER|
+  IT |                                      JAY ZINNER|
+  EN |                                JOHN F. LaSALVIA|
+  IT |                                JOHN F. LaSALVIA|
+  EN |                                JAY 'MAPLE' SAKA|
+  IT |                                JAY 'MAPLE' SAKA|
+  EN |                                      AND       |
+  IT |                                       E        |
+  EN |            DENNY 'LA BEAR' MOORE AND ASSOCIATES|
+  IT |            DENNY 'LA BEAR' MOORE AND ASSOCIATES|
+  EN |                                   SETA USA INC.|
+  IT |                                   SETA USA INC.|
+  EN |               PRESENTED BY SETA                |
+  IT |               PRESENTATO DA SETA               |
+
+
+PARTE 2 — STRINGHE IN CHIARO
+------------------------------------------------------------------------
+[858247] Descrizioni area  (max 84, righe da 54)
+  EN: AREA  1:                                              PRESS A TO VIEW INTEL REPORTS.
+  IT: AREA  1:                                              PREMI A PER I RAPPORTI INTEL.
+[85829C] Descrizioni area  (max 84, righe da 54)
+  EN: AREA  2:                                              PRESS A TO VIEW INTEL REPORTS.
+  IT: AREA  2:                                              PREMI A PER I RAPPORTI INTEL.
+[8582F1] Descrizioni area  (max 84, righe da 54)
+  EN: AREA  3:                                              PRESS A TO VIEW INTEL REPORTS.
+  IT: AREA  3:                                              PREMI A PER I RAPPORTI INTEL.
+[858346] Descrizioni area  (max 84, righe da 54)
+  EN: AREA  4:                                              PRESS A TO VIEW INTEL REPORTS.
+  IT: AREA  4:                                              PREMI A PER I RAPPORTI INTEL.
+[85839B] Descrizioni area  (max 84, righe da 54)
+  EN: AREA  5:                                              PRESS A TO VIEW INTEL REPORTS.
+  IT: AREA  5:                                              PREMI A PER I RAPPORTI INTEL.
+[8583F0] Descrizioni area  (max 84, righe da 54)
+  EN: AREA  6:                                              PRESS A TO VIEW INTEL REPORTS.
+  IT: AREA  6:                                              PREMI A PER I RAPPORTI INTEL.
+[858445] Descrizioni area  (max 84, righe da 54)
+  EN: AREA  7:                                              PRESS A TO VIEW INTEL REPORTS.
+  IT: AREA  7:                                              PREMI A PER I RAPPORTI INTEL.
+[85849A] Descrizioni area  (max 84, righe da 54)
+  EN: AREA  8:                                              PRESS A TO VIEW INTEL REPORTS.
+  IT: AREA  8:                                              PREMI A PER I RAPPORTI INTEL.
+[8584EF] Descrizioni area  (max 84, righe da 54)
+  EN: AREA  9: LOCATED NORTHEAST OF AREA 2.                 PRESS A TO VIEW INTEL REPORTS.
+  IT: AREA  9: A NORD-EST DELL'AREA 2.                      PREMI A PER I RAPPORTI INTEL.
+[858544] Descrizioni area  (max 39, righe da 54)
+  EN: THIS AREA IS NOT USED FOR THIS MISSION.
+  IT: AREA NON USATA IN QUESTA MISSIONE.
+[85856C] Radio / Command HQ  (max 62, righe da 52)
+  EN: A.S.P., READ BACK YOUR MISSION PLAN FOR TAXI        CLEARANCE.
+  IT: A.S.P., RIPETI IL PIANO DI MISSIONE PER IL          ROLLAGGIO.
+[8585AB] Radio / Command HQ  (max 39)
+  EN: ROGER A.S.P., CONTACT HANGAR  ON 124.9.
+  IT: RICEVUTO A.S.P., HANGAR SU 124.9.
+[8585D3] Radio / Command HQ  (max 39)
+  EN: A.S.P., THIS  IS YOUR HANGAR. GO AHEAD.
+  IT: A.S.P., QUI IL TUO HANGAR. PARLA PURE.
+[8585FB] Radio / Command HQ  (max 30)
+  EN: A.S.P., THIS  IS HQ. GO AHEAD.
+  IT: A.S.P., QUI COMANDO. PARLA.
+[85861A] Radio / Command HQ  (max 46)
+  EN: ROGER A.S.P., WILL SEND YOU AREA  INFORMATION.
+  IT: RICEVUTO A.S.P., TI INVIO I DATI DELL'AREA.
+[858649] Radio / Command HQ  (max 20)
+  EN: A.S.P., ACKNOWLEDGE.
+  IT: A.S.P., CONFERMA.
+[85865F] Radio / Command HQ  (max 40)
+  EN: ROGER A.S.P., WILL SEND YOU INFORMATION.
+  IT: RICEVUTO A.S.P., INVIO LE INFORMAZIONI.
+[858688] Radio / Command HQ  (max 20)
+  EN: A.S.P., DO YOU COPY?
+  IT: A.S.P., MI RICEVI?
+[85869D] Armi / aerei  (max 34)
+  EN: F-15 SIDEWINDER AIR-TO-AIR MISSILE
+  IT: F-15 MISSILE ARIA-ARIA SIDEWINDER
+[8586C0] Armi / aerei  (max 35)
+  EN: F-15 MAVERICK AIR-TO-GROUND MISSILE
+  IT: F-15 MISSILE ARIA-SUOLO MAVERICK
+[8586E4] Armi / aerei  (max 21)
+  EN: F-15 MK-82 SMART BOMB
+  IT: F-15 BOMBA MK-82
+[8586FA] Armi / aerei  (max 21)
+  EN: A-10 MK-82 SMART BOMB
+  IT: A-10 BOMBA MK-82
+[858710] Armi / aerei  (max 35)
+  EN: A-10 MAVERICK AIR-TO-GROUND MISSILE
+  IT: A-10 MISSILE ARIA-SUOLO MAVERICK
+[858734] Armi / aerei  (max 25)
+  EN: A-10 LOCKEYE CLUSTER BOMB
+  IT: A-10 BOMBA A GRAPPOLO
+[85874E] Armi / aerei  (max 45)
+  EN: F-15-B WITH 20MM CANNON AND MK-82 SMART BOMB.
+  IT: F-15-B CON CANNONE 20MM E BOMBE MK-82.
+[85877C] Armi / aerei  (max 40)
+  EN: PRESS A TO CONFIRM AIRCRAFT AND WEAPONS.
+  IT: PREMI A PER CONFERMARE AEREO E ARMI.
+[8587A5] Armi / aerei  (max 43)
+  EN: F-15-A WITH 20MM CANNON AND AGM-65 MAVERICK
+  IT: F-15-A CON CANNONE 20MM E AGM-65 MAVERICK
+[8587D1] Armi / aerei  (max 40)
+  EN: PRESS A TO CONFIRM AIRCRAFT AND WEAPONS.
+  IT: PREMI A PER CONFERMARE AEREO E ARMI.
+[8587FA] Armi / aerei  (max 41)
+  EN: F-15 WITH 20MM CANNON AND AIM9 SIDEWINDER
+  IT: F-15 CON CANNONE 20MM E AIM9 SIDEWINDER
+[858824] Armi / aerei  (max 40)
+  EN: PRESS A TO CONFIRM AIRCRAFT AND WEAPONS.
+  IT: PREMI A PER CONFERMARE AEREO E ARMI.
+[85884D] Armi / aerei  (max 45)
+  EN: A-10-A WITH 30MM CANNON AND MK-82 SMART BOMB.
+  IT: A-10-A CON CANNONE 30MM E BOMBE MK-82.
+[85887B] Armi / aerei  (max 40)
+  EN: PRESS A TO CONFIRM AIRCRAFT AND WEAPONS.
+  IT: PREMI A PER CONFERMARE AEREO E ARMI.
+[8588A4] Armi / aerei  (max 43)
+  EN: A-10-B WITH 30MM CANNON AND AGM-65 MAVERICK
+  IT: A-10-B CON CANNONE 30MM E AGM-65 MAVERICK
+[8588D0] Armi / aerei  (max 40)
+  EN: PRESS A TO CONFIRM AIRCRAFT AND WEAPONS.
+  IT: PREMI A PER CONFERMARE AEREO E ARMI.
+[8588F9] Armi / aerei  (max 41)
+  EN: A-10-C WITH 30MM CANNON AND CLUSTER BOMBS
+  IT: A-10-C CON CANNONE 30MM E BOMBE GRAPPOLO
+[858923] Armi / aerei  (max 40)
+  EN: PRESS A TO CONFIRM AIRCRAFT AND WEAPONS.
+  IT: PREMI A PER CONFERMARE AEREO E ARMI.
+[85894C] Armi / aerei  (max 7)
+  EN: F-15 AA
+  IT: (non tradotta: resta in inglese)
+[858954] Armi / aerei  (max 9)
+  EN: F-15 AG-A
+  IT: (non tradotta: resta in inglese)
+[85895E] Armi / aerei  (max 9)
+  EN: F-15 AG-B
+  IT: (non tradotta: resta in inglese)
+[858968] Armi / aerei  (max 9)
+  EN: A-10 AG-A
+  IT: (non tradotta: resta in inglese)
+[858972] Armi / aerei  (max 9)
+  EN: A-10 AG-B
+  IT: (non tradotta: resta in inglese)
+[85897C] Armi / aerei  (max 9)
+  EN: A-10 AG-C
+  IT: (non tradotta: resta in inglese)
+[858986] Area / sortite  (max 6)
+  EN: AREA%d
+  IT: (non tradotta: resta in inglese)
+[85898D] Area / sortite  (max 7)
+  EN: AREA %d
+  IT: (non tradotta: resta in inglese)
+[858995] Area / sortite  (max 35)
+  EN: TAKE OFF, MAINTAIN HEADING TO AREA 
+  IT: DECOLLA, ROTTA VERSO L'AREA 
+[8589B9] Area / sortite  (max 8)
+  EN:  WITHIN 
+  IT:  ENTRO  
+[8589C2] Area / sortite  (max 5)
+  EN:  HRS.
+  IT:  ORE.
+[8589C8] Area / sortite  (max 10)
+  EN: A.S.P. ON 
+  IT: A.S.P. SU 
+[8589D3] Area / sortite  (max 33)
+  EN: . YOU ARE CLEARED FOR TAXI. AFTER
+  IT: . AUTORIZZATO AL ROLLAGGIO. DOPO
+[8589F5] Armamento dettagli  (max 69, righe da 36)
+  EN: 20MM VULCAN CANNON (VS AIR)                         MK-82 SMART BOMB 
+  IT: CANNONE VULCAN 20MM (ARIA)          BOMBA MK-82
+[858A3B] Armamento dettagli  (max 83, righe da 52)
+  EN: 20MM VULCAN CANNON (VS AIR)                         MAVERICK AIR-TO-GROUND MISSILE 
+  IT: CANNONE VULCAN 20MM (ARIA)                          MISSILE ARIA-SUOLO MAVERICK
+[858A8F] Armamento dettagli  (max 82, righe da 52)
+  EN: 20MM VULCAN CANNON (VS AIR)                         SIDEWINDER AIR-TO-AIR MISSILE 
+  IT: CANNONE VULCAN 20MM (ARIA)                          MISSILE ARIA-ARIA SIDEWINDER
+[858AE2] Armamento dettagli  (max 69, righe da 36)
+  EN: 30MM GAU-8 AVENGER (vs TANKS)                       MK-82 SMART BOMB 
+  IT: GAU-8 AVENGER 30MM (CARRI)          BOMBA MK-82
+[858B28] Armamento dettagli  (max 83, righe da 52)
+  EN: 30MM GAU-8 AVENGER (vs TANKS)                       MAVERICK AIR-TO-GROUND MISSILE 
+  IT: GAU-8 AVENGER 30MM (CARRI)                          MISSILE ARIA-SUOLO MAVERICK
+[858B7C] Armamento dettagli  (max 73, righe da 52)
+  EN: 30MM GAU-8 AVENGER (vs TANKS)                       LOCKEYE CLUSTER BOMB 
+  IT: GAU-8 AVENGER 30MM (CARRI)                          BOMBA A GRAPPOLO
+[858BC6] Armamento dettagli  (max 18)
+  EN: 20MM VULCAN CANNON
+  IT: VULCAN 20MM
+[858BD9] Armamento dettagli  (max 24)
+  EN: 20MM SUPER VULCAN CANNON
+  IT: SUPER VULCAN 20MM
+[858BF2] Armamento dettagli  (max 18)
+  EN: 30MM GAU-8 AVENGER
+  IT: GAU-8 AVENGER 30MM
+[858C05] Armamento dettagli  (max 18)
+  EN: 30MM SUPER GATLING
+  IT: SUPER GATLING 30MM
+[858C18] Armamento dettagli  (max 22)
+  EN: SIDEWINDER AA MISSILE 
+  IT: MISSILE AA SIDEW. 
+[858C2F] Armamento dettagli  (max 19)
+  EN: MAVERICK AG MISSILE
+  IT: MISSILE AG MAVER.
+[858C43] Armamento dettagli  (max 16)
+  EN: MK-82 SMART BOMB
+  IT: BOMBA MK-82
+[858C54] Armamento dettagli  (max 20)
+  EN: LOCKEYE CLUSTER BOMB
+  IT: BOMBA A GRAPPOLO
+[858C69] Armamento dettagli  (max 17)
+  EN: F-15 STRIKE EAGLE
+  IT: (non tradotta: resta in inglese)
+[858C7B] Armamento dettagli  (max 20)
+  EN: A-10 THUNDER BOLT II
+  IT: (non tradotta: resta in inglese)
+[858C90] Armamento dettagli  (max 7)
+  EN: WEAPONS
+  IT: ARMI   
+[858C98] Armamento dettagli  (max 18)
+  EN: MIG-29            
+  IT: (non tradotta: resta in inglese)
+[858CBE] Armamento dettagli  (max 18)
+  EN: GANNIF A.A.       
+  IT: (non tradotta: resta in inglese)
+[858CD1] Armamento dettagli  (max 18)
+  EN: JEEP WITH SWATTER 
+  IT: JEEP CON SWATTER  
+[858CE4] Armamento dettagli  (max 18)
+  EN: HYPER CANNON      
+  IT: IPER CANNONE      
+[858CF7] Armamento dettagli  (max 18)
+  EN: RAPIER A.A.M.     
+  IT: (non tradotta: resta in inglese)
+[858D0A] Armamento dettagli  (max 18)
+  EN: SCUD LAUNCHER     
+  IT: LANCIATORE SCUD   
+[858D1D] Armamento dettagli  (max 18)
+  EN: ROLLAND A.A.M.    
+  IT: (non tradotta: resta in inglese)
+[858D30] Armamento dettagli  (max 18)
+  EN: CIVILIAN VEHICLE  
+  IT: VEICOLO CIVILE    
+[858D69] Armamento dettagli  (max 18)
+  EN: U.N. TROOPS       
+  IT: TRUPPE ONU        
+[858DC8] Armamento dettagli  (max 18)
+  EN: RADAR SITES       
+  IT: SITI RADAR        
+[858DDB] Armamento dettagli  (max 18)
+  EN: AIR BASES         
+  IT: BASI AEREE        
+[858DEE] Armamento dettagli  (max 18)
+  EN: GROUND BASES      
+  IT: BASI TERRESTRI    
+[858E01] Armamento dettagli  (max 18)
+  EN: NBC WEAPON FACTORY
+  IT: FABBRICA ARMI NBC 
+[858E14] Armamento dettagli  (max 18)
+  EN: OIL DEPOT         
+  IT: DEPOSITO PETROLIO 
+[858E27] Armamento dettagli  (max 18)
+  EN: ZARAK CAPITAL     
+  IT: CAPITALE ZARAK    
+[858E3A] Armamento dettagli  (max 18)
+  EN: SMALL CITY        
+  IT: PICCOLA CITTA'    
+[858E4D] Armamento dettagli  (max 18)
+  EN: SCUD BASE         
+  IT: BASE SCUD         
+[858E60] Armamento dettagli  (max 18)
+  EN: PIPELINE FACILITY 
+  IT: IMPIANTO OLEODOTTO
+[858E73] Armamento dettagli  (max 18)
+  EN: MILITARY FACILITY 
+  IT: IMPIANTO MILITARE 
+[858E86] Armamento dettagli  (max 18)
+  EN: ZARAK HQs         
+  IT: QG DI ZARAK       
+[858E99] Armamento dettagli  (max 18)
+  EN: GULF HARBOR       
+  IT: PORTO DEL GOLFO   
+[858EE5] Armamento dettagli  (max 69, righe da 36)
+  EN: FULCRUM DUAL-ROLE,                  SOVIET-BUILT COMBAT AIRCRAFT.    
+  IT: CACCIA FULCRUM BIRUOLO,             DI COSTRUZIONE SOVIETICA.
+[858F2B] Armamento dettagli  (max 69, righe da 36)
+  EN: SOVIET-BUILT M.B.T. WITH A          125MM MAINGUN AND A CREW OF THREE
+  IT: CARRO SOVIETICO CON CANNONE         DA 125MM E TRE UOMINI.
+[858F71] Armamento dettagli  (max 69, righe da 36)
+  EN: MOBILE ANTI-AIRCRAFT                MISSILE LAUNCHER.                
+  IT: LANCIAMISSILI CONTRAEREO            MOBILE.
+[858FB7] Armamento dettagli  (max 69, righe da 36)
+  EN: FAST ATTACK, FIRES SWATTER          ANTI-AIRCRAFT MISSILES.          
+  IT: ATTACCO RAPIDO, LANCIA MISSILI      CONTRAEREI SWATTER.
+[858FFD] Armamento dettagli  (max 69, righe da 36)
+  EN: 55MM ANTI-AIRCRAFT GUN              PROPELS A SHELL UP 12,000FT.     
+  IT: CANNONE CONTRAEREO DA 55MM,         TIRA FINO A 12.000 PIEDI.
+[859043] Armamento dettagli  (max 69, righe da 36)
+  EN: STATIONARY, MULTIPLE                ANTI-AIRCRAFT MISSILE LAUNCHER.  
+  IT: LANCIAMISSILI CONTRAEREO            FISSO A PIU' TUBI.
+[859089] Armamento dettagli  (max 69, righe da 36)
+  EN: RANGE 180 MILES                     CHEMICAL CAPABLE WARHEAD.        
+  IT: GITTATA 290 KM, TESTATA             ANCHE CHIMICA.
+[8590CF] Armamento dettagli  (max 69, righe da 36)
+  EN: SELF-PROPELLED ANTI-AIRCRAFT        MISSILE LAUNCHER.                
+  IT: LANCIAMISSILI CONTRAEREO            SEMOVENTE.
+[859115] Armamento dettagli  (max 69, righe da 36)
+  EN: NOT TO BE DESTROYED.                                                 
+  IT: DA NON DISTRUGGERE.                 
+[85915C] Armamento dettagli  (max 68, righe da 36)
+  EN: U.N.'s MAIN BATTLE TANK             WITH A 105MM, M-68 MAINGUN.     
+  IT: CARRO DA BATTAGLIA ONU CON          CANNONE M-68 DA 105MM.
+[8591A1] Armamento dettagli  (max 69, righe da 36)
+  EN: COALITION INFANTRY                  AN ALLIED SOLDIER, DO NOT SHOOT. 
+  IT: FANTERIA DELLA COALIZIONE:          SOLDATO ALLEATO, NON SPARARE.
+[8591EB] Armamento dettagli  (max 69, righe da 36)
+  EN: MAINTAINS BOTH GROUND AND           AIR SEARCHING SYSTEMS.           
+  IT: GESTISCE LA SORVEGLIANZA            DI TERRA E AEREA.
+[859231] Armamento dettagli  (max 69, righe da 36)
+  EN: CONSISTS OF AIRFIELDS & HANGARS,    HOUSING MIG-29s, AND MI-24 HINDS.
+  IT: PISTE E HANGAR, OSPITA              MIG-29 E ELICOTTERI MI-24 HIND.
+[859277] Armamento dettagli  (max 69, righe da 36)
+  EN: HOUSES ENEMY TANKS,                 MUNITIONS, AND GROUND TROOPS.    
+  IT: OSPITA CARRI NEMICI,                MUNIZIONI E TRUPPE DI TERRA.
+[8592BD] Armamento dettagli  (max 69, righe da 36)
+  EN: RESEARCH, PRODUCE                   AND DISTRIBUTE NBC WEAPONS.      
+  IT: STUDIA, PRODUCE E DISTRIBUISCE      ARMI NBC.
+[859303] Armamento dettagli  (max 69, righe da 36)
+  EN: INCLUDES REFINERIES                 AND OIL SUPPLY STATIONS.         
+  IT: COMPRENDE RAFFINERIE E              STAZIONI DI RIFORNIMENTO.
+[859349] Armamento dettagli  (max 69, righe da 36)
+  EN: HOUSES CIVILIANS AND MILITARY       FACILITIES.                      
+  IT: OSPITA CIVILI E STRUTTURE           MILITARI.
+[85938F] Armamento dettagli  (max 69, righe da 36)
+  EN: HOUSES NUMEROUS CIVILIANS.                                           
+  IT: OSPITA NUMEROSI CIVILI.             
+[8593D5] Armamento dettagli  (max 69, righe da 36)
+  EN: AN ENTOURAGE OF                     FIVE SCUD MISSILE LAUNCHERS.     
+  IT: UN GRUPPO DI CINQUE                 LANCIATORI DI MISSILI SCUD.
+[85941B] Armamento dettagli  (max 69, righe da 36)
+  EN: MOVES OIL TO SUPPLY POINTS.                                          
+  IT: PORTA IL PETROLIO AI DEPOSITI.      
+[859461] Armamento dettagli  (max 69, righe da 36)
+  EN: THERE ARE NUMEROUS MILITARY         FACILITIES AROUND THE CAPITAL.   
+  IT: INTORNO ALLA CAPITALE CI SONO       MOLTE STRUTTURE MILITARI.
+[8594A7] Armamento dettagli  (max 69, righe da 36)
+  EN: WELL-DEFENDED AND WITH              NUCLEAR WEAPONS.                 
+  IT: BEN DIFESO E CON                    ARMI NUCLEARI.
+[8594ED] Armamento dettagli  (max 69, righe da 36)
+  EN: OIL TANKERS, REFINERIES,            AND MANY CIVILIANS.              
+  IT: PETROLIERE, RAFFINERIE              E MOLTI CIVILI.
+[859539] Armamento dettagli  (max 10)
+  EN: ENEMY BASE
+  IT: BASE NEM. 
+[859544] Armamento dettagli  (max 11)
+  EN: RADAR SITES
+  IT: SITI RADAR 
+[859550] Armamento dettagli  (max 10)
+  EN: SCUD BASES
+  IT: BASI SCUD 
+[85955B] Armamento dettagli  (max 16)
+  EN: PIPELINE STATION
+  IT: STAZIONE OLEOD.
+[85956C] Armamento dettagli  (max 9)
+  EN: AIR BASES
+  IT: BASI AER.
+[859576] Armamento dettagli  (max 12)
+  EN: GROUND BASES
+  IT: BASI TERRA  
+[859583] Armamento dettagli  (max 13)
+  EN: NBC FACTORIES
+  IT: FABBRICHE NBC
+[859591] Armamento dettagli  (max 16)
+  EN: ZARAKIE MILITARY
+  IT: MILITARI ZARAK  
+[8595A2] Armamento dettagli  (max 9)
+  EN: ZARAK HQs
+  IT: QG ZARAK 
+[8595AC] Armamento dettagli  (max 8)
+  EN: WEAPONS 
+  IT: ARMI    
+[8595B5] Armamento dettagli  (max 7)
+  EN: DAMAGE 
+  IT: DANNI  
+[8595BD] Armamento dettagli  (max 13)
+  EN: SORTIE POINTS
+  IT: PUNTI USCITA 
+[8595CB] Armamento dettagli  (max 6)
+  EN: POINTS
+  IT: PUNTI 
+[8595D2] Armamento dettagli  (max 10)
+  EN: AMMUNITION
+  IT: MUNIZIONI 
+[8595DD] Armamento dettagli  (max 16)
+  EN: VULCAN HIT RATIO
+  IT: PRECIS. VULCAN  
+[8595EE] Armamento dettagli  (max 11)
+  EN: SORTIE COST
+  IT: COSTO VOLO 
+[8595FA] Armamento dettagli  (max 13)
+  EN: SORTIE RESULT
+  IT: ESITO USCITA 
+[859608] Armamento dettagli  (max 9)
+  EN:   RESULT 
+  IT:  ESITO   
+[859612] Armamento dettagli  (max 14)
+  EN: MISSION RESULT
+  IT: ESITO MISSIONE
+[859621] Armamento dettagli  (max 9)
+  EN:  RESULT :
+  IT:  ESITO  :
+[85962B] Armamento dettagli  (max 19)
+  EN: SORTIE POINT DETAIL
+  IT: DETTAGLIO USCITA   
+[85963F] Armamento dettagli  (max 8)
+  EN: STRATEGY
+  IT: STRATEG.
+[859648] Armamento dettagli  (max 13)
+  EN: DAMAGE POINTS
+  IT: PUNTI DANNI  
+[859656] Armamento dettagli  (max 13)
+  EN: ATTACK POINTS
+  IT: PUNTI ATTACCO
+[859664] Armamento dettagli  (max 16)
+  EN: DESTRUCTION RATE
+  IT: TASSO DISTRUZ.  
+[859675] Armamento dettagli  (max 12)
+  EN: SPECIAL PTS.
+  IT: PUNTI SPEC. 
+[859682] Armamento dettagli  (max 18)
+  EN: TTL. STRATEGY PTS.
+  IT: PT. STRATEGIA TOT.
+[859695] Armamento dettagli  (max 13)
+  EN: MISSION TIME 
+  IT: TEMPO MISS.  
+[8596A3] Armamento dettagli  (max 5)
+  EN:  HRS.
+  IT:  ORE.
+[8596A9] Armamento dettagli  (max 13)
+  EN: TARGET HIT % 
+  IT: COLPITI %    
+[8596B7] Armamento dettagli  (max 14)
+  EN: NO. OF SORTIES
+  IT: N. DI USCITE  
+[8596C6] Armamento dettagli  (max 20)
+  EN: MISSION TOTAL STATUS
+  IT: STATO TOT. MISSIONE
+[8596DB] Armamento dettagli  (max 20)
+  EN: MISSION TOTAL STATUS
+  IT: STATO TOT. MISSIONE
+[8596F0] Armamento dettagli  (max 16)
+  EN: CHANGE IN STATUS
+  IT: VARIAZIONE STATO
+[859701] Armamento dettagli  (max 6)
+  EN: SORTIE
+  IT: USCITA
+[859708] Armamento dettagli  (max 16)
+  EN: GND. TROOPS PTS.
+  IT: PT. TRUPPE TERRA
+[859719] Armamento dettagli  (max 11)
+  EN: SORTIE TIME
+  IT: TEMPO VOLO 
+[859725] Armamento dettagli  (max 13)
+  EN: ATTACK POINTS
+  IT: PUNTI ATTACCO
+[859733] Armamento dettagli  (max 15)
+  EN: STRATEGY POINTS
+  IT: PUNTI STRATEGIA
+[859743] Armamento dettagli  (max 12)
+  EN: SORTIE TOTAL
+  IT: TOTALE VOLO 
+[859750] Armamento dettagli  (max 14)
+  EN: OPERATION COST
+  IT: COSTO OPERAZ. 
+[85975F] Armamento dettagli  (max 7)
+  EN: REPAIRS
+  IT: RIPARAZ
+[859767] Armamento dettagli  (max 12)
+  EN: FINAL RESULT
+  IT: ESITO FINALE
+[859774] Armamento dettagli  (max 10)
+  EN: TOTAL TIME
+  IT: TEMPO TOT.
+[85977F] Armamento dettagli  (max 9)
+  EN:  REWARDED
+  IT:  PREMIATO
+[859789] Armamento dettagli  (max 13)
+  EN: WING OF HONOR
+  IT: ALA D'ONORE  
+[859797] Armamento dettagli  (max 14)
+  EN: PLATINUM CROSS
+  IT: CROCE PLATINO 
+[8597A6] Armamento dettagli  (max 14)
+  EN: POLESTAR MEDAL
+  IT: MEDAGLIA POLO
+[8597B5] Etichette HUD  (max 14)
+  EN: CAMPAIGN MEDAL
+  IT: MED. CAMPAGNA 
+[8597C5] Etichette HUD  (max 10)
+  EN:   CONFIG  
+  IT: (non tradotta: resta in inglese)
+[8597D0] Etichette HUD  (max 10)
+  EN: COMMAND HQ
+  IT: COMANDO HQ
+[8597DB] Etichette HUD  (max 10)
+  EN: DEVELOP HQ
+  IT: SVILUPPO  
+[8597E6] Etichette HUD  (max 10)
+  EN: AIR FORCE 
+  IT: AVIAZIONE 
+[8597F1] Etichette HUD  (max 10)
+  EN:    ARMY   
+  IT:  ESERCITO 
+[8597FC] Etichette HUD  (max 10)
+  EN:   OPTION  
+  IT:  OPZIONI  
+[859807] Etichette HUD  (max 10)
+  EN:   SCORE   
+  IT:  PUNTEGGIO
+[859812] Etichette HUD  (max 10)
+  EN:   TARGET  
+  IT: OBIETTIVO 
+[85981D] Etichette HUD  (max 10)
+  EN:  AREA   %d
+  IT: (non tradotta: resta in inglese)
+[859828] Etichette HUD  (max 11)
+  EN: U.N. FORCES
+  IT: FORZE ONU  
+[859835] Etichette HUD  (max 8)
+  EN: CIVILIAN
+  IT: CIVILI  
+[859840] Etichette HUD  (max 5)
+  EN:  EXIT
+  IT: ESCI 
+[859846] Etichette HUD  (max 5)
+  EN: TOTAL
+  IT: TOT. 
+[85984C] Esito volo  (max 24)
+  EN: RETURNED WITHOUT DAMAGE!
+  IT: RIENTRO SENZA DANNI!
+[859865] Esito volo  (max 27)
+  EN: RETURNED WITH MINOR DAMAGE.
+  IT: RIENTRO CON DANNI LIEVI.
+[859881] Esito volo  (max 27)
+  EN: FORCED LANDING WITH DAMAGE.
+  IT: ATTERRAGGIO D'EMERGENZA.
+[85989D] Esito volo  (max 27)
+  EN: CRASHED:LOST YOUR AIRCRAFT!
+  IT: SCHIANTO: AEREO PERDUTO!
+[8598B9] Esito volo  (max 25)
+  EN: SHOT DOWN:LOST YOUR BIRD!
+  IT: ABBATTUTO: AEREO PERSO!
+[8598D3] Esito missione  (max 17)
+  EN: MISSION COMPLETE!
+  IT: MISSIONE RIUSCITA
+[8598E5] Esito missione  (max 22)
+  EN: TIME EXPIRED, RETREAT!
+  IT: TEMPO FINITO: RITIRATA
+[8598FC] Esito missione  (max 26)
+  EN: TACTICAL FAILURE, RETREAT!
+  IT: ERRORE TATTICO: RITIRATA!
+[859917] Esito missione  (max 25)
+  EN: FINANCIAL CHAOS, RETREAT!
+  IT: CRISI FINANZIARIA: RITIRO
+[859931] Esito missione  (max 26)
+  EN: POLITICAL UNREST, RETREAT!
+  IT: CRISI POLITICA: RITIRATA!
+[85994C] Esito missione  (max 25)
+  EN: TIME'S UP, MISSION ENDED!
+  IT: TEMPO SCADUTO: FINE MISS.
+[859966] Risultati / intel  (max 10)
+  EN: FEP STATUS
+  IT: STATO FEP 
+[859971] Risultati / intel  (max 10)
+  EN: FEP STATUS
+  IT: STATO FEP 
+[85997C] Risultati / intel  (max 6)
+  EN: RESULT
+  IT: ESITO 
+[859983] Risultati / intel  (max 3)
+  EN: %3d
+  IT: (non tradotta: resta in inglese)
+[859987] Risultati / intel  (max 4)
+  EN: %02d
+  IT: (non tradotta: resta in inglese)
+[8599A4] Risultati / intel  (max 24)
+  EN:  A.S.P. RATE :          
+  IT:  INDICE A.S.P.:         
+[8599BD] Risultati / intel  (max 14)
+  EN:  TIME LIMIT  :
+  IT:  TEMPO LIM.  :
+[8599CC] Risultati / intel  (max 23)
+  EN: MAX SORTIES :          
+  IT: USCITE MAX  :          
+[8599E4] Risultati / intel  (max 5)
+  EN:   %2d
+  IT: (non tradotta: resta in inglese)
+[8599ED] Risultati / intel  (max 20)
+  EN: TIME LEFT  :        
+  IT: TEMPO RIM. :        
+[859A02] Risultati / intel  (max 4)
+  EN:  HRS
+  IT:  ORE
+[859A07] Risultati / intel  (max 26)
+  EN: VIEW TARGET INTELLIGENCE ?
+  IT: VEDI INFO SUL BERSAGLIO ?
+[859A22] Risultati / intel  (max 17)
+  EN: MISSION TARGET : 
+  IT: BERSAGLIO MISS.: 
+[859A34] Risultati / intel  (max 27)
+  EN: VIEW INDIVIDUAL UNIT INFO ?
+  IT: VEDI INFO DELL'UNITA' ?
+[859A50] Risultati / intel  (max 60, righe da 52)
+  EN: (UP/DOWN) ARROWS TO SELECT     TARGET. PRESS A TO ENTER.    
+  IT: (SU/GIU) SCEGLI IL BERSAGLIO. A PER ENTRARE.
+[859A8D] Risultati / intel  (max 60, righe da 52)
+  EN: (LEFT/RIGHT) ARROWS TO SELECT  UNIT. PRESS B TO SELECT TYPE.
+  IT: (SX/DX) SCEGLI L'UNITA'. B PER IL TIPO.
+[859ACA] Risultati / intel  (max 15)
+  EN: TARGET SCORE : 
+  IT: PUNTI OBIETT.: 
+[859ADB] Risultati / intel  (max 27)
+  EN: CURRENT DESTRUCTION RATE : 
+  IT: T. DISTRUZIONE ATTUALE : 
+[859AF7] Risultati / intel  (max 19)
+  EN: DESTRUCTION RATE : 
+  IT: T. DISTRUZIONE  : 
+[859B0B] Risultati / intel  (max 19)
+  EN: DESTRUCTION RATE : 
+  IT: T. DISTRUZIONE  : 
+[859B1F] Risultati / intel  (max 12)
+  EN: UNIT NAME : 
+  IT: NOME UNITA':
+[859B2C] Risultati / intel  (max 27)
+  EN: CURRENT UNIT SCORE       : 
+  IT: PUNTI UNITA' ATTUALI   : 
+[859B48] Risultati / intel  (max 18)
+  EN:  ALREADY DESTROYED
+  IT:  GIA' DISTRUTTO   
+[859B5B] Radio / Command HQ  (max 18)
+  EN: SENDING RADAR INFO
+  IT: INVIO DATI RADAR
+[859B6F] Radio / Command HQ  (max 21)
+  EN: ACKNOWLEDGE AREA INFO
+  IT: CONFERMA DATI AREA
+[859B86] Radio / Command HQ  (max 8)
+  EN: NO BOGY 
+  IT: NESSUNO 
+[859B91] Radio / Command HQ  (max 18)
+  EN: %d BOGIES IN SIGHT
+  IT: %d NEMICI IN VISTA
+[859BA4] Radio / Command HQ  (max 13)
+  EN: CHECK WEAPONS
+  IT: VERIFICA ARMI
+[859BB3] Radio / Command HQ  (max 8)
+  EN: START : 
+  IT: INIZIO: 
+[859BBC] Data / briefing  (max 6)
+  EN: TIME: 
+  IT: ORA:  
+[859BC3] Data / briefing  (max 40)
+  EN: OPERATION DESERT CORRADO
+  IT: OPERAZIONE DESERT CORRADO
+[859BDC] Data / briefing  (max 13)
+  EN: MISSION No.%d
+  IT: MISSIONE N.%d
+[859BED] Data / briefing  (max 13)
+  EN:  Mission-%1d 
+  IT:  Missione-%1d
+[859BFB] Data / briefing  (max 5)
+  EN: %02d/
+  IT: (non tradotta: resta in inglese)
+[859C01] Data / briefing  (max 5)
+  EN: %04d 
+  IT: (non tradotta: resta in inglese)
+[859C07] Data / briefing  (max 4)
+  EN: %02d
+  IT: (non tradotta: resta in inglese)
+[859C0C] Data / briefing  (max 4)
+  EN: %02d
+  IT: (non tradotta: resta in inglese)
+[859C11] Data / briefing  (max 3)
+  EN: JAN
+  IT: GEN
+[859C15] Data / briefing  (max 3)
+  EN: FEB
+  IT: FEB
+[859C19] Data / briefing  (max 3)
+  EN: MAR
+  IT: MAR
+[859C1D] Data / briefing  (max 3)
+  EN: APR
+  IT: APR
+[859C21] Data / briefing  (max 3)
+  EN: MAY
+  IT: MAG
+[859C25] Data / briefing  (max 3)
+  EN: JUN
+  IT: GIU
+[859C29] Data / briefing  (max 3)
+  EN: JUL
+  IT: LUG
+[859C2D] Data / briefing  (max 3)
+  EN: AUG
+  IT: AGO
+[859C31] Data / briefing  (max 3)
+  EN: SEP
+  IT: SET
+[859C35] Data / briefing  (max 3)
+  EN: OCT
+  IT: OTT
+[859C39] Data / briefing  (max 3)
+  EN: NOV
+  IT: NOV
+[859C3D] Data / briefing  (max 3)
+  EN: DEC
+  IT: DIC
+[859C41] Varie  (max 5)
+  EN: FORCE
+  IT: FORZE
+[859C47] Varie  (max 7)
+  EN: ECONOMY
+  IT: ECONOM.
+[859C4F] Varie  (max 8)
+  EN: POLITICS
+  IT: POLITICA
+[859C58] Varie  (max 27)
+  EN: WILCO A.S.P., STAND BY FOR 
+  IT: RICEVUTO A.S.P., ATTENDI 
+[859C74] Varie  (max 5)
+  EN:  HRS.
+  IT:  ORE.
+[859C7A] Varie  (max 24)
+  EN: HIGH CIVILIAN CASUALTY!!
+  IT: MOLTE VITTIME CIVILI!!
+[859C93] Varie  (max 12)
+  EN: NEAR RETREAT
+  IT: QUASI RITIRO
+[859CA0] Varie  (max 15)
+  EN: SITUATION WORSE
+  IT: SITUAZ. PEGGIO
+[859CB0] Varie  (max 13)
+  EN: ATTACK HARDER
+  IT: ATTACCA PIU'
+[859CBE] Varie  (max 13)
+  EN: FORCES STABLE
+  IT: FORZE STABILI
+[859CCC] Varie  (max 14)
+  EN: SITUATION GOOD
+  IT: SITUAZ. BUONA
+[859CDB] Varie  (max 13)
+  EN: LOGISTICS BAD
+  IT: LOGISTICA KO
+[859CE9] Varie  (max 15)
+  EN: SUPPLY CRITICAL
+  IT: SCORTE CRITICHE
+[859CF9] Varie  (max 13)
+  EN: SAVE SUPPLIES
+  IT: SALVA SCORTE
+[859D07] Varie  (max 13)
+  EN: SUPPLIES GOOD
+  IT: SCORTE BUONE
+[859D15] Varie  (max 13)
+  EN: SUPPLIES GOOD
+  IT: SCORTE BUONE
+[859D23] Varie  (max 16)
+  EN: POLITICAL CRISIS
+  IT: CRISI POLITICA
+[859D34] Varie  (max 17)
+  EN: UNSTABLE POLITICS
+  IT: POLITICA INSTAB.
+[859D46] Varie  (max 14)
+  EN: WATCH YOUR AIM
+  IT: OCCHIO AL TIRO
+[859D55] Varie  (max 14)
+  EN: SITUATION GOOD
+  IT: SITUAZ. BUONA
+[859D64] Varie  (max 13)
+  EN: WORLD SUPPORT
+  IT: MONDO CON NOI
+[859D7B] Varie  (max 8)
+  EN: F15AGM-B
+  IT: (non tradotta: resta in inglese)
+[859D84] Varie  (max 8)
+  EN: F15AGM-A
+  IT: (non tradotta: resta in inglese)
+[859D8D] Varie  (max 8)
+  EN: F15AAM  
+  IT: (non tradotta: resta in inglese)
+[859D96] Varie  (max 8)
+  EN: A10AGM-A
+  IT: (non tradotta: resta in inglese)
+[859D9F] Varie  (max 8)
+  EN: A10AGM-B
+  IT: (non tradotta: resta in inglese)
+[859DA8] Varie  (max 8)
+  EN: A10AGM-C
+  IT: (non tradotta: resta in inglese)
+[859DBA] Varie  (max 15)
+  EN: SELECT AIRCRAFT
+  IT: SCEGLI AEREO   
+[859DCB] Varie  (max 11)
+  EN: OPTION MENU
+  IT: OPZIONI
+[859DD7] Varie  (max 60)
+  EN:   SAVE GAME ¦  CONTROL TYPE¦  BUTTON TYPE¦  SOUND MODE
+  IT:   SALVA PARTITA¦  TIPO COMANDI¦  TIPO TASTI¦  AUDIO
+[859E17] Varie  (max 40)
+  EN: SOUND SETUP¦  STEREO/MONO¦  MUSIC/SE
+  IT: AUDIO¦  STEREO/MONO¦  MUSICA/SE
+[859E40] Varie  (max 31)
+  EN: STEREO/MONO¦  STEREO¦  MONO
+  IT: STEREO/MONO¦  STEREO¦  MONO
+[859E60] Varie  (max 31)
+  EN: BGM MODE¦  BGM ON¦  BGM OFF
+  IT: MUSICA¦  ACCESA¦  SPENTA
+[859E80] Varie  (max 5)
+  EN: [YES]
+  IT: [SI] 
+[859E86] Varie  (max 4)
+  EN: [NO]
+  IT: [NO]
+[859E8B] Varie  (max 6)
+  EN: [EXIT]
+  IT: [ESCI]
+[859E92] Varie  (max 9)
+  EN: SAVE FILE
+  IT: SALVATAGG
+[859E9C] Varie  (max 11)
+  EN: SAVE DATA ?
+  IT: SALVARE ?  
+[859EA8] Varie  (max 20)
+  EN: DATA HAS BEEN SAVED.
+  IT: DATI SALVATI.       
+[859EBD] Varie  (max 12)
+  EN: CURRENT DATA
+  IT: DATI ATTUALI
+[859ECA] Varie  (max 12)
+  EN: BUTTON SETUP
+  IT: TASTI
+[859ED7] Varie  (max 13)
+  EN: CONTROL SETUP
+  IT: COMANDI
+[859EE5] Varie  (max 27)
+  EN:     PRESS B-BUTTON TO EXIT.
+  IT:     PREMI B PER USCIRE.
+[859F01] Varie  (max 21)
+  EN: YOUR CONTROLLER TYPE 
+  IT: IL TUO TIPO COMANDI  
+[859F17] Varie  (max 8)
+  EN:   NORMAL
+  IT:  NORMALE
+[859F20] Varie  (max 11)
+  EN:   COCKPIT-A
+  IT: (non tradotta: resta in inglese)
+[859F2C] Varie  (max 11)
+  EN:   COCKPIT-B
+  IT: (non tradotta: resta in inglese)
+[859F38] Varie  (max 45)
+  EN:   TYPE-A ¦  TYPE-B ¦  TYPE-C ¦  TYPE-D 
+  IT:   TIPO-A ¦  TIPO-B ¦  TIPO-C ¦  TIPO-D 
+[859F69] Varie  (max 42)
+  EN:   NORMAL    ¦  COCKPIT-A ¦  COCKPIT-B 
+  IT:   NORMALE   ¦  CABINA-A ¦  CABINA-B 
+[859F97] Varie  (max 16)
+  EN: YOUR BUTTON TYPE
+  IT: TIPO TASTI USATO
+[859FA8] Varie  (max 6)
+  EN: TYPE-A
+  IT: (non tradotta: resta in inglese)
+[859FAF] Varie  (max 6)
+  EN: TYPE-B
+  IT: (non tradotta: resta in inglese)
+[859FB6] Varie  (max 6)
+  EN: TYPE-C
+  IT: (non tradotta: resta in inglese)
+[859FBD] Varie  (max 6)
+  EN: TYPE-D
+  IT: (non tradotta: resta in inglese)
+[859FC6] Varie  (max 100, righe da 52)
+  EN: YOU HAVE COMPLETED THE FIRST MISSION SUCCESSFULLY.  REPORT TO OPS OFFICER FOR FURTHER INSTRUCTIONS. 
+  IT: HAI COMPLETATO LA PRIMA MISSIONE CON SUCCESSO.      PRESENTATI ALL'UFFICIALE PER NUOVI ORDINI.
+[85A02C] Varie  (max 82, righe da 52)
+  EN: THAT WAS GOOD SCUD HUNTING! A FEW GOT AWAY, BUT     YOU'LL GET THEM ALL NEXT TIME.
+  IT: BELLA CACCIA AGLI SCUD! QUALCUNO E' SFUGGITO,       MA LI PRENDERAI TUTTI.
+[85A080] Varie  (max 101, righe da 52)
+  EN: ENOUGH OIL FACILITIES HAVE BEEN DESTROYED TO PREVENTTHE ENEMY'S ATTEMPT TO EXTEND THEIR SUPPLY LINES.
+  IT: DISTRUTTI ABBASTANZA IMPIANTI PETROLIFERI DA        IMPEDIRE AL NEMICO DI ESTENDERE I RIFORNIMENTI.
+[85A0E7] Varie  (max 100, righe da 52)
+  EN: CONGRATULATIONS, YOU HAVE SUCCESSFULLY PREVENTED THEAIR STRIKE ON TAFUJI, ATTAINING AIR SUPERIORITY.
+  IT: CONGRATULAZIONI, HAI IMPEDITO L'ATTACCO AEREO       SU TAFUJI E OTTENUTO LA SUPERIORITA' AEREA.
+[85A14D] Varie  (max 85, righe da 52)
+  EN: YOU WERE SUCCESSFUL IN LIBERATING THE HARBOR AND    RESCUING THE HOSTAGES! GOOD JOB!!
+  IT: HAI LIBERATO IL PORTO E SALVATO                     GLI OSTAGGI! OTTIMO LAVORO!!
+[85A1A4] Varie  (max 100, righe da 52)
+  EN: BY SUCCESSFULLY DESTROYING THE PRODUCTION PLANTS,   YOU HAVE ELIMINATED THE THREAT OF N.B.C. ATTACK.
+  IT: DISTRUGGENDO GLI IMPIANTI DI PRODUZIONE HAI         ELIMINATO LA MINACCIA DI UN ATTACCO N.B.C.
+[85A20A] Varie  (max 88, righe da 52)
+  EN: YOU DID A COMMENDABLE JOB OF SUPPRESSING THE RED    GUARD. OUR VICTORY IS CLOSE AT HAND.
+  IT: HAI FATTO UN OTTIMO LAVORO CONTRO LA GUARDIA        ROSSA. LA VITTORIA E' VICINA.
+[85A264] Varie  (max 103, righe da 52)
+  EN: CONGRATULATIONS, YOU'VE PREVENTED A NUCLEAR         NIGHTMARE AND WE'VE WON THE WAR! WE'RE GOING HOME!!
+  IT: CONGRATULAZIONI, HAI EVITATO L'INCUBO NUCLEARE      E ABBIAMO VINTO LA GUERRA! SI TORNA A CASA!!
+[85A2CD] Varie  (max 102, righe da 52)
+  EN: THERE ARE TOO MANY RADAR SIGHTS REMAINING.          THIS JEOPARDIZES OUR TROOPS, SO YOU ARE DISMISSED.
+  IT: RESTANO TROPPI SITI RADAR: METTONO A RISCHIO        LE NOSTRE TRUPPE, QUINDI SEI SOLLEVATO.
+[85A335] Varie  (max 92, righe da 52)
+  EN: MORE SCUDs HAVE BEEN LAUNCHED THAN OUR  PATRIOT     GRID CAN DEFEND. YOU'VE BEEN REASSIGNED.
+  IT: SONO PARTITI PIU' SCUD DI QUANTI NE POSSA           FERMARE LA RETE PATRIOT: RIASSEGNATO.
+[85A393] Varie  (max 87, righe da 52)
+  EN: YOUR MISSION TO DESTROY THE OIL DEPOTS WAS A        FAILURE. STAND BY FOR REASSIGNMENT.
+  IT: LA MISSIONE CONTRO I DEPOSITI DI PETROLIO E'        FALLITA. ATTENDI NUOVI ORDINI.
+[85A3EC] Varie  (max 101, righe da 52)
+  EN: YOU FAILED! ZARAK WAS ABLE TO SUCCESSFULLY INVADE   THE BORDER TOWN OF TAFUJI, FORCING US TO RETREAT.
+  IT: HAI FALLITO! ZARAK HA INVASO LA CITTA' DI           CONFINE DI TAFUJI E CI COSTRINGE ALLA RITIRATA.
+[85A453] Varie  (max 102, righe da 52)
+  EN: YOU TOOK TOO LONG, ALLOWING ZARAK TO CARRY OUT THEIRECOTERRORIST THREATS. GO TO THE CHOW HALL FOR K.P.
+  IT: CI HAI MESSO TROPPO E ZARAK HA ATTUATO LE SUE       MINACCE ECOTERRORISTE. VAI IN CUCINA.
+[85A4BB] Varie  (max 103, righe da 52)
+  EN: THE N.B.C. PLANTS WERE NOT FULLY DESTROYED,         SO WE WILL BE FORCED TO RETREAT. YOU'RE RESPONSIBLE
+  IT: GLI IMPIANTI N.B.C. NON SONO STATI DISTRUTTI        DEL TUTTO: DOVREMO RITIRARCI. E' COLPA TUA.
+[85A524] Varie  (max 93, righe da 52)
+  EN: YOU FAILED TO TERMINATE THE RED GUARD.              THE ALIENS WILL SURELY CONTROL THE WORLD.
+  IT: NON HAI ELIMINATO LA GUARDIA ROSSA.                 GLI ALIENI DOMINERANNO IL MONDO.
+[85A583] Varie  (max 98, righe da 52)
+  EN: YOUR FAILURE TO DESTROY THE ZARAK HQs MAY LEAD TO A VENGEFUL COUNTER-ATTACK WITH NUCLEAR WEAPONS. 
+  IT: NON AVER DISTRUTTO IL QG DI ZARAK PUO' PORTARE      A UN CONTRATTACCO CON ARMI NUCLEARI.
+[85A5E7] Varie  (max 102, righe da 52)
+  EN: ZARAK HAD MORE WEAPONS THAN EXPECTED.               WE CANNOT CONTINUE OUR MISSION WITH CURRENT FORCES
+  IT: ZARAK AVEVA PIU' ARMI DEL PREVISTO. NON             POSSIAMO CONTINUARE CON LE FORZE ATTUALI.
+[85A64F] Varie  (max 71, righe da 52)
+  EN: DUE TO DAMAGES TO U.N. FORCES, THIS WAR IS TOO      COSTLY TO CONTINUE.
+  IT: PER I DANNI ALLE FORZE ONU LA GUERRA COSTA          TROPPO.
+[85A698] Varie  (max 101, righe da 52)
+  EN: WORLDWIDE DEMONSTRATIONS AGAINST THE WAR HAS FORCED US TO STOP OPERATIONS. STAND BY FOR INSTRUCTIONS.
+  IT: LE PROTESTE IN TUTTO IL MONDO CI HANNO COSTRETTI    A FERMARE LE OPERAZIONI. ATTENDI ORDINI.
+[8182A5] Messaggi decollo  (max 12)
+  EN:  GOOD LUCK  
+  IT:  FORZA!!!!  
+[8182B2] Messaggi decollo  (max 12)
+  EN: FINAL FLIGHT
+  IT: ULTIMO VOLO 
+[84DE31] Command HQ  (max 10)
+  EN:  OPERATOR 
+  IT: OPERATORE 
+[8CEEA4] Area / sortite  (max 14)
+  EN: SORTIE AREA %d
+  IT: USCITA AREA %d
+[84B2EF] Nomi area  (max 5)
+  EN: AREA1
+  IT: (non tradotta: resta in inglese)
+[84B2F5] Nomi area  (max 5)
+  EN: AREA2
+  IT: (non tradotta: resta in inglese)
+[84B2FB] Nomi area  (max 5)
+  EN: AREA3
+  IT: (non tradotta: resta in inglese)
+[84B301] Nomi area  (max 5)
+  EN: AREA4
+  IT: (non tradotta: resta in inglese)
+[84B307] Nomi area  (max 5)
+  EN: AREA5
+  IT: (non tradotta: resta in inglese)
+[84B30D] Nomi area  (max 5)
+  EN: AREA6
+  IT: (non tradotta: resta in inglese)
+[84B313] Nomi area  (max 5)
+  EN: AREA7
+  IT: (non tradotta: resta in inglese)
+[84B319] Nomi area  (max 5)
+  EN: AREA8
+  IT: (non tradotta: resta in inglese)
+[84B31F] Nomi area  (max 5)
+  EN: AREA9
+  IT: (non tradotta: resta in inglese)
+[829EBE] HUD di volo  (max 8)
+  EN: MIG LEFT
+  IT: MIG RIM.
+[829EC7] HUD di volo  (max 5)
+  EN: PAUSE
+  IT: PAUSA
+[8493BC] HUD di volo  (max 16)
+  EN: RAYLOAD [ %03d ]
+  IT: CARICO  [ %03d ]
+[83A2E5] Schermata bilancio  (max 4)
+  EN: EXIT
+  IT: ESCI
+[83A2EA] Schermata bilancio  (max 14)
+  EN:  B A L A N C E
+  IT:  S A L D O    
+[83A2F9] Schermata bilancio  (max 3)
+  EN: END
+  IT: FIN
+[83A2FD] Schermata bilancio  (max 14)
+  EN:    T O T A L  
+  IT:    T O T A L E
+[83927C] Salvataggi  (max 19)
+  EN: NOT EXIT SAVED DATA
+  IT: NESSUN DATO SALVATO
+[84C104] Richieste  (max 8)
+  EN: NO   YES
+  IT: NO    SI
+[84DD53] Notiziario GNN  (max 13)
+  EN: GULF WAR LIVE
+  IT: GUERRA GOLFO 
+[84DE1B] Command HQ  (max 10)
+  EN: COMMANDER 
+  IT: COMANDANTE
+[84DE26] Command HQ  (max 10)
+  EN:   HANGAR  
+  IT:   HANGAR  
+[84DE3C] Command HQ  (max 10)
+  EN:  GNN NEWS 
+  IT:  GNN NOTIZ
+[80C134] Varie  (max 3)
+  EN: HRS
+  IT: ORE
+[82A2F5] Menu debug nascosto: voci  (max 18)
+  EN: MISSION NUMBER....
+  IT: NUMERO MISSIONE...
+[82A308] Menu debug nascosto: voci  (max 18)
+  EN: PLAY AREA.........
+  IT: AREA DI GIOCO.....
+[82A31B] Menu debug nascosto: voci  (max 18)
+  EN: GAME LEVEL........
+  IT: DIFFICOLTA .......
+[82A32E] Menu debug nascosto: voci  (max 18)
+  EN: PALETTE SELECT....
+  IT: SCELTA PALETTE....
+[82A341] Menu debug nascosto: voci  (max 18)
+  EN: SE MODE SELECT....
+  IT: SCELTA EFFETTI....
+[82A354] Menu debug nascosto: voci  (max 18)
+  EN: FINAL FLIGHT......
+  IT: ULTIMO VOLO.......
+[82A367] Menu debug nascosto: voci  (max 18)
+  EN: PLAYER AIRCRAFT...
+  IT: AEREO GIOCATORE...
+[82A37A] Menu debug nascosto: voci  (max 18)
+  EN: MISSILE...........
+  IT: MISSILE...........
+[82A38D] Menu debug nascosto: voci  (max 18)
+  EN: MISSILE COUNT.....
+  IT: NUMERO MISSILI....
+[82A3A0] Menu debug nascosto: voci  (max 18)
+  EN: GUN LEVEL.........
+  IT: LIVELLO CANNONE...
+[82A3B3] Menu debug nascosto: voci  (max 18)
+  EN: PLAYER LIFE.......
+  IT: VITE GIOCATORE....
+[82A3C6] Menu debug nascosto: voci  (max 18)
+  EN: FUEL CONSUME......
+  IT: CONSUMO CARBURANTE
+[82A3D9] Menu debug nascosto: voci  (max 18)
+  EN: MIG LEVEL.........
+  IT: LIVELLO MIG.......
+[82A3EC] Menu debug nascosto: voci  (max 18)
+  EN: MIG COUNT.........
+  IT: NUMERO MIG........
+[82A3FF] Menu debug nascosto: voci  (max 18)
+  EN: SCUD FORMATION....
+  IT: FORMAZIONE SCUD...
+[82A412] Menu debug nascosto: voci  (max 18)
+  EN: SCUD COUNT........
+  IT: NUMERO SCUD.......
+[82A425] Menu debug nascosto: voci  (max 18)
+  EN: PAD CONTROL.......
+  IT: CONTROLLO PAD.....
+[82A438] Menu debug nascosto: voci  (max 18)
+  EN: BUTTON TYPE.......
+  IT: TIPO TASTI........
+[82A44B] Menu debug nascosto: voci  (max 18)
+  EN: SCENARIO..........
+  IT: SCENARIO..........
+[82A4B9] Menu debug nascosto: DAY/NIGHT  (max 5)
+  EN: DAY  
+  IT: SOLE 
+[82A4BF] Menu debug nascosto: DAY/NIGHT  (max 5)
+  EN: NIGHT
+  IT: NOTTE
+[82A4B1] Menu debug nascosto: OFF/ON  (max 3)
+  EN: OFF
+  IT: NO 
+[82A4B5] Menu debug nascosto: OFF/ON  (max 3)
+  EN: ON 
+  IT: SI 
+[82A4C5] Menu debug nascosto: AEREO  (max 3)
+  EN: F15
+  IT: (non tradotta: resta in inglese)
+[82A4C9] Menu debug nascosto: AEREO  (max 3)
+  EN: A10
+  IT: (non tradotta: resta in inglese)
+[82A4CD] Menu debug nascosto: AEREO  (max 3)
+  EN: X15
+  IT: (non tradotta: resta in inglese)
+[82A4D1] Menu debug nascosto: MODALITA'  (max 7)
+  EN: AIR    
+  IT: ARIA   
+[82A4D9] Menu debug nascosto: MODALITA'  (max 7)
+  EN: GROUND1
+  IT: TERRA 1
+[82A4E1] Menu debug nascosto: MODALITA'  (max 7)
+  EN: GROUND2
+  IT: TERRA 2
+[82A4E9] Menu debug nascosto: PARTITA  (max 8)
+  EN: NEW GAME
+  IT: NUOVA   
+[82A4F2] Menu debug nascosto: PARTITA  (max 8)
+  EN: CONTINUE
+  IT: CONTINUA
+[82A4FB] Menu debug nascosto: VISUALE  (max 9)
+  EN: NORMAL   
+  IT: NORMALE  
+[82A505] Menu debug nascosto: VISUALE  (max 9)
+  EN: COCKPIT A
+  IT: (non tradotta: resta in inglese)
+[82A50F] Menu debug nascosto: VISUALE  (max 9)
+  EN: COCKPIT B
+  IT: (non tradotta: resta in inglese)
+[82A519] Menu debug nascosto: VISUALE  (max 9)
+  EN: HELI     
+  IT: ELICOT.  
+[82A523] Menu debug nascosto: TASTI  (max 4)
+  EN: Y  B
+  IT: (non tradotta: resta in inglese)
+[82A528] Menu debug nascosto: TASTI  (max 4)
+  EN: B  Y
+  IT: (non tradotta: resta in inglese)
+[82A52D] Menu debug nascosto: TASTI  (max 4)
+  EN: B  A
+  IT: (non tradotta: resta in inglese)
+[82A532] Menu debug nascosto: TASTI  (max 4)
+  EN: A  B
+  IT: (non tradotta: resta in inglese)
+
+PARTE 3 — SCRITTE GRAFICHE (font a tile, lunghezza fissa)
+------------------------------------------------------------------------
+[title:21] Schermata titolo (START / CONTINUE / LICENSED BY NINTENDO)
+  EN: [           > START              ]
+  IT: [           > INIZIA             ]
+[title:23] Schermata titolo (START / CONTINUE / LICENSED BY NINTENDO)
+  EN: [             CONTINUE           ]
+  IT: [             CONTINUA           ]
+[title:25] Schermata titolo (START / CONTINUE / LICENSED BY NINTENDO)
+  EN: [       @1994 SETA USA,INC       ]
+  IT: [(originale)]
+[title:26] Schermata titolo (START / CONTINUE / LICENSED BY NINTENDO)
+  EN: [      LICENSED BY NINTENDO      ]
+  IT: [      SU LICENZA NINTENDO       ]
+[options:1] Menu opzioni (SETUP GAME LEVEL/PAD CONTROL...)
+  EN: [  SETUP GAME LEVEL/PAD CONTROL  ]
+  IT: [   IMPOSTA GIOCO E CONTROLLI    ]
+[options:4] Menu opzioni (SETUP GAME LEVEL/PAD CONTROL...)
+  EN: [  >  GAME LEVEL    NORMAL       ]
+  IT: [  >  DIFFICOLTA    NORMALE      ]
+[options:6] Menu opzioni (SETUP GAME LEVEL/PAD CONTROL...)
+  EN: [     CONTROL TYPE  NORMAL       ]
+  IT: [     COMANDI       NORMALE      ]
+[options:8] Menu opzioni (SETUP GAME LEVEL/PAD CONTROL...)
+  EN: [     BUTTON TYPE   TYPE-A       ]
+  IT: [     TASTI         TIPO-A       ]
+[options:11] Menu opzioni (SETUP GAME LEVEL/PAD CONTROL...)
+  EN: [     L:SPEED UP   R:SPEED DOWN  ]
+  IT: [     L:ACCELERA   R:RALLENTA    ]
+[options:14] Menu opzioni (SETUP GAME LEVEL/PAD CONTROL...)
+  EN: [                X:AFTER BURNER  ]
+  IT: [              X:POSTBRUCIATORE  ]
+[options:17] Menu opzioni (SETUP GAME LEVEL/PAD CONTROL...)
+  EN: [                     A:FLARE    ]
+  IT: [                     A:FLARE    ]
+[options:20] Menu opzioni (SETUP GAME LEVEL/PAD CONTROL...)
+  EN: [                     B:MISSILE  ]
+  IT: [                     B:MISSILI  ]
+[options:23] Menu opzioni (SETUP GAME LEVEL/PAD CONTROL...)
+  EN: [                Y:GUN           ]
+  IT: [                Y:CANNONE       ]
+[options:25] Menu opzioni (SETUP GAME LEVEL/PAD CONTROL...)
+  EN: [    GAME START                  ]
+  IT: [      INIZIA                    ]
+[seta] SETA PRESENTS (logo iniziale)
+  EN: [SETA PRESENTS]
+  IT: [SETA PRESENTA]
+[pool:8D8078] Menu opzioni: valori
+  EN: [EASY      ]
+  IT: [FACILE    ]
+[pool:8D8082] Menu opzioni: valori
+  EN: [NORMAL    ]
+  IT: [NORMALE   ]
+[pool:8D808C] Menu opzioni: valori
+  EN: [HARD      ]
+  IT: [DIFFICILE ]
+[pool:8D8096] Menu opzioni: valori
+  EN: [MANIA     ]
+  IT: [ESPERTO   ]
+[pool:8D80A0] Menu opzioni: valori
+  EN: [COCKPIT-A ]
+  IT: [(originale)]
+[pool:8D80AA] Menu opzioni: valori
+  EN: [COCKPIT-B ]
+  IT: [(originale)]
+[pool:8D80B4] Menu opzioni: valori
+  EN: [COCKPIT-C ]
+  IT: [(originale)]
+[pool:8D80BE] Menu opzioni: valori
+  EN: [TYPE-A    ]
+  IT: [TIPO-A    ]
+[pool:8D80C8] Menu opzioni: valori
+  EN: [TYPE-B    ]
+  IT: [TIPO-B    ]
+[pool:8D80D2] Menu opzioni: valori
+  EN: [TYPE-C    ]
+  IT: [TIPO-C    ]
+[pool:8D80DC] Menu opzioni: valori
+  EN: [TYPE-D    ]
+  IT: [TIPO-D    ]
+[pool:8D80E6] Menu opzioni: valori
+  EN: [L:SPEED UP   R:SPEED DOWN                   ]
+  IT: [L:ACCELERA   R:RALLENTA                     ]
+[pool:8D8112] Menu opzioni: valori
+  EN: [^:SPEED UP                      v:SPEED DOWN]
+  IT: [^:ACCELERA                      v:RALLENTA  ]
+[pool:8D813E] Menu opzioni: valori
+  EN: [MISSILE]
+  IT: [MISSILI]
+[pool:8D8145] Menu opzioni: valori
+  EN: [GUN    ]
+  IT: [CANNONE]
+[pool:8D814C] Menu opzioni: valori
+  EN: [FLARE  ]
+  IT: [(originale)]
+[pool:8D8153] Menu opzioni: valori
+  EN: [GAME START]
+  IT: [INIZIA    ]
+[pool:8D815D] Menu opzioni: valori
+  EN: [CANCEL    ]
+  IT: [ANNULLA   ]
+
+PARTE 4 — GRAFICA DISEGNATA (ridisegnata dal tool a ogni build)
+------------------------------------------------------------------------
+  Pannello Command HQ : DATE -> DATA   TIME -> ORA   (fissi)
+  Mese sotto DATA     : JAN FEB MAR APR MAY JUN ... -> GEN FEB MAR APR MAG GIU LUG AGO SET OTT NOV DIC
+                        (la lettera J del display a segmenti e' ridisegnata come I)
+  Carburante in volo  : FULL -> PIENO   EMPTY -> VUOTO
+  Hangar, sopra F-15  : DUAL-ROLE-FIGHTER -> CACCIA-A-DOPPIO-RUOLO
+  Hangar, sopra A-10  : CLOSE-SUPPORT-ATTACK -> ATTACCO-AL-SUOLO
+  Restano in inglese per scelta: nomi degli aerei (F-15 STRIKE EAGLE, A-10 THUNDERBOLT II),
+  nomi delle armi negli schemi (MAVERICK, SIDEWINDER, PAVEWAY, ROCKEYE, 30MM/GAU-8), logo del titolo.

@@ -1,0 +1,92 @@
+A.S.P. — TABELLE DI TESTO VERIFICATE SUL CODICE (v2)
+Metodo: disassemblaggio 65816 con tracciamento M/X delle routine lettrici,
+ricostruzione dell'indice X, del bank e dei limiti del buffer di destinazione.
+=====================================================================
+
+1) DESCRIZIONI AREA  — base $85:8000 (PC $028000)  [VERIFICATA]
+   Lettore : $84:93CD  (LDA $85:8000,X @ $84:93EA)
+   Chiamate: $84:9039 e $84:EAA3, entrambe con arg = [$7E:4016] - 1
+             ($7E:4016 = area corrente, base 1)
+   Indice  : X = arg*2 ; bank #$85 fisso nel codice
+   Copia   : memset($7E:335E,' ',0x70) poi strcpy($7E:335E <- $85:ptr)
+   Tabella : 18 voci (2 byte), 10 puntatori distinti:
+             0-8 -> $85:8247,829C,82F1,8346,839B,83F0,8445,849A,84EF
+             9-17 -> $85:8544 "THIS AREA IS NOT USED FOR THIS MISSION."
+   Formato : "AREA  n:" + testo, riempito a 54 char, poi
+             "PRESS A TO VIEW INTEL REPORTS." (84 char + 0x00)
+   LIMITI  : lunghezza variabile, max 111 char + 0x00 (buffer 112 byte).
+             Il vecchio "record fisso da 85 byte" NON è un vincolo del codice.
+             Rilocabile SOLO dentro il bank $85 (PC $028000-$02FFFF).
+
+2) NOMI AREA  — base $84:B2DD (PC $0232DD)  [VERIFICATA]
+   Routine : $84:B114 (JSL da $84:904C, $84:EAB6, $83:F8A1),
+             arg = [$7E:4016] (numero aree disponibili)
+   Indice  : ciclo X = 0..7 (8 voci), X*2 ; bank #$84 fisso
+   Stringa : prefisso " @ " ($84:B8C0, ultima area = cursore) oppure
+             "   " ($84:B8C4) + strcat($80:F8A0) del nome "AREAn"
+   Posizioni schermo: $84:B2CD (8 word: 62,6A,82,8A,A2,AA,C2,CA)
+   Stampa  : $80:CAF5
+   LIMITI  : buffer locale D+$09..D+$14 (12 byte) -> nome max 8 char.
+             La tabella ha 9 puntatori (AREA1..AREA9), il ciclo ne usa 8.
+             "AREA" è identico in italiano: non serve toccarla.
+   NOTA    : $8D:FA2F "LDA $84:B307,X" è un FALSO POSITIVO: il byte bank
+             è $5F (dati, non codice). Da rimuovere come member.
+
+3) ESITI MISSIONE — base VERA $85:811E (non $85:811C)  [VERIFICATA]
+   Lettore : $83:B449  LDA $85:811E,X ; bank #$85 fisso @ $83:B45E
+   Indice  : primo bit acceso (0-3) di un flag, 4 se nessuno;
+             se X=0 e $7E:414C<>4 -> X=5 ; stampa via $80:B022
+   Voci    : 0 $85:98E5 "TIME EXPIRED, RETREAT!"
+             1 $85:98FC "TACTICAL FAILURE, RETREAT!"
+             2 $85:9917 "FINANCIAL CHAOS, RETREAT!"
+             3 $85:9931 "POLITICAL UNREST, RETREAT!"
+             4 $85:98D3 "MISSION COMPLETE!"
+             5 $85:994C "TIME'S UP, MISSION ENDED!"
+   $85:811C (=$95A2 "ZARAK HQs") appartiene alla struttura precedente.
+   LIMITI  : stringhe 0x00-terminate, rilocabili nel bank $85;
+             larghezza consigliata <= 26 char (max originale) finché
+             non si verifica $80:B022.
+
+4) ARMI / SLOT — base VERA $85:8237 (non $85:8239)  [VERIFICATA]
+   Lettore : $84:B325..B38B, LDA $85:8237,X @ $84:B35D ; bank #$85 @ $84:B36A
+   Indice  : ciclo X = 0..7 ; stesse posizioni schermo $84:B2CD
+   Voci    : $9D72 "        ", $9D7B "F15AGM-B", $9D84 "F15AGM-A",
+             $9D8D "F15AAM  ", $9D96 "A10AGM-A", $9D9F "A10AGM-B",
+             $9DA8 "A10AGM-C", $9DB1 "        "
+   LIMITI  : ESATTAMENTE 8 char (colonne distanti 8), bank $85.
+             Sono sigle tecniche: consiglio di NON tradurle.
+
+5) MENU DI DEBUG NASCOSTO — base VERA $82:A45F (non $82:A491)  [VERIFICATA]
+   (NON è il menu opzioni del giocatore: quello è grafico, mappa LZ2 $8D:B5CA —
+    vedi ASP_scoperte_v4.txt)
+   Lettore : $82:A655, LDA $82:A45F,X @ $82:A65F
+   Indice  : riga opzione $07EC (0..18) -> sotto-tabella;
+             valore opzione ($0080,X) -> [sotto-tabella + valore*2]
+             $FFFF = riga numerica (nessuna stringa)
+   Bank    : #$82 fisso (@ $82:A682 e $82:A697), stampa col renderer
+             $82:9523 via $07F0-$07F2; posizione da $82:A6CB,X
+   Sotto-tabelle:
+     riga 3      $A485: DAY  / NIGHT
+     righe 4,5   $A4AD: OFF / ON
+     riga 6      $A489: (FFFF) F15 / A10 / X15
+     riga 7      $A491: AIR / GROUND1 / GROUND2
+     riga 16     $A49B: NORMAL / COCKPIT A / COCKPIT B / HELI
+     riga 17     $A4A3: (FFFF) Y  B / B  Y / B  A / A  B
+     riga 18     $A497: NEW GAME / CONTINUE
+   Pool stringhe: $82:A4B1-$82:A536
+   LIMITI  : dentro ogni gruppo le stringhe hanno la stessa larghezza
+             (padding a spazi per cancellare il valore precedente):
+             la traduzione va riempita alla larghezza del gruppo.
+             Es. DAY/NIGHT -> "GIORNO"/"NOTTE " richiede 6 char:
+             va rilocata (nel bank $82) aggiornando i puntatori.
+   $82:A491 è solo la sotto-tabella della riga 7, non la base.
+
+6) " GOOD LUCK  " / "FINAL FLIGHT" — tabella $81:82A1 (2 voci)
+   Bank #$81 fisso @ $81:8262 (byte PC $008263). Selezione $042C & 1.
+   12 char + 0x00: " FORZA!!!!  " e "ULTIMO VOLO " entrano sul posto.
+   Rilocazione a $8D:EC74 = cambiare tabella (PC $0082A1: 74 EC 81 EC)
+   E il byte bank a PC $008263 ($81 -> $8D).
+
+LIBRERIA
+   $80:F7FF strcpy(dest16 DB0, src far)   $80:F8A0 strcat (VERIFICATA)
+   $80:92CC memset                         $80:CAF5 stampa stringa a pos

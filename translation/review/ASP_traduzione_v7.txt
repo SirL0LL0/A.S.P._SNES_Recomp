@@ -1,0 +1,75 @@
+A.S.P. — GRAFICA DISEGNATA, TITOLI DI CODA, OPERAZIONE (v7)      24/09/2026
+=====================================================================
+
+GRAFICA DISEGNATA: tutto verificato in emulatore (VRAM, DMA, letture CPU)
+e applicato da asp_core.apply_art() a OGNI build (build_rom(..., art=True)).
+Formato LZ di $83:8000 anche per la grafica: header = modo, lunghezza16, riservato.
+IMPORTANTE: il byte di modo va conservato (5 = mappa a due piani: 1024 byte bassi
++ 1024 alti, interlacciati dal decompressore). Con modo 0 la mappa HQ si rompe.
+
+1) Pannello Command HQ "DATE"/"TIME" -> "DATA"/"ORA"
+   BG1 modo 5 interlacciato, celle 16x16 (tile t, t+1, t+16, t+17).
+   Tile:  $86:A82B  LZ 8192 byte -> VRAM BG1 tile 0x000-0x0FF (riferimenti $80:A1F4, $80:A832)
+   Mappa: $86:B4A0  LZ modo 5, 2048 byte -> $7F:F600 (rif. $80:A342, $80:AB24, $84:A2F8, $84:EA14)
+          riga 15 col 9-12 = DATE (celle 0x60 0x62 0x64 0x66), riga 22 = TIME (0x64 0x88 0x8A 0x66)
+   DATA = solo mappa (4a cella -> 0x62 "A"). ORA = 4 celle ridisegnate e centrate:
+          0x86 (vuota, inutilizzata), 0x88 (I), 0x8A (M), 0x66 (E) -> "ORA" con la A originale.
+2) Mese sotto DATA (sprite a segmenti)
+   Tabella $80:A066 (PC 0x2066): 12 mesi x 3 word (tile sprite 0x1xx, meta' bassa = +0x10).
+   Il gioco usa $7E:06E1 come indice del mese. Lettere: A B C D E F G J L M N O P R S T U V Y :
+   (tile 0x140-0x14F, 0x160-0x163). Set sprite $86:9B00 (LZ 16384 byte, rif. $80:A234, $80:A878):
+   la J (tile 0x147/0x157) e' ridisegnata come I. Mesi: GEN FEB MAR APR MAG GIU LUG AGO SET OTT NOV DIC.
+3) Carburante in volo "FULL"/"EMPTY" -> "PIENO"/"VUOTO"
+   BG3 2bpp in chiaro: tile a $99:9100 (PC 0x0C9100), mappa HUD a $99:8000 (PC 0x0C8000, 64 byte/riga).
+   FULL = riga 18 tile 0x33,0x34 (16 px utili); EMPTY = riga 25 tile 0x36,0x37.
+   Per VUOTO (19 px) servono anche le colonne dei bordi: le tile 0x21 e 0x27 sono copie
+   identiche di 0x08 (bordo sinistro righe 10 e 14): la mappa le punta a 0x08 e diventano
+   bordi dedicati della riga 25. Font 3x5 (inchiostro colore 2 su fondo 3).
+4) Hangar: didascalia sopra il nome dell'aereo (disegnata dentro l'immagine)
+   4 immagini LZ 0x44F0 byte -> VRAM BG1 tile 0x100+, 14 celle 16x16 per riga:
+   $86:BFCF F-15, $86:D452 F-15 schema armi, $86:E9CB A-10, $87:BD0B A-10 schema armi.
+   Didascalia: righe di pixel 13-20, glifi larghi 2-6 px separati da colonne vuote.
+   DUAL-ROLE-FIGHTER -> CACCIA-A-DOPPIO-RUOLO, CLOSE-SUPPORT-ATTACK -> ATTACCO-AL-SUOLO
+   (solo lettere presenti negli originali: -ACDEFGHIKLOPRSTU). Nomi aerei e armi restano.
+   Tutti i blocchi ricompressi entrano al loro posto (nessuno spostamento).
+
+OPERATION DESERT CORRADO -> OPERAZIONE DESERT CORRADO
+   $85:9BC3 e' letta solo tramite 3 puntatori a 24 bit (PC 0x027005, 0x02E5E4, 0x02E6F2).
+   Il tool sposta la stringa nello spazio libero del bank $85 (dopo il blocco compresso)
+   e aggiorna i puntatori (RELOCATABLE_STRINGS in asp_core, limite 40). Verificata a schermo
+   nella presentazione della missione 1.
+
+TITOLI DI CODA (record 255, righe da 48, 3744 byte invariati)
+   Intestazioni tradotte (PRODUTTORE, REGIA, PROGRAMMAZIONE / COMBATTIMENTO, SUONO E MUSICA,
+   DIREZIONE ARTISTICA, GRAFICA, MODELLI 3D, SUPPORTO TECNICO, RESPONSABILE PRODOTTO,
+   ASSISTENTE DI PRODUZIONE, CONTROLLO QUALITA', PUBBLICITA', COLLAUDO, RINGRAZIAMENTI,
+   PRESENTATO DA SETA...), nomi invariati e allineati a destra.
+
+PUNTATORI FISSI DENTRO IL BLOCCO DECOMPRESSO (scoperta v7, bug presente fino alla v6)
+   Non tutto il testo viene letto in sequenza: alcune schermate usano puntatori a 16 bit
+   nel buffer $7E:6000 (valore = $6000 + offset nel blocco). Con i record di lunghezza
+   variabile questi puntatori finivano a meta' di altri testi: il sergente prima del
+   volo mostrava "LTE TRUPPE TERRESTRI." (coda del record 33) invece del suo testo.
+   Tabelle (tutti i valori puntano a inizi di record, verificato):
+     $85:8024-$85:80BC  48 voci: consigli del sergente / intel per missione (record 32-76)
+     $85:80BE + 12*m    struttura della missione m=0..7: +0 titolo, +2 briefing,
+                        +8 esito (record 77, 82, 87...); +4/+6 sottotabelle in $85,
+                        +10 stringa ASCII in $85 (queste NON sono nel buffer)
+     $83:DABA-$83:DAD6  finali (record 242-254)
+     Notiziari GNN (puntano al codice 1D che apre la notizia):
+       $85:F653-$85:F662   tabella di 8 word (notizie scelte a caso)
+       $84:DCA3 / $84:DCD0 "WE INTERRUPT..." / "STANDBY FOR ANOTHER..." e 13 notizie in
+       $85:F1ED-$85:F5CC, come puntatori spezzati nel codice: PEA $7Ehh / SEP / LDA #$ll / PHA
+       (sintomo prima della correzione: la notizia partiva a meta', es. "ATEGICA DI TAFUJI...")
+   asp_core.remap_block_pointers() li ricalcola a ogni build (107 puntatori), dopo aver
+   controllato che i codici di controllo fra i record siano identici all'originale.
+
+NOTIZIARI 15 e 16 riallineati: le pagine erano sfasate di mezza frase e contenevano
+   delle "(" rimaste dall'import (es. "( LASCIA IL NEMICO", "( STRATEGICAPER").
+
+FINALI CORRETTI
+   249/250: "LA GENTE TI CONSIDERA NELLA MEDIA" spostata all'inizio del 250.
+   253/254: "LA P.D.F. HA PERSO QUESTA GUERRA...." spostata all'inizio del 254.
+
+PROGETTO v7: il .json contiene anche il blocco italiano ("blocco", hex) e le scelte della
+grafica disegnata ("arte": mesi, carburante, didascalie).

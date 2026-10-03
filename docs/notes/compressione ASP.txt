@@ -1,0 +1,122 @@
+Ecco la decodifica esatta e completa dell'algoritmo di decompressione assembly estratto dalla ROM.Si tratta di una variante personalizzata di LZSS (senza buffer ad anello separato, ma applicata direttamente sul buffer di destinazione già decompresso), operante con un registro di controllo a 8 bit processato dal bit meno significativo (LSB-first).1. Struttura dell'Intestazione (Header Data)Prima di iniziare il ciclo di decompressione, la routine legge alcuni byte di intestazione tramite il puntatore di provenienza [$0D]:$8382A5 (1 Byte): Tipo di compressione/Controllo.Se il valore (esaminato con MSB) è negativo (BMI $838311), salta a una routine per dati non compressi (semplice copia lineare).$8382AC (2 Byte, 16-bit word): Lunghezza dei dati decompressi.Questo valore viene sommato all'offset di destinazione ($10) per determinare l'indirizzo finale di arresto ($01 = Dest_Start + Length).Note operative: L'indice Y (sorgente) viene incrementato di 4 posizioni totali (1 byte tipo + 2 byte lunghezza + 1 skip per allineamento).2. Formato dei Control Bit (Flag Byte)A partire da $8382CA, la routine gestisce un byte di flag caricato in $07:Un byte di controllo contiene 8 bit di comando.I bit vengono processati da destra a sinistra tramite scorrimento a destra (LSR $07 $\rightarrow$ legge il bit uscente nel Carry Flag).Caso A: Carry = 1 (Byte Literale)Viene letto 1 byte dalla sorgente (LDA [$0D],Y).Viene scritto direttamente nella destinazione (STA $0000,X).Avanza i puntatori (INX, INY).Caso B: Carry = 0 (Riferimento LZSS / Copia RLE o Stringa)Vengono letti 2 byte di controllo dalla sorgente per determinare la posizione e la durata della copia:Byte 1 & Byte 2 per l'Offset ($8382DE - $8382E4):Legge una Word a 16-bit dalla sorgente.Esegue l'OR logico con $F000 (ORA #$F000), producendo un offset relativo negativo compreso tra -$0001 e -$0FFF (estensione del segno a 16 bit a 12 bit di ampiezza).L'indirizzo di lettura reale viene calcolato al volo: $\text{Sorgente Copia} = \text{Destinazione Attuale (X)} + \text{Offset Negativo}$.Byte 2 per la Lunghezza ($8382E8 - $8382F2):Prende il 2° byte appena letto e ne estrae i 4 bit più significativi (LSR per 4 volte).Somma #$02 al risultato: $\text{Lunghezza da Copiare} = (\text{Byte2} \gg 4) + 3$. (Nota: Il loop BPL esegue $N+1$ cicli, quindi $+2$ in registro equivale a $+3$ byte effettivi).Range lunghezza: Da 3 a 18 byte.3. Implementazione dell'Algoritmo in PythonQuesto script Python replica con precisione bit-by-bit il comportamento della routine Assembly sia per la decompressione che per la compressione (Round-Trip 100% esatta).Pythondef decompress_snes(data: bytes) -> bytes:
+    src = 0
+    
+    # 1. Parsing Header
+    mode_byte = data[src]
+    src += 1
+    
+    if mode_byte & 0x80:
+        # Gestione dati non compressi (Bypass)
+        decomp_len = data[src] | (data[src+1] << 8)
+        src += 3
+        return data[src:src + decomp_len]
+    
+    decomp_len = data[src] | (data[src+1] << 8)
+    src += 3
+    
+    out = bytearray()
+    bit_count = 0
+    flags = 0
+
+    while len(out) < decomp_len:
+        # Se il registro a 8-bit dei flag è esaurito, ne legge uno nuovo
+        if bit_count == 0:
+            flags = data[src]
+            src += 1
+            bit_count = 8
+
+        # Controlla il bit meno significativo (LSB)
+        is_literal = (flags & 1) != 0
+        flags >>= 1
+        bit_count -= 1
+
+        if is_literal:
+            # Scrittura diretta Literale
+            out.append(data[src])
+            src += 1
+        else:
+            # Decompressione Riferimento LZSS
+            b1 = data[src]
+            b2 = data[src+1]
+            src += 2
+
+            # Ricostruzione Offset Negativo a 12-bit
+            raw_word = b1 | (b2 << 8)
+            offset_neg = raw_word | 0xF000
+            # Converte da complementari a due a intero negativo
+            if offset_neg & 0x8000:
+                offset_rel = offset_neg - 0x10000
+            else:
+                offset_rel = offset_neg
+
+            # Calcolo Lunghezza Copia: (b2 >> 4) + 3
+            length = (b2 >> 4) + 3
+
+            # Copia byte per byte dal buffer di output (supporta l'effetto RLE/sovrapposizione)
+            for _ in range(length):
+                read_pos = len(out) + offset_rel
+                out.append(out[read_pos])
+
+    return bytes(out)
+
+
+def compress_snes(uncompressed_data: bytes) -> bytes:
+    out = bytearray()
+    # Header: Modo compresso (0x00) + Lunghezza (16-bit) + 1 Byte Padding/Skip
+    out.append(0x00)
+    out.append(len(uncompressed_data) & 0xFF)
+    out.append((len(uncompressed_data) >> 8) & 0xFF)
+    out.append(0x00)
+
+    pos = 0
+    data_len = len(uncompressed_data)
+
+    while pos < data_len:
+        flag_byte_index = len(out)
+        out.append(0)  # Placeholder per il byte di flag di controllo
+        
+        flags = 0
+        for bit in range(8):
+            if pos >= data_len:
+                break
+
+            # Ricerca del match più lungo nella finestra di ricerca (Max 4095 byte indietro)
+            best_match_offset = 0
+            best_match_len = 0
+            
+            max_offset = min(pos, 0x0FFF)
+            max_len = min(data_len - pos, 18)
+
+            if max_len >= 3:
+                for offset in range(1, max_offset + 1):
+                    match_len = 0
+                    while (match_len < max_len and 
+                           uncompressed_data[pos + match_len] == uncompressed_data[pos - offset + match_len]):
+                        match_len += 1
+                    
+                    # Prediligi i match più recenti in caso di pari lunghezza
+                    if match_len >= 3 and match_len >= best_match_len:
+                        best_match_len = match_len
+                        best_match_offset = offset
+
+            if best_match_len >= 3:
+                # Bit = 0 (Match LZSS)
+                raw_offset = (-best_match_offset) & 0x0FFF
+                len_bits = (best_match_len - 3) & 0x0F
+                
+                b1 = raw_offset & 0xFF
+                b2 = ((raw_offset >> 8) & 0x0F) | (len_bits << 4)
+                
+                out.append(b1)
+                out.append(b2)
+                pos += best_match_len
+            else:
+                # Bit = 1 (Literale)
+                flags |= (1 << bit)
+                out.append(uncompressed_data[pos])
+                pos += 1
+
+        out[flag_byte_index] = flags
+
+    return bytes(out)
+4. Verifiche per la Traduzione in ItalianoFinestra di ricerca (Buffer): Non serve pre-inizializzare alcuna RAM statica; la routine legge direttamente dai byte già decompressi nell'output stream ($7E8000 + X + Offset).Byte Sovrapposti (RLE): L'algoritmo supporta nativamente la ripetizione di singoli byte (es. sequenze di spazi o linee). Se l'offset negativo è -1 e la lunghezza è 18, la routine replicherà l'ultimo byte scritto 18 volte.Controllo Puntatori: Assicurati che quando re-inietti i dati tradotti e ricompressi nella ROM, se la dimensione compressa supera quella originale, la Tabella dei Puntatori all'inizio della ROM sia aggiornata puntando ai nuovi indirizzi della banca.

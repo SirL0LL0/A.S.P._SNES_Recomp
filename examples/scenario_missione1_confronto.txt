@@ -1,0 +1,2096 @@
+=== record   0  titoli  (righe da 30)
+  EN |      DESTROY RADAR SITES     |
+  IT |(originale)                   |
+  EN |       THE BALLOON IS UP      |
+  IT |                              |
+
+=== record   1  titoli  (righe da 30)
+  EN |            DESTROY           |
+  IT |(originale)                   |
+  EN |         SCUD LAUNCHERS       |
+  IT |                              |
+
+=== record   2  titoli  (righe da 30)
+  EN |            DISABLE           |
+  IT |(originale)                   |
+  EN |       OIL SUPPLY DEPOTS      |
+  IT |                              |
+
+=== record   3  titoli  (righe da 30)
+  EN |            ATTACK            |
+  IT |(originale)                   |
+  EN |        ZARAK AIR BASES       |
+  IT |                              |
+
+=== record   4  titoli  (righe da 30)
+  EN |     REGAIN CONTROL           |
+  IT |(originale)                   |
+  EN |        OF THE GULF HARBOR    |
+  IT |                              |
+
+=== record   5  titoli  (righe da 30)
+  EN |            DESTROY           |
+  IT |(originale)                   |
+  EN |   N.B.C. WEAPONS FACTORIES   |
+  IT |                              |
+
+=== record   6  titoli  (righe da 30)
+  EN |            STRIKE            |
+  IT |(originale)                   |
+  EN |      THE RED GUARD UNITS     |
+  IT |                              |
+
+=== record   7  titoli  (righe da 30)
+  EN |            DESTROY           |
+  IT |(originale)                   |
+  EN |           ZARAK HQs          |
+  IT |                              |
+
+=== record   8  schermate missione  (righe da 56)
+  EN |YOUR FIRST MISSION IS TO OPEN AN AVENUE OF APPROACH FOR |
+  IT |(originale)                                             |
+  EN |OUR GROUND TROOPS BY DESTROYING ENEMY RADAR SITES.      |
+  IT |                                                        |
+  EN |CHECK SATELLITE PHOTOS FOR LOCATIONS.                   |
+  IT |                                                        |
+  EN |MISSION TARGETS ARE FLASHING.                           |
+  IT |                                                        |
+
+=== record   9  schermate missione  (righe da 56)
+  EN |              AS YOU CAN SEE, RADAR BASES ARE LOCATED   |
+  IT |(originale)                                             |
+  EN |              IN AREAS 1 AND 3. YOU MUST DESTROY 80% TO |
+  IT |                                                        |
+  EN |              ENSURE THE SAFETY OF APPROACHING COALITION|
+  IT |                                                        |
+  EN |              FORCES. YOU HAVE ONLY 60 HRS.             |
+  IT |                                                        |
+
+=== record  10  schermate missione  (righe da 56)
+  EN | MISSION AREA : 1 AND 3                                 |
+  IT |(originale)                                             |
+  EN | TIME LIMIT   : 60 Hrs.                                 |
+  IT |                                                        |
+  EN | OBJECTIVE    : RADAR BASES                             |
+  IT |                                                        |
+  EN | M. D. R.     : 80%                                     |
+  IT |                                                        |
+
+=== record  11  schermate missione  (righe da 56)
+  EN |THIS MISSION IS OF GRAVE IMPORTANCE. YOU MUST PREVENT   |
+  IT |(originale)                                             |
+  EN |CIVILIAN AND MILITARY CASUALTIES CAUSED BY SCUD MISSILES|
+  IT |                                                        |
+  EN |NUMEROUS SCUD LAUNCHES ARE OVERTAKING OUR PATRIOT       |
+  IT |                                                        |
+  EN |DEFENSE PERIMETER.                                      |
+  IT |                                                        |
+
+=== record  12  schermate missione  (righe da 56)
+  EN |              TO DO THIS, HUNT DOWN AND DESTROY SCUD    |
+  IT |(originale)                                             |
+  EN |              TYPE Bs. THEY ARE NOT VISIBLE ON SATELLITE|
+  IT |                                                        |
+  EN |              BUT CAN BE LOCATED IN AREAS 4 & 5.        |
+  IT |                                                        |
+  EN |              YOU MUST DESTROY 80% OF THESE TARGETS.    |
+  IT |                                                        |
+
+=== record  13  schermate missione  (righe da 56)
+  EN | MISSION AREA : 4 AND 5                                 |
+  IT |(originale)                                             |
+  EN | TIME LIMIT   : 48 Hrs.                                 |
+  IT |                                                        |
+  EN | OBJECTIVE    : SCUD MISSILE LAUNCHERS                  |
+  IT |                                                        |
+  EN | M. D. R.     : 80% or 40 LAUNCHERS                     |
+  IT |                                                        |
+
+=== record  14  schermate missione  (righe da 56)
+  EN |HAMPER ENEMY MOBILITY BY DISRUPTING FUEL SUPPLY PUMPING |
+  IT |(originale)                                             |
+  EN |DEPOTS. THE PIPELINES ARE LOCATED IN AREAS 1 AND 4.     |
+  IT |                                                        |
+  EN |AN M.D.R. OF 80% IS REQUIRED TO SUFFICIENTLY HINDER THE |
+  IT |                                                        |
+  EN |MOBILITY OF THE ENEMY.                                  |
+  IT |                                                        |
+
+=== record  15  schermate missione  (righe da 56)
+  EN |              THEY ARE HEAVILY GUARDED WITH T-80'S.     |
+  IT |(originale)                                             |
+  EN |              DESTROY SURROUNDING ANTI-AIRCRAFT TO      |
+  IT |                                                        |
+  EN |              ASSIST SQUADRONS THAT FOLLOW.             |
+  IT |                                                        |
+  EN |              ACHIEVE M.D.R. AND WATCH YOUR TIME.       |
+  IT |                                                        |
+
+=== record  16  schermate missione  (righe da 56)
+  EN | MISSION AREA  : 1 AND 4                                |
+  IT |(originale)                                             |
+  EN | TIME LIMIT    : 48 Hrs.                                |
+  IT |                                                        |
+  EN | OBJECTIVE     : OIL FACILITIES AND TROOPS              |
+  IT |                                                        |
+  EN | M. D. R.      : 80%                                    |
+  IT |                                                        |
+
+=== record  17  schermate missione  (righe da 56)
+  EN |CRYPTOGRAPHERS HAVE REVEALED THAT THE ZARAKS ARE        |
+  IT |(originale)                                             |
+  EN |PREPARING TO LAUNCH AN AIR ASSAULT ON THE TOWN OF       |
+  IT |                                                        |
+  EN |TAFUJI, LOCATED NEAR THE BORDER. ALLIED GROUND TROOPS   |
+  IT |                                                        |
+  EN |HAVE BEEN SENT TO DEFEND THE BORDER.                    |
+  IT |                                                        |
+
+=== record  18  schermate missione  (righe da 56)
+  EN |              ARMAMENTS ARE STILL STORED IN THE HANGARS.|
+  IT |(originale)                                             |
+  EN |              CONCENTRATE ON SUPPORT BUILDINGS AND      |
+  IT |                                                        |
+  EN |              MUNITIONS BUNKERS. YOU HAVE ONLY 60 HRS   |
+  IT |                                                        |
+  EN |              TO COMPLETE THIS MISSION.                 |
+  IT |                                                        |
+
+=== record  19  schermate missione  (righe da 56)
+  EN | MISSION AREA : 7 AND 8                                 |
+  IT |(originale)                                             |
+  EN | TIME LIMIT   : 60 Hrs.                                 |
+  IT |                                                        |
+  EN | OBJECTIVE    : AIRCRAFT FACILITIES                     |
+  IT |                                                        |
+  EN | M. D. R.     : 80%                                     |
+  IT |                                                        |
+
+=== record  20  schermate missione  (righe da 56)
+  EN |THE ZARAKIE FORCES HAVE TAKEN CONTROL OF THE OIL        |
+  IT |(originale)                                             |
+  EN |PRODUCTION FACILITIES IN THE GULF HARBOR. WE MUST       |
+  IT |                                                        |
+  EN |LIBERATE THE PORT AND RESCUE THE CIVILIANS. ZARAK       |
+  IT |                                                        |
+  EN |IS PREPARED TO LAUNCH A COUNTER OFFENSIVE.              |
+  IT |                                                        |
+
+=== record  21  schermate missione  (righe da 56)
+  EN |              YOU MUST DESTROY ALL ENEMY GROUND TROOPS  |
+  IT |(originale)                                             |
+  EN |              IN THE GULF HARBOR AND SUPPORTING         |
+  IT |                                                        |
+  EN |              BASES, TO PREVENT THEM FROM CARRYING      |
+  IT |                                                        |
+  EN |              OUT THEIR ECOTERRORIST THREATS.           |
+  IT |                                                        |
+
+=== record  22  schermate missione  (righe da 56)
+  EN | MISSION AREA : 5 AND  6                                |
+  IT |(originale)                                             |
+  EN | TIME LIMIT   : 60 Hrs.                                 |
+  IT |                                                        |
+  EN | OBJECTIVE    : GROUND FORCES AND BASES                 |
+  IT |                                                        |
+  EN | M. D. R.     : 80%                                     |
+  IT |                                                        |
+
+=== record  23  schermate missione  (righe da 56)
+  EN |INTELLIGENCE HAS REVEALED ZARAK'S PLAN TO USE N.B.C.    |
+  IT |(originale)                                             |
+  EN |WEAPONS ON CIVILIANS AND COALITION FORCES. YOU MUST     |
+  IT |                                                        |
+  EN |DESTROY THESE FACTORIES BEFORE THE DISTRIBUTION OF THESE|
+  IT |                                                        |
+  EN |WEAPONS COMMENCES.                                      |
+  IT |                                                        |
+
+=== record  24  schermate missione  (righe da 56)
+  EN |              YOU MUST DESTROY ALL FACILITIES AND LEAVE |
+  IT |(originale)                                             |
+  EN |              NOTHING FOR THEM TO REBUILD. IF YOU ARE   |
+  IT |                                                        |
+  EN |              NOT SUCCESSFUL, THERE WILL BE A LARGE     |
+  IT |                                                        |
+  EN |              NUMBER OF CASUALTIES.                     |
+  IT |                                                        |
+
+=== record  25  schermate missione  (righe da 56)
+  EN | MISSION AREA : 3                                       |
+  IT |(originale)                                             |
+  EN | TIME LIMIT   : 36 Hrs.                                 |
+  IT |                                                        |
+  EN | OBJECTIVE    : ALL CHEMICAL FACTORIES AND TROOPS       |
+  IT |                                                        |
+  EN | M. D. R.     : 100%                                    |
+  IT |                                                        |
+
+=== record  26  schermate missione  (righe da 56)
+  EN |OUR P.D.F. SCOUTS HAVE REACHED THE CITY LIMITS. THEY    |
+  IT |(originale)                                             |
+  EN |REPORT A LARGE MILITARY PRESENCE WITHIN THE CAPITAL,    |
+  IT |                                                        |
+  EN |A PRESENCE THEY BELIEVE TO BE THE ELITE RED GUARD.      |
+  IT |                                                        |
+
+=== record  27  schermate missione  (righe da 56)
+  EN |              MILITARY TROOPS ARE BLENDED IN WITH       |
+  IT |(originale)                                             |
+  EN |              CIVILIAN BUILDINGS. YOU MUST BE CAREFUL   |
+  IT |                                                        |
+  EN |              TO ONLY ATTACK MILITARY TARGETS. DO NOT   |
+  IT |                                                        |
+  EN |              HIT CIVILIAN FACILITIES!                  |
+  IT |                                                        |
+
+=== record  28  schermate missione  (righe da 56)
+  EN | MISSION AREA : CAPITAL OF ZARAK (AREA 2)               |
+  IT |(originale)                                             |
+  EN | TIME LIMIT   : 36 Hrs.                                 |
+  IT |                                                        |
+  EN | OBJECTIVE    : ENEMY GROUND FORCES AND BASES           |
+  IT |                                                        |
+  EN | M. D. R.     : 80%                                     |
+  IT |                                                        |
+
+=== record  29  schermate missione  (righe da 56)
+  EN |ZARAKIE FORCES HAVE RETREATED TO THEIR HEAVILY          |
+  IT |(originale)                                             |
+  EN |FORTIFIED HEADQUARTERS. SATELLITE INFO REVEALS THAT     |
+  IT |                                                        |
+  EN |THEY ARE PROTECTED BY THEIR BEST WEAPONS AND HAVE       |
+  IT |                                                        |
+  EN |NUCLEAR STRIKE CAPABILITY.                              |
+  IT |                                                        |
+
+=== record  30  schermate missione  (righe da 56)
+  EN |              YOU MUST HIT HARD AND FAST BEFORE THEY    |
+  IT |(originale)                                             |
+  EN |              STRIKE AT CIVILIAN AND MILITARY TARGETS.  |
+  IT |                                                        |
+  EN |              YOU HAVE ONLY 24 HOURS, SO BE SWIFT AND   |
+  IT |                                                        |
+  EN |              PRECISE. YOU MUST DESTROY ALL HQs WEAPONS |
+  IT |                                                        |
+
+=== record  31  schermate missione  (righe da 56)
+  EN | MISSION AREA : ZARAK HEADQUARTERS                      |
+  IT |(originale)                                             |
+  EN | TIME LIMIT   : 24 HRS                                  |
+  IT |                                                        |
+  EN | OBJECTIVE    : DESTROY HQs AND WEAPONS                 |
+  IT |                                                        |
+  EN | M.D.R.       : 100%                                    |
+  IT |                                                        |
+
+=== record  32  schermate missione  (righe da 56)
+  EN |THERE ARE MANY ENEMY RADAR SITES IN AREA 1,             |
+  IT |(originale)                                             |
+  EN |USED TO OBSERVE OUR FORCES. MOST OF THEM ARE LOCATED IN |
+  IT |                                                        |
+  EN |THE SOUTHERN PART OF THIS AREA AND APPEAR TO BE         |
+  IT |                                                        |
+  EN |PROTECTED BY A LARGE AMOUNT OF GROUND TROOPS.           |
+  IT |                                                        |
+
+=== record  33  schermate missione  (righe da 56)
+  EN |THERE ARE MANY ENEMY RADAR SITES IN AREA 3,             |
+  IT |(originale)                                             |
+  EN |USED TO OBSERVE OUR FORCES. THEY ARE LOCATED NEAR THE   |
+  IT |                                                        |
+  EN |SOUTHERN AND WESTERN AREA MOUNTAINS AND ARE PROTECTED   |
+  IT |                                                        |
+  EN |BY MANY GROUND TROOPS.                                  |
+  IT |                                                        |
+
+=== record  34  schermate missione  (righe da 56)
+  EN |IT IS NECESSARY TO DESTROY THE RADAR SITES TO PROTECT   |
+  IT |(originale)                                             |
+  EN |OUR TROOPS AND ENSURE THEIR SUCCESS. TAKE CAUTION WHILE |
+  IT |                                                        |
+  EN |APPROACHING, AS THERE ARE MANY ANTI-AIRCRAFT VEHICLES   |
+  IT |                                                        |
+  EN |AROUND THESE SITES.                                     |
+  IT |                                                        |
+
+=== record  35  schermate missione  (righe da 56)
+  EN |YOU HAVE NOT YET REACHED THE TARGET DESTRUCTION RATE.   |
+  IT |(originale)                                             |
+  EN |HELP TO SUPPORT OUR GROUND FORCES BY ELIMINATING THE    |
+  IT |                                                        |
+  EN |RADAR SITES AND OTHER ENEMY TARGETS.                    |
+  IT |                                                        |
+  EN |GOOD HUNTING!!                                          |
+  IT |                                                        |
+
+=== record  36  schermate missione  (righe da 56)
+  EN |ALTHOUGH YOU HAVE ATTEMPTED YOUR MISSION SEVERAL TIMES, |
+  IT |(originale)                                             |
+  EN |YOU HAVE STILL NOT REACHED THE TARGET RATE              |
+  IT |                                                        |
+  EN |OF DESTRUCTION. IF YOU DO NOT COMPLETE THE MISSION SOON,|
+  IT |                                                        |
+  EN |OUR TROOPS WILL SUFFER MANY CASUALTIES.                 |
+  IT |                                                        |
+
+=== record  37  schermate missione  (righe da 56)
+  EN |IF YOU DO NOT MEET THE M.D.R. ON THIS ATTEMPT,          |
+  IT |(originale)                                             |
+  EN |WE WILL BE VULNERABLE TO ATTACK AND WILL                |
+  IT |                                                        |
+  EN |RECEIVE AN ORDER TO RETREAT. YOU MUST DESTROY           |
+  IT |                                                        |
+  EN |THESE RADAR SITES THIS TIME.                            |
+  IT |                                                        |
+
+=== record  38  schermate missione  (righe da 56)
+  EN |IN AREA 4 THERE ARE MANY FACILITIES, INCLUDING          |
+  IT |(originale)                                             |
+  EN |AIRFIELDS, GROUND TROOPS AND MUNITIONS SITES. 25        |
+  IT |                                                        |
+  EN |SCUD MISSILE TRACKS IN GROUPS OF 5 ARE LOCATED          |
+  IT |                                                        |
+  EN |IN THIS AREA.                                           |
+  IT |                                                        |
+
+=== record  39  schermate missione  (righe da 56)
+  EN |IT IS ALSO BELIEVED THAT THERE ARE 25 MISSILE TRACKS IN |
+  IT |(originale)                                             |
+  EN |THIS AREA. INTELLIGENCE SUGGESTS THAT THEY ARE MORE     |
+  IT |                                                        |
+  EN |CENTRALLY LOCATED.  USE CAUTION HOWEVER, AS THERE       |
+  IT |                                                        |
+  EN |ARE MANY ANTI-AIRCRAFT VEHICLES OUT THERE.              |
+  IT |                                                        |
+
+=== record  40  schermate missione  (righe da 56)
+  EN |ZARAK IS LAUNCHING MISSILES AT NEIGHBORING COUNTRIES    |
+  IT |(originale)                                             |
+  EN |AND CIVILIANS. THESE SCUD LAUNCHERS ARE MOBILE,         |
+  IT |                                                        |
+  EN |SO AS YOU ENCOUNTER THEM, DESTROY THEM!                 |
+  IT |                                                        |
+  EN |THIS IS A VERY IMPORTANT MISSION.                       |
+  IT |                                                        |
+
+=== record  41  schermate missione  (righe da 56)
+  EN |ZARAK HAS STARTED FIRING AT NEIGHBORING COUNTRIES. THE  |
+  IT |(originale)                                             |
+  EN |SCUD TRACKS ARE LOCATED AROUND AREA 4 BORDERS           |
+  IT |                                                        |
+  EN |AND THE CENTER OF AREA 5.                               |
+  IT |                                                        |
+  EN |GOOD HUNTING, A.S.P.!!!!                                |
+  IT |                                                        |
+
+=== record  42  schermate missione  (righe da 56)
+  EN |DESPITE MANY ATTEMPTS, YOU STILL HAVE NOT               |
+  IT |(originale)                                             |
+  EN |COMPLETED YOUR MISSION. NOW, SCUD MISSILE TRACKS        |
+  IT |                                                        |
+  EN |ARE NOT ONLY LOCATED NEAR MILITARY FACILITIES,          |
+  IT |                                                        |
+  EN |BUT ALSO AROUND CIVILIAN AREAS.                         |
+  IT |                                                        |
+
+=== record  43  schermate missione  (righe da 56)
+  EN |MANY SCUD TRACKS ARE LEFT. IF YOU DO NOT COMPLETE THE   |
+  IT |(originale)                                             |
+  EN |MISSION THIS TIME, THE DAMAGE THEY WILL CAUSE WILL      |
+  IT |                                                        |
+  EN |BE TOO SEVERE. IF THIS OCCURS, WE WILL RECEIVE THE      |
+  IT |                                                        |
+  EN |ORDER TO RETREAT AND SURELY LOSE THIS WAR.              |
+  IT |                                                        |
+
+=== record  44  schermate missione  (righe da 56)
+  EN |THERE ARE 5 PIPELINE PUMPING STATIONS IN AREA 1 LEADING |
+  IT |(originale)                                             |
+  EN |TO THE ENEMY MILITARY FACILITIES. ALTHOUGH THE RADAR    |
+  IT |                                                        |
+  EN |SITES HAVE BEEN DESTROYED, YOU NEED TO USE CAUTION AS   |
+  IT |                                                        |
+  EN |THERE ARE A LOT OF ANTI-AIRCRAFT VEHICLES IN AREA.      |
+  IT |                                                        |
+
+=== record  45  schermate missione  (righe da 56)
+  EN |IN THIS AREA THERE ARE 5 PIPELINE PUMPING STATIONS,     |
+  IT |(originale)                                             |
+  EN |4 OF THEM LEADING TO ENEMY MILITARY FACILITIES.         |
+  IT |                                                        |
+  EN |THERE ARE MANY GROUND-TO-AIR WEAPONS AND AT             |
+  IT |                                                        |
+  EN |LEAST 5 MIGS, SO BE CAREFUL.                            |
+  IT |                                                        |
+
+=== record  46  schermate missione  (righe da 56)
+  EN |THERE ARE MANY GROUND-TO-AIR MISSILES NEAR              |
+  IT |(originale)                                             |
+  EN |ENEMY PUMPING STATIONS BECAUSE THEY LEAD TO             |
+  IT |                                                        |
+  EN |MILITARY FACILITIES. BEWARE OF MOUNTED RAPIER           |
+  IT |                                                        |
+  EN |SYSTEMS AND DANGEROUS ANTI-AIRCRAFT ROCKETS.            |
+  IT |                                                        |
+
+=== record  47  schermate missione  (righe da 56)
+  EN |DESTROYING ENEMY TROOPS AROUND THE STATIONS WOULD       |
+  IT |(originale)                                             |
+  EN |HELP PROTECT OUR TROOPS AND PREVENT THE ZARAKIES        |
+  IT |                                                        |
+  EN |FROM REBUILDING LATER. DESTROYING THE FUEL PUMPING      |
+  IT |                                                        |
+  EN |STATIONS WILL HAMPER THE ENEMY CONSIDERABLY.            |
+  IT |                                                        |
+
+=== record  48  schermate missione  (righe da 56)
+  EN |THE ENEMY IS TRYING TO RELOCATE THEIR FUEL SUPPLY       |
+  IT |(originale)                                             |
+  EN |POINTS. DESTROY THESE PUMPING STATIONS BEFORE THEY      |
+  IT |                                                        |
+  EN |RELOCATE THE SUPPLY POINTS TO UNDESTROYED PUMPING       |
+  IT |                                                        |
+  EN |STATIONS. GOOD HUNTING!!!!                              |
+  IT |                                                        |
+
+=== record  49  schermate missione  (righe da 56)
+  EN |THE ENEMY HAS ALMOST RELOCATED THEIR FUEL SUPPLY        |
+  IT |(originale)                                             |
+  EN |POINTS. IF YOU DO NOT DESTROY THE PUMPING STATIONS      |
+  IT |                                                        |
+  EN |THIS TIME, WE WILL BE FORCED TO RETREAT AND YOU WILL    |
+  IT |                                                        |
+  EN |FAIL THIS MISSION.                                      |
+  IT |                                                        |
+
+=== record  50  schermate missione  (righe da 56)
+  EN |AREA 7 IS VERY DANGEROUS BECAUSE MANY OF ZARAK'S        |
+  IT |(originale)                                             |
+  EN |MILITARY BASES ARE LOCATED HERE. YOUR MISSION IS        |
+  IT |                                                        |
+  EN |TO DESTROY THE AIRFIELDS BEFORE ZARAK                   |
+  IT |                                                        |
+  EN |LAUNCHES THEIR AIR ATTACK ON TAFUJI.                    |
+  IT |                                                        |
+
+=== record  51  schermate missione  (righe da 56)
+  EN |YOUR MISSION IS TO DESTROY THE AIR BASES IN AREA 8.     |
+  IT |(originale)                                             |
+  EN |THERE ARE MANY CIVILIAN OIL FACILITIES THERE, SO BE     |
+  IT |                                                        |
+  EN |CAREFUL NOT TO DESTROY THEM DURING THE ATTACK.          |
+  IT |                                                        |
+
+=== record  52  schermate missione  (righe da 56)
+  EN |ZARAK HAS INVADED TAFUJI AND IS PREPARING TO SEND       |
+  IT |(originale)                                             |
+  EN |AIRCRAFT TO DESTROY SURROUNDING COUNTRIES. YOU          |
+  IT |                                                        |
+  EN |MUST DESTROY THE AIR FACILITIES BEFORE THEIR AIRCRAFT   |
+  IT |                                                        |
+  EN |TAKE OFF. GOOD HUNTING, A.S.P.!!!!                      |
+  IT |                                                        |
+
+=== record  53  schermate missione  (righe da 56)
+  EN |THE ZARAKIES ARE ACQUIRING MORE AIRCRAFT. YOU MUST      |
+  IT |(originale)                                             |
+  EN |DESTROY THE AIR FACILITIES BEFORE THEY ARE ABLE TO FUEL |
+  IT |                                                        |
+  EN |THESE AIRCRAFT AND LAUNCH THEIR ATTACK.                 |
+  IT |                                                        |
+  EN |ALL THE BEST, WARTHOG!!                                 |
+  IT |                                                        |
+
+=== record  54  schermate missione  (righe da 56)
+  EN |YOU HAVE STILL NOT BEEN SUCCESSFUL. THE A-10 WITH       |
+  IT |(originale)                                             |
+  EN |THE CLUSTER BOMBS WILL BE MOST EFFICIENT FOR            |
+  IT |                                                        |
+  EN |ATTACKING A BROAD AREA. BE CAREFUL NOT TO BOMB THE      |
+  IT |                                                        |
+  EN |COALITION FORCES. GO FOR IT, A.S.P.!!!!                 |
+  IT |                                                        |
+
+=== record  55  schermate missione  (righe da 56)
+  EN |THE ENEMY HAS LAUNCHED THEIR FIRST ATTACK AND ARE       |
+  IT |(originale)                                             |
+  EN |STRIKING OTHER COUNTRIES. IF YOU DON'T DESTROY THE AIR  |
+  IT |                                                        |
+  EN |FACILITIES BEFORE THEY LAUNCH THEIR SECOND WAVE, THEY   |
+  IT |                                                        |
+  EN |WILL OBLITERATE US.                                     |
+  IT |                                                        |
+
+=== record  56  schermate missione  (righe da 56)
+  EN |THERE ARE MANY BASES IN AREA 5 THAT PROVIDE SUPPORT TO  |
+  IT |(originale)                                             |
+  EN |THE ENEMY FORCES THAT HAVE INVADED THE HARBOR. YOU      |
+  IT |                                                        |
+  EN |MUST DESTROY THESE SUPPORTING BASES OR YOU WILL HAVE    |
+  IT |                                                        |
+  EN |A HARD TIME CLEARING THE HARBOR.                        |
+  IT |                                                        |
+
+=== record  57  schermate missione  (righe da 56)
+  EN |IN AREA 6 THERE ARE CIVILIAN OIL FACILITIES THAT THE    |
+  IT |(originale)                                             |
+  EN |ENEMY HAS TAKEN OVER. YOUR MISSION IS TO DESTROY        |
+  IT |                                                        |
+  EN |THE BASES AND ENEMY GROUND TROOPS CONTROLLING           |
+  IT |                                                        |
+  EN |THE HARBOR BEFORE THEY BUILD PERMANENT BASES.           |
+  IT |                                                        |
+
+=== record  58  schermate missione  (righe da 56)
+  EN |MANY GROUND-TO-AIR TROOPS AROUND THE BASES AND IN THE   |
+  IT |(originale)                                             |
+  EN |HARBOR ARE HOLDING CIVILIANS. SINCE IT IS NEAR THE END  |
+  IT |                                                        |
+  EN |OF THE WAR, WE THINK THAT THE ENEMY IS LIKELY TO TAKE   |
+  IT |                                                        |
+  EN |DRASTIC MEASURES AND HARM MANY CIVILIANS.               |
+  IT |                                                        |
+
+=== record  59  schermate missione  (righe da 56)
+  EN |THE ENEMY HAS ANNOUNCED THAT IF THE U.N. FORCES         |
+  IT |(originale)                                             |
+  EN |CONTINUE TO ATTACK, THEY WILL DUMP OIL INTO THE OCEAN.  |
+  IT |                                                        |
+  EN |YOU MUST ATTACK SWIFT AND HARD, DESTROYING THE ENEMY IN |
+  IT |                                                        |
+  EN |THE AREA BEFORE THEY CAN RELEASE THE OIL.               |
+  IT |                                                        |
+
+=== record  60  schermate missione  (righe da 56)
+  EN |THE ENEMY HAS BEGUN TO DUMP OIL INTO THE OCEAN AND HAS  |
+  IT |(originale)                                             |
+  EN |LIT THE OIL WELLS ON FIRE. THE ENVIRONMENTAL DAMAGES    |
+  IT |                                                        |
+  EN |ARE NOT YET SEVERE, BUT YOU MUST DESTROY THE ENEMY      |
+  IT |                                                        |
+  EN |QUICKLY, BEFORE THE DAMAGES BECOME OVERWHELMING.        |
+  IT |                                                        |
+
+=== record  61  schermate missione  (righe da 56)
+  EN |THIS IS YOUR LAST CHANCE TO DESTROY THE ENEMY           |
+  IT |(originale)                                             |
+  EN |AND COMPLETE THIS MISSION WITH MINIMAL DAMAGE.          |
+  IT |                                                        |
+  EN |IF YOU FAIL THIS TIME, WE WILL BE RESPONSIBLE FOR       |
+  IT |                                                        |
+  EN |LOSING THE WAR. GOOD HUNTING, ASP!!!!                   |
+  IT |                                                        |
+
+=== record  62  schermate missione  (righe da 56)
+  EN |AREA 3 IS FILLED WITH N.B.C. WEAPON FACTORIES. THE      |
+  IT |(originale)                                             |
+  EN |ENEMY IS GOING TO USE THESE CHEMICALS ON U.N. FORCES AND|
+  IT |                                                        |
+  EN |PROBABLY ON CIVILIANS IN NEARBY COUNTRIES. YOUR SQUAD   |
+  IT |                                                        |
+  EN |HAS BEEN REASSIGNED TO THE NEWLY FORMED P.D.F.          |
+  IT |                                                        |
+
+=== record  63  schermate missione  (righe da 56)
+  EN |P.D.F. SCIENTISTS HAVE LAUNCHED AN S.D.S. SATELLITE SET |
+  IT |(originale)                                             |
+  EN |TO APPEAR FOR A SHORT PERIOD OVER THE NORTHWEST CORNER  |
+  IT |                                                        |
+  EN |OF THIS AREA. REMEMBER THAT SCUD LAUNCHERS ARE MOBILE   |
+  IT |                                                        |
+  EN |AND THAT YOU ARE AUTHORIZED TO ENGAGE THEM ON SIGHT.    |
+  IT |                                                        |
+
+=== record  64  schermate missione  (righe da 56)
+  EN |BESIDES THE N.B.C. FACTORIES, MANY OTHER MILITARY BASES |
+  IT |(originale)                                             |
+  EN |HAVE BEEN OBSERVED. THIS WILL INCREASE THE DIFFICULTY   |
+  IT |                                                        |
+  EN |OF THIS MISSION. THE A-10 WITH CLUSTER BOMBS SHOULD BE  |
+  IT |                                                        |
+  EN |THE WEAPON OF CHOICE.                                   |
+  IT |                                                        |
+
+=== record  65  schermate missione  (righe da 56)
+  EN |IF ZARAK IS ABLE TO LAUNCH N.B.C. FILLED SCUDS, OUR     |
+  IT |(originale)                                             |
+  EN |TROOPS WILL HAVE TO WEAR PROTECTIVE GEAR. THIS WILL     |
+  IT |                                                        |
+  EN |LIMIT THE MOBILITY OF OUR TROOPS, WITH RESULTS THAT     |
+  IT |                                                        |
+  EN |MAY CAUSE THE DEFEAT OF THE P.D.F. FORCES.              |
+  IT |                                                        |
+
+=== record  66  schermate missione  (righe da 56)
+  EN |THIS IS YOUR LAST CHANCE TO COMPLETE THIS MISSION.      |
+  IT |(originale)                                             |
+  EN |IF YOU ARE NOT SUCCESSFUL WITH THIS SORTIE, WE WILL     |
+  IT |                                                        |
+  EN |RECEIVE THE ORDER TO RETREAT AND LOSE THE WAR.          |
+  IT |                                                        |
+  EN |GET THEM, A.S.P.!!!!                                    |
+  IT |                                                        |
+
+=== record  67  schermate missione  (righe da 56)
+  EN |AREA 2 HAS A CIVILIAN POPULATION CENTER. IN THIS        |
+  IT |(originale)                                             |
+  EN |MISSION, YOU MUST DESTROY THE MILITARY BASES AROUND THE |
+  IT |                                                        |
+  EN |CITY AND THE TROOPS IN THE CAPITAL. BE CAREFUL NOT TO   |
+  IT |                                                        |
+  EN |STRIKE CIVILIAN BUILDINGS.                              |
+  IT |                                                        |
+
+=== record  68  schermate missione  (righe da 56)
+  EN |THE WAR HAS REACHED A TURNING POINT. WE CAN END IT IF   |
+  IT |(originale)                                             |
+  EN |WE CAUSE ENOUGH DAMAGE TO THE ENEMY BASES AND THEIR     |
+  IT |                                                        |
+  EN |HEADQUARTERS. AN AWACS HAS REPORTED AN UNIDENTIFIED     |
+  IT |                                                        |
+  EN |FLYING OBJECT TRACKED IN AREA 5.                        |
+  IT |                                                        |
+
+=== record  69  schermate missione  (righe da 56)
+  EN |ZARAK HAS MILITARY TROOPS IN THE CAPITAL THAT NEED TO BE|
+  IT |(originale)                                             |
+  EN |DESTROYED. WHILE ENGAGING THESE TARGETS, MANY WILL HIDE |
+  IT |                                                        |
+  EN |BEHIND CIVILIAN BUILDINGS. AVOID THESE TROOPS TO        |
+  IT |                                                        |
+  EN |ELIMINATE THE RISK OF CIVILIAN FACILITY DAMAGE.         |
+  IT |                                                        |
+
+=== record  70  schermate missione  (righe da 56)
+  EN |THE ENEMY HQs DOES NOT SEEM TO BE IN THIS AREA,         |
+  IT |(originale)                                             |
+  EN |BUT SINCE CRYPTOLOGISTS HAVE REPORTED THAT THERE ARE    |
+  IT |                                                        |
+  EN |NUCLEAR WEAPONS IN THE HQs, CONTINUE ENGAGING THE ENEMY |
+  IT |                                                        |
+  EN |AND SEARCHING FOR THEIR HQs IN THIS AREA.               |
+  IT |                                                        |
+
+=== record  71  schermate missione  (righe da 56)
+  EN |INTELLIGENCE HAS REVEALED THAT THE HQs IS NORTHEAST OF  |
+  IT |(originale)                                             |
+  EN |THIS AREA. YOU MUST FINISH THIS MISSION QUICKLY IN      |
+  IT |                                                        |
+  EN |ORDER TO MAKE IT TO THE HQs AND DESTROY THE NUCLEAR     |
+  IT |                                                        |
+  EN |WEAPONS. STRANGE ENEMY ACTIVITY HAS BEEN REPORTED.      |
+  IT |                                                        |
+
+=== record  72  schermate missione  (righe da 56)
+  EN |ZARAK'S NUCLEAR WEAPON EQUIPPED HQs IS IN THIS AREA,    |
+  IT |(originale)                                             |
+  EN |SURROUNDED BY GROUND-TO-AIR WEAPONS. YOU MUST           |
+  IT |                                                        |
+  EN |DESTROY THESE NUCLEAR WEAPONS ALONG WITH THE            |
+  IT |                                                        |
+  EN |DANGEROUS MODIFIED RAPIER SYSTEMS.                      |
+  IT |                                                        |
+
+=== record  73  schermate missione  (righe da 56)
+  EN |SINCE THE HQs IS SURROUNDED BY NUMEROUS ENEMY TROOPS,   |
+  IT |(originale)                                             |
+  EN |THIS WILL NOT BE EASY. YOU MUST FLY STRAIGHT IN, DESTROY|
+  IT |                                                        |
+  EN |THE OPPOSING TROOPS, THEN DESTROY YOUR MAIN TARGETS,    |
+  IT |                                                        |
+  EN |ALL IN 24 HOURS. HURRY UP, A.S.P.!!!!                   |
+  IT |                                                        |
+
+=== record  74  schermate missione  (righe da 56)
+  EN |THERE ARE 5 RAPIER SYSTEMS, EACH MODIFIED TO GIVE       |
+  IT |(originale)                                             |
+  EN |THEM MORE ARMOR. THE ROUNDS THEY FIRE ARE               |
+  IT |                                                        |
+  EN |SO POWERFUL, YOU MUST FOCUS ON EACH                     |
+  IT |                                                        |
+  EN |INDIVIDUAL SYSTEM TO TERMINATE THEM.                    |
+  IT |                                                        |
+
+=== record  75  schermate missione  (righe da 56)
+  EN |THE ENEMY'S FINAL WEAPON IS REPORTED TO BE A NUCLEAR    |
+  IT |(originale)                                             |
+  EN |I.C.B.M. LONG RANGE MISSILE. IT CAN DESTROY A CITY IN   |
+  IT |                                                        |
+  EN |ONE STRIKE. DON'T WASTE TIME, THIS IS VERY CRITICAL.    |
+  IT |                                                        |
+  EN |SMASH THEM, A.S.P.!!!!                                  |
+  IT |                                                        |
+
+=== record  76  schermate missione  (righe da 56)
+  EN |THIS IS YOUR LAST CHANCE TO COMPLETE YOUR MISSION OR    |
+  IT |(originale)                                             |
+  EN |THEY WILL FULFILL THEIR DOOMSDAY THREAT AND THE         |
+  IT |                                                        |
+  EN |ALIENS THAT ARE BEHIND THIS WAR WILL CONTROL THE WORLD. |
+  IT |                                                        |
+
+=== record  77  sergente  (righe da 56)
+  EN |YOUR FIRST MISSION TO DESTROY THE RADAR BASES IS        |
+  IT |(originale)                                             |
+  EN |COMPLETE. YOUR SUCCESS HAS INHIBITED THE ENEMY'S        |
+  IT |                                                        |
+  EN |ABILITY TO LOCATE OUR TROOPS.                           |
+  IT |                                                        |
+
+=== record  78  sergente  (righe da 56)
+  EN |AS LONG AS THERE ARE ANY RADAR BASES STILL INTACT, THE  |
+  IT |(originale)                                             |
+  EN |ENEMY MAY STILL LOCATE US. WE HAVE GAINED A LITTLE MORE |
+  IT |                                                        |
+  EN |TIME IN OUR SUCCESS OF 80%, BUT SINCE THE WAR HAS JUST  |
+  IT |                                                        |
+  EN |BEGUN, THERE ARE STILL DANGERS OUT THERE.               |
+  IT |                                                        |
+
+=== record  79  sergente  (righe da 56)
+  EN |IT SEEMS THAT YOU HAVE DESTROYED MORE RADAR BASES THAN  |
+  IT |(originale)                                             |
+  EN |TARGETED. THIS GIVES OUR GROUND FORCES AN ADVANTAGE.    |
+  IT |                                                        |
+  EN |REMEMBER THAT YOUR CONTINUAL MISSION IS TO SUPPORT THE  |
+  IT |                                                        |
+  EN |GROUND TROOPS.                                          |
+  IT |                                                        |
+
+=== record  80  sergente  (righe da 56)
+  EN |WE HAVE BAD NEWS. AN AWACS HAS BEEN SHOT DOWN BY THE    |
+  IT |(originale)                                             |
+  EN |ENEMY. THIS WILL MAKE IT DIFFICULT TO LOCATE ENEMY      |
+  IT |                                                        |
+  EN |TROOPS. PLEASE NOTIFY OPS OF ANY UNUSUAL ACTIVITY.      |
+  IT |                                                        |
+
+=== record  81  sergente  (righe da 56)
+  EN |HOWEVER, IT TOOK MORE TIME THAN ORIGINALLY ESTIMATED.   |
+  IT |(originale)                                             |
+  EN |REMEMBER THAT SINCE TIME IS VERY IMPORTANT, AVOID       |
+  IT |                                                        |
+  EN |WASTING IT. COMPLETE YOUR MISSION, THEN GET OUT!        |
+  IT |                                                        |
+
+=== record  82  sergente  (righe da 56)
+  EN |YOUR MISSION TO DESTROY THE SCUD MISSILES WAS           |
+  IT |(originale)                                             |
+  EN |SUCCESSFUL. ALTHOUGH THE THREAT OF SCUD ATTACKS IS      |
+  IT |                                                        |
+  EN |LOWER, IT IS NOT ELIMINATED. KEEP SCUD BUSTING!!!!      |
+  IT |                                                        |
+
+=== record  83  sergente  (righe da 56)
+  EN |EVEN THOUGH YOU HAVE COMPLETED THE MISSION, THERE ARE   |
+  IT |(originale)                                             |
+  EN |STILL A LOT OF SCUD MISSILES OUT THERE.                 |
+  IT |                                                        |
+  EN |CONTINUE TO DESTROY THE SCUD LAUNCHERS WHENEVER         |
+  IT |                                                        |
+  EN |POSSIBLE, EVEN WHILE ENGAGING IN OTHER MISSIONS.        |
+  IT |                                                        |
+
+=== record  84  sergente  (righe da 56)
+  EN |ALTHOUGH YOU HAVE DESTROYED MORE SCUD LAUNCHERS         |
+  IT |(originale)                                             |
+  EN |THAN THE MISSION CALLED FOR, THE SCUD MISSILES CAN      |
+  IT |                                                        |
+  EN |CAUSE MUCH DAMAGE. ACCORDINGLY, YOUR CONSTANT           |
+  IT |                                                        |
+  EN |MISSION IS TO DESTROY SCUD LAUNCHERS WHENEVER LOCATED.  |
+  IT |                                                        |
+
+=== record  85  sergente  (righe da 56)
+  EN |MANY SCUD LAUNCHERS WERE ABLE TO LAUNCH MISSILES BEFORE |
+  IT |(originale)                                             |
+  EN |THEY WERE DESTROYED. THEY HAVE REACHED U.N. FORCES,     |
+  IT |                                                        |
+  EN |CAUSING SEVERE DAMAGE. YOU MUST ACT QUICKLY.            |
+  IT |                                                        |
+  EN |TIME IS PRECIOUS, SO DON'T HANG ABOUT!                  |
+  IT |                                                        |
+
+=== record  86  sergente  (righe da 56)
+  EN |IT HAS TAKEN MORE TIME TO COMPLETE THIS                 |
+  IT |(originale)                                             |
+  EN |MISSION THAN WAS EXPECTED. THIS ALLOWED SOME            |
+  IT |                                                        |
+  EN |MISSILES TO BE  LAUNCHED!                               |
+  IT |                                                        |
+  EN |YOU MUST COMPLETE FUTURE MISSIONS FASTER.               |
+  IT |                                                        |
+
+=== record  87  sergente  (righe da 56)
+  EN |YOU'VE SUCCESSFULLY COMPLETED THE MISSION TO DESTROY    |
+  IT |(originale)                                             |
+  EN |THE OIL PIPELINE FACILITIES. THIS WILL PREVENT THE ENEMY|
+  IT |                                                        |
+  EN |FROM EASILY GETTING FUEL TO THEIR FORCES.               |
+  IT |                                                        |
+
+=== record  88  sergente  (righe da 56)
+  EN |YOU MAY HAVE DESTROYED ONLY A PORTION OF THE            |
+  IT |(originale)                                             |
+  EN |ENEMIES FUEL SUPPLY. THE ENEMY MAY BE ABLE TO GET FUEL  |
+  IT |                                                        |
+  EN |FROM AN UNKNOWN SUPPLY.                                 |
+  IT |                                                        |
+  EN |ASTRONOMERS HAVE REPORTED STRANGE ATMOSPHERIC ACTIVITY. |
+  IT |                                                        |
+
+=== record  89  sergente  (righe da 56)
+  EN |IT WILL TAKE THE ENEMY A LONG TIME TO REBUILD THEIR     |
+  IT |(originale)                                             |
+  EN |PIPELINE PUMPING STATIONS BECAUSE OF THE LARGE AMOUNT OF|
+  IT |                                                        |
+  EN |DAMAGE YOU HAVE INFLICTED ON THEM! STILL, THERE IS SOME |
+  IT |                                                        |
+  EN |CONCERN THAT THEY MAY BE RECEIVING SOME OUTSIDE HELP.   |
+  IT |                                                        |
+
+=== record  90  sergente  (righe da 56)
+  EN |YOU HAVE DESTROYED A LARGE PORTION OF CIVILIAN          |
+  IT |(originale)                                             |
+  EN |FACILITIES! THIS MAKES IT VERY DIFFICULT FOR THE        |
+  IT |                                                        |
+  EN |CIVILIANS TO RESTORE THEIR COUNTRY. YOU MUST BE         |
+  IT |                                                        |
+  EN |MORE ACCURATE!                                          |
+  IT |                                                        |
+
+=== record  91  sergente  (righe da 56)
+  EN |IT HAS TAKEN MORE TIME TO COMPLETE THE MISSION THAN     |
+  IT |(originale)                                             |
+  EN |EXPECTED. BECAUSE OF THIS, THE COMMANDER QUESTIONS      |
+  IT |                                                        |
+  EN |YOUR CREDIBILITY AS A GOOD PILOT AND IS ADVISING YOU TO |
+  IT |                                                        |
+  EN |SPEED IT UP! DON'T WASTE ANY TIME TO COMPLETE YOUR MISSI|
+  IT |                                                        |
+  EN |ON!!                                                    |
+  IT |                                                        |
+
+=== record  92  sergente  (righe da 56)
+  EN |YOU HAVE SUCCESSFULLY DESTROYED A MAJORITY OF THE       |
+  IT |(originale)                                             |
+  EN |ENEMY TROOPS INVADING TAFUJI AND U.N. TROOPS HAVE BEEN  |
+  IT |                                                        |
+  EN |SENT TO THE BORDER. WE CAN ASSUME THAT THE INVASION     |
+  IT |                                                        |
+  EN |WILL BE PREVENTED.                                      |
+  IT |                                                        |
+
+=== record  93  sergente  (righe da 56)
+  EN |WITHOUT THE AIR BASES, ZARAK WOULD NOT HAVE THE AIR     |
+  IT |(originale)                                             |
+  EN |SUPPORT NEEDED TO TAKE THE BORDER OF TAFUJI. DON'T      |
+  IT |                                                        |
+  EN |FORGET THAT PART OF YOUR CONTINUOUS MISSION IS TO       |
+  IT |                                                        |
+  EN |SUPPORT OUR TROOPS FROM THE AIR.                        |
+  IT |                                                        |
+
+=== record  94  sergente  (righe da 56)
+  EN |YOU HAVE DESTROYED MORE BASES THAN WERE EXPECTED.       |
+  IT |(originale)                                             |
+  EN |THIS WILL MAKE IT EASIER FOR THE COALITION FORCES TO    |
+  IT |                                                        |
+  EN |PLAY THEIR ROLE IN DESTROYING ENEMY TARGETS.            |
+  IT |                                                        |
+
+=== record  95  sergente  (righe da 56)
+  EN |HOWEVER, YOU HAVE ALSO HIT A LOT OF CIVILIAN FACILITIES.|
+  IT |(originale)                                             |
+  EN |THIS IS GOING TO MAKE THE A.S.P. LOOK BAD, AFFECTING    |
+  IT |                                                        |
+  EN |YOUR PROMOTION. YOU MUST BE MORE CAREFUL!!              |
+  IT |                                                        |
+
+=== record  96  sergente  (righe da 56)
+  EN |HOWEVER, BECAUSE IT TOOK MORE TIME THAN EXPECTED,       |
+  IT |(originale)                                             |
+  EN |WE SUSTAINED MANY CASUALTIES IN TAFUJI. THE LONGER      |
+  IT |                                                        |
+  EN |YOU TAKE TO COMPLETE THE MISSION, THE MORE PEOPLE       |
+  IT |                                                        |
+  EN |WILL BE HARMED.  YOU MUST ACT WITH MORE SWIFTNESS!!     |
+  IT |                                                        |
+
+=== record  97  sergente  (righe da 56)
+  EN |WE HAVE SUCCESSFULLY RETAKEN THE HARBOR.                |
+  IT |(originale)                                             |
+  EN |WE WERE ABLE TO RESCUE THE CIVILIANS AND LIMIT THE      |
+  IT |                                                        |
+  EN |AMOUNT OF ENVIRONMENTAL DAMAGE. A ZARAK P.O.W.          |
+  IT |                                                        |
+  EN |REPORTED STRANGE ACTIVITY AMONG THEIR LEADERS.          |
+  IT |                                                        |
+
+=== record  98  sergente  (righe da 56)
+  EN |CONGRATULATIONS, YOU WERE ABLE TO DESTROY MORE          |
+  IT |(originale)                                             |
+  EN |ENEMY FORCES THAN THE MISSION CALLED FOR, WITH LESS     |
+  IT |                                                        |
+  EN |CASUALTIES THAN EXPECTED. THIS WILL HELP OUR GROUND     |
+  IT |                                                        |
+  EN |FORCES ATTACK THE ENEMY HQs AND END THIS WAR.           |
+  IT |                                                        |
+
+=== record  99  sergente  (righe da 56)
+  EN |CONGRATULATIONS, YOU WERE ABLE TO DESTROY MORE          |
+  IT |(originale)                                             |
+  EN |ENEMY FORCES THAN THE MISSION CALLED FOR, AND WITH LESS |
+  IT |                                                        |
+  EN |CASUALTIES THAN EXPECTED. THIS WILL HELP OUR GROUND     |
+  IT |                                                        |
+  EN |FORCED ATTACK THE ENEMY HQs AND END THIS WAR.           |
+  IT |                                                        |
+
+=== record 100  sergente  (righe da 56)
+  EN |HOWEVER, YOU HAVE ALSO DESTROYED SEVERAL CIVILIAN       |
+  IT |(originale)                                             |
+  EN |FACILITIES. IT IS YOUR RESPONSIBILITY TO BE MORE        |
+  IT |                                                        |
+  EN |ACCURATE WHEN COMPLETING YOUR MISSIONS, OTHERWISE THE   |
+  IT |                                                        |
+  EN |COMMANDER WILL BE SURE TO REPLACE YOU!                  |
+  IT |                                                        |
+
+=== record 101  sergente  (righe da 56)
+  EN |THE ENEMY HAS BEGUN TO LEAK OIL INTO THE OCEAN.         |
+  IT |(originale)                                             |
+  EN |THIS MAKES IT INCREASINGLY DIFFICULT FOR AMPHIBIOUS     |
+  IT |                                                        |
+  EN |FORCES TO LAND AND IS THE START OF GREAT ENVIRONMENTAL  |
+  IT |                                                        |
+  EN |DAMAGE. REPORT ANY SIGN OF ZARAK RECEIVING HELP.        |
+  IT |                                                        |
+
+=== record 102  sergente  (righe da 56)
+  EN |YOU HAVE SUCCESSFULLY DESTROYED THE CHEMICAL WEAPON     |
+  IT |(originale)                                             |
+  EN |FACTORIES. UNLESS THE ENEMY HAS HIDDEN CHEMICAL WEAPONS |
+  IT |                                                        |
+  EN |OR IS GETTING SPECIAL WEAPONS FROM AN OUTSIDE SOURCE,   |
+  IT |                                                        |
+  EN |THEY WILL NOT BE ABLE TO USE CHEMICALS ON OUR TROOPS.   |
+  IT |                                                        |
+
+=== record 103  sergente  (righe da 56)
+  EN |SINCE YOU HAVE DESTROYED THE CHEMICAL WEAPON FACTORIES, |
+  IT |(originale)                                             |
+  EN |THE MORALE OF THE ENEMY TROOPS IS LOW. THEY ARE LESS    |
+  IT |                                                        |
+  EN |ENTHUSIASTIC ABOUT THIS WAR. HOWEVER, INTELLIGENCE      |
+  IT |                                                        |
+  EN |INDICATES THAT THEY MAY HAVE A HIDDEN WEAPON SOMEWHERE. |
+  IT |                                                        |
+
+=== record 104  sergente  (righe da 56)
+  EN |SINCE YOU HAVE DESTROYED THE CHEMICAL WEAPON FACTORIES, |
+  IT |(originale)                                             |
+  EN |THE MORALE OF THE ENEMY TROOPS IS LOW. THEY ARE LESS    |
+  IT |                                                        |
+  EN |ENTHUSIASTIC ABOUT THIS WAR. HOWEVER, INTELLIGENCE      |
+  IT |                                                        |
+  EN |INDICATES THAT THEY MAY HAVE A HIDDEN WEAPON SOMEWHERE. |
+  IT |                                                        |
+
+=== record 105  sergente  (righe da 56)
+  EN |ALTHOUGH YOUR DESTRUCTION OF ENEMY CHEMICAL WEAPON      |
+  IT |(originale)                                             |
+  EN |FACTORIES GREATLY LESSEN THE THREAT OF CHEMICAL ATTACKS |
+  IT |                                                        |
+  EN |ON OUR GROUND TROOPS, BEWARE THAT THE ENEMY MAY HAVE A  |
+  IT |                                                        |
+  EN |SECRET WEAPON!!                                         |
+  IT |                                                        |
+
+=== record 106  sergente  (righe da 56)
+  EN |SINCE IT HAS TAKEN YOU MORE TIME TO DESTROY THE CHEMICAL|
+  IT |(originale)                                             |
+  EN |WEAPON FACTORIES THEN EXPECTED, THE ENEMY WAS ABLE      |
+  IT |                                                        |
+  EN |TO USE SOME OF THE WEAPONS ON OUR FRONT LINE TROOPS.    |
+  IT |                                                        |
+  EN |THIS FORCED OUR TROOPS TO EQUIP FOR N.B.C. WARFARE.     |
+  IT |                                                        |
+
+=== record 107  sergente  (righe da 56)
+  EN |THE MISSION TO ATTACK THE CAPITAL WAS SUCCESSFUL, BUT   |
+  IT |(originale)                                             |
+  EN |WE HAVE DISCOVERED ENEMY HQs IN THE NORTHEAST           |
+  IT |                                                        |
+  EN |OF AREA 2. THIS IS TO BE CONSIDERED AN ADDITION TO      |
+  IT |                                                        |
+  EN |BATTLE AREA 2. BE ON THE LOOKOUT FOR ALIEN WEAPONS!     |
+  IT |                                                        |
+
+=== record 108  sergente  (righe da 56)
+  EN |YOU HAVE MADE IT MUCH EASIER TO FLY TO THE ENEMY HQs IN |
+  IT |(originale)                                             |
+  EN |THE NORTHEAST BY DESTROYING MANY ENEMY MILITARY BASES   |
+  IT |                                                        |
+  EN |AND TROOPS. BUT WE KNOW VERY LITTLE ABOUT THESE ALIENS  |
+  IT |                                                        |
+  EN |AND THEIR WEAPONS, SO PROCEED WITH EXTREMELY CAUTION.   |
+  IT |                                                        |
+
+=== record 109  sergente  (righe da 56)
+  EN |YOU HAVE DESTROYED MUCH OF THE ZARAKIE FORCES,          |
+  IT |(originale)                                             |
+  EN |CREATING LESS OPPOSITION FOR YOU AND OUR GROUND TROOPS. |
+  IT |                                                        |
+  EN |ALTHOUGH THE ENEMY IS LOSING THEIR FIGHTING SPIRIT, THE |
+  IT |                                                        |
+  EN |ALIENS SEEM TO HAVE SOME INFLUENCE OVER THE RED GUARD.  |
+  IT |                                                        |
+
+=== record 110  sergente  (righe da 56)
+  EN |MANY CIVILIANS HAVE BEEN HIT DURING THE DESTRUCTION     |
+  IT |(originale)                                             |
+  EN |OF MANY ENEMY MILITARY FORCES IN THE CAPITAL. WE        |
+  IT |                                                        |
+  EN |HAVE BEEN BLAMED FOR THEIR INJURIES. AS A PROFESSIONAL, |
+  IT |                                                        |
+  EN |YOU MUST BE MORE ACCURATE!!                             |
+  IT |                                                        |
+
+=== record 111  sergente  (righe da 56)
+  EN |YOUR TIME-CONSUMING DESTRUCTION OF ENEMY MILITARY FORCES|
+  IT |(originale)                                             |
+  EN |AROUND THE CAPITAL ALLOWED THE ENEMY TO MOVE MORE TROOPS|
+  IT |                                                        |
+  EN |SECURELY AROUND THE NORTHEAST HQs. BECAUSE OF THIS,     |
+  IT |                                                        |
+  EN |IT WILL NOT BE AN EASY TASK TO REACH THIS HQs.          |
+  IT |                                                        |
+
+=== record 112  sergente  (righe da 56)
+  EN |(                                                       |
+  IT |(originale)                                             |
+
+=== record 113  sergente  (righe da 56)
+  EN |WE INTERRUPT YOU WITH A SPECIAL NEWS REPORT.            |
+  IT |(originale)                                             |
+
+=== record 114  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 115  notiziari  (righe da 52)
+  EN |STANDBY FOR ANOTHER SPECIAL NEWS BROADCAST.         |
+  IT |(originale)                                         |
+
+=== record 116  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 117  notiziari  (righe da 52)
+  EN |THE ZARAK NATIONAL NEWS AGENCY REPORTS THAT U.N.    |
+  IT |(originale)                                         |
+  EN |PRISONERS ARE BEING USED AS HUMAN SHIELDS.          |
+  IT |                                                    |
+
+=== record 118  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 119  notiziari  (righe da 52)
+  EN |IF THIS IS TRUE, THE PRISONERS WILL FACE THE DANGER |
+  IT |(originale)                                         |
+  EN |OF BEING STRUCK BY COALITION FIRE.                  |
+  IT |                                                    |
+
+=== record 120  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 121  notiziari  (righe da 52)
+  EN |IN ORDER TO KEEP FROM HARMING OUR OWN TROOPS, THE   |
+  IT |(originale)                                         |
+  EN |COALITION MUST USE EXTREME ACCURACY.                |
+  IT |                                                    |
+
+=== record 122  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 123  notiziari  (righe da 52)
+  EN |ZARAKIE TROOPS HAVE INVADED THE TOWN OF TAFUJI.     |
+  IT |(originale)                                         |
+
+=== record 124  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 125  notiziari  (righe da 52)
+  EN |THE STRATEGIC LOCATION OF TAFUJI MAKES IT A LIKELY  |
+  IT |(originale)                                         |
+  EN |CANDIDATE AS A ZARAK HQs.                           |
+  IT |                                                    |
+
+=== record 126  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 127  notiziari  (righe da 52)
+  EN |THE COALITION HAS SENT TROOPS THERE TO PREVENT THIS |
+  IT |(originale)                                         |
+  EN |INVASION FROM BEING SUCCESSFUL.                     |
+  IT |                                                    |
+
+=== record 128  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 129  notiziari  (righe da 52)
+  EN |A COALITION SPOKESMAN HAS REVEALED AN ACCIDENTAL    |
+  IT |(originale)                                         |
+  EN |BOMBING OF AN OIL TANKER IN THE GULF HARBOR.        |
+  IT |                                                    |
+
+=== record 130  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 131  notiziari  (righe da 52)
+  EN |U.N. HQs HAS ANNOUNCED THAT ENEMY TROOPS ARE        |
+  IT |(originale)                                         |
+  EN |RESPONSIBLE FOR THIS OIL TANKER ATTACK.             |
+  IT |                                                    |
+
+=== record 132  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 133  notiziari  (righe da 52)
+  EN |THIS COULD AFFECT THE ONGOING U.N. OPERATION,       |
+  IT |(originale)                                         |
+  EN |DEPENDING ON THE FACTS!                             |
+  IT |                                                    |
+
+=== record 134  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 135  notiziari  (righe da 52)
+  EN |ACCORDING TO REPORTS, ZARAK IS DESTROYING OIL PLANTS|
+  IT |(originale)                                         |
+  EN |IN THE GULF HARBOR IN RETALIATION TO THE COALITION. |
+  IT |                                                    |
+
+=== record 136  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 137  notiziari  (righe da 52)
+  EN |BARRELS OF OIL ARE POURING INTO THE HARBOR.         |
+  IT |(originale)                                         |
+  EN |PEOPLE IN THE AREA ARE TRYING TO STOP THE LEAKING.  |
+  IT |                                                    |
+
+=== record 138  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 139  notiziari  (righe da 52)
+  EN |BASED ON FUTURE INVESTIGATION, THIS COULD BE BLAMED |
+  IT |(originale)                                         |
+  EN |ON COALITION OPERATIONS.                            |
+  IT |                                                    |
+
+=== record 140  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 141  notiziari  (righe da 52)
+  EN |UNCONFIRMED REPORTS STATE THAT THE RETREATING ZARAK |
+  IT |(originale)                                         |
+  EN |TROOPS ARE SETTING FIRE TO THE MASSIVE OIL FIELDS.  |
+  IT |                                                    |
+
+=== record 142  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 143  notiziari  (righe da 52)
+  EN |DUE TO THE SMOKE, THE KUMAI SKY HAS TURNED BLACK    |
+  IT |(originale)                                         |
+  EN |AND THE POLLUTED AIR IS AFFECTING THE PEOPLE.       |
+  IT |                                                    |
+
+=== record 144  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 145  notiziari  (righe da 52)
+  EN |SCIENTIST HAVE ALSO REPORTED A VERY STRANGE CHANGE  |
+  IT |(originale)                                         |
+  EN |IN THE ATMOSPHERE, SUGGESTING ALIEN CRAFT ACTIVITY. |
+  IT |                                                    |
+
+=== record 146  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 147  notiziari  (righe da 52)
+  EN |MILITARY REPORTS REVEAL THAT ZARAKIE                |
+  IT |(originale)                                         |
+  EN |CHEMICAL PLANTS ARE PLANNING TO DISTRIBUTE WEAPONS. |
+  IT |                                                    |
+
+=== record 148  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 149  notiziari  (righe da 52)
+  EN |IF THE CHEMICAL WEAPONS ARE USED, WE CAN EXPECT A   |
+  IT |(originale)                                         |
+  EN |LARGE NUMBER OF CASUALTIES.                         |
+  IT |                                                    |
+
+=== record 150  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 151  notiziari  (righe da 52)
+  EN |U.N. FORCES HAVE BEGUN DISTRIBUTION OF GAS MASKS    |
+  IT |(originale)                                         |
+  EN |TO CIVILIANS AND COALITION TROOPS.                  |
+  IT |                                                    |
+
+=== record 152  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 153  notiziari  (righe da 52)
+  EN |EARLY REPORTS CLAIM THAT AN ALLIED AWACs HAS BEEN   |
+  IT |(originale)                                         |
+  EN |SHOT DOWN OVER ZARAK BY ENEMY GROUND TROOPS.        |
+  IT |                                                    |
+
+=== record 154  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 155  notiziari  (righe da 52)
+  EN |A CONFIDENTIAL REPORT STATES THAT UFOs HAVE BEEN    |
+  IT |(originale)                                         |
+  EN |SPOTTED IN THE AREA THAT THE AWACs WAS SHOT DOWN.   |
+  IT |                                                    |
+
+=== record 156  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 157  notiziari  (righe da 52)
+    AVVISI: non entra: none frame 1900 start frame 1910 none frame 2300 start frame
+  EN |THE INTERNATIONAL RED CROSS HAS NOTIFIED THE ZARAK  |
+  IT |; A.S.P. - titolo -> opzioni -> missione 1 ->       |
+  EN |GOVERNMENT TO ENSURE FAIR TREATMENT OF SURVIVORS.   |
+  IT |Command HQ (porta 1) frame 1600 start frame 1610    |
+
+=== record 158  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 159  notiziari  (righe da 52)
+  EN |SEVERAL NEIGHBORING COUNTRIES HAVE REPORTED         |
+  IT |me 48                                               |
+  EN |DAMAGE FROM NUMEROUS SCUD MISSILE ATTACKS.          |
+  IT |                                                    |
+
+=== record 160  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 161  notiziari  (righe da 52)
+  EN |ALTHOUGH THE SCUDs ARE NOT VERY ACCURATE, THEY ARE  |
+  IT |40 a f                                              |
+  EN |REPORTED TO BE EXTREMELY DANGEROUS.                 |
+  IT |                                                    |
+
+=== record 162  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 163  notiziari  (righe da 52)
+  EN |THE U.N. HAS BEGUN MOVING PATRIOT MISSILE LAUNCHERS |
+  IT |rame                                                |
+  EN |INTO NEIGHBORING COUNTRIES.                         |
+  IT |                                                    |
+
+=== record 164  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 165  notiziari  (righe da 52)
+  EN |CIVILIAN FACILITIES HAVE BEEN DAMAGED DURING ALLIED |
+  IT |4848 n                                              |
+  EN |BOMBING MISSIONS INTENDED FOR MILITARY TARGETS.     |
+  IT |                                                    |
+
+=== record 166  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 167  notiziari  (righe da 52)
+  EN |DESPITE CIVILIAN CASUALTIES, ZARAK CONTINUES TO MOVE|
+  IT |one fr                                              |
+  EN |TROOPS IN CLOSE PROXIMITY TO CIVILIAN LOCATIONS.    |
+  IT |                                                    |
+
+=== record 168  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 169  notiziari  (righe da 52)
+  EN |SCIENTISTS ARE STUDYING A STRANGE METAL FOUND ON    |
+  IT |ame 5                                               |
+  EN |THE BATTLE FIELD.                                   |
+  IT |                                                    |
+
+=== record 170  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 171  notiziari  (righe da 52)
+  EN |POLICE CONTINUE TO CLASH WITH DEMONSTRATORS AS      |
+  IT |080 a                                               |
+  EN |PUBLIC OPINION STARTS TO TURN AGAINST U.N. TROOPS.  |
+  IT |                                                    |
+
+=== record 172  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 173  notiziari  (righe da 52)
+  EN |THIS WAS BROUGHT ON BY ACCIDENTAL CIVILIAN DAMAGE   |
+  IT |frame                                               |
+  EN |DURING MILITARY OPERATIONS.                         |
+  IT |                                                    |
+
+=== record 174  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 175  notiziari  (righe da 52)
+  EN |ALTHOUGH THERE IS MUCH CEASE WAR PRESSURE, THERE    |
+  IT |5088                                                |
+  EN |ARE NO SIGNS OF COALITION BACKDOWN.                 |
+  IT |                                                    |
+
+=== record 176  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 177  notiziari  (righe da 52)
+  EN |ACCORDING TO REPORTS, GROUND FORCES HAVE EXPERIENCED|
+  IT |none                                                |
+  EN |CASUALTIES FROM FRIENDLY FIRE.                      |
+  IT |                                                    |
+
+=== record 178  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 179  notiziari  (righe da 52)
+  EN |AS A RESULT OF THESE CASUALTIES, THE COALITION      |
+  IT |frame                                               |
+  EN |HAS DEVISED NEW METHODS OF IDENTIFICATION.          |
+  IT |                                                    |
+
+=== record 180  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 181  notiziari  (righe da 52)
+  EN |IN ADDITION, A.S.P. PILOTS WILL RECEIVE ADDITIONAL  |
+  IT |5320                                                |
+  EN |TRAINING IN TARGET RECOGNITION.                     |
+  IT |                                                    |
+
+=== record 182  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 183  notiziari  (righe da 52)
+  EN |ACCORDING TO REPORTS, U.N. AIR STRIKES HAVE BEEN    |
+  IT |a fra                                               |
+  EN |VERY SUCCESSFUL AT DESTROYING THE ENEMY.            |
+  IT |                                                    |
+
+=== record 184  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 185  notiziari  (righe da 52)
+  EN |THE U.N. IS USING THE AGM-65 MAVERICK               |
+  IT |me 532                                              |
+  EN |TO VISUALLY GUIDE MISSILES TO THEIR TARGETS.        |
+  IT |                                                    |
+
+=== record 186  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 187  notiziari  (righe da 52)
+  EN |AFTER LAUNCH FROM AN AIRCRAFT SUCH AS THE A-10, THE |
+  IT |8 none                                              |
+  EN |AGM-65 IS PILOTED FROM A REMOTE CAMERA.             |
+  IT |                                                    |
+
+=== record 188  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 189  notiziari  (righe da 52)
+  EN |ACCORDING TO REPORTS, A COALITION F-15 PILOT        |
+  IT |frame                                               |
+  EN |RECEIVED THE DISTINGUISHED FLYING CROSS.            |
+  IT |                                                    |
+
+=== record 190  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 191  notiziari  (righe da 52)
+  EN |THE REPORTED PILOT HAD SHOT DOWN MORE THAN 5        |
+  IT |5560                                                |
+  EN |AIRCRAFT DURING NUMEROUS DOG FIGHTS.                |
+  IT |                                                    |
+
+=== record 192  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 193  notiziari  (righe da 52)
+  EN |THE REWARD OF THE FLYING CROSS IS AN ACHIEVEMENT    |
+  IT |a fra                                               |
+  EN |THAT WILL BE FOREVER REMEMBERED AND RESPECTED.      |
+  IT |                                                    |
+
+=== record 194  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 195  notiziari  (righe da 52)
+  EN |REPORTS SAY THAT COALITION AIR TROOPS FAILED TO     |
+  IT |me 55                                               |
+  EN |DESTROY THE ENEMY RADAR BASES.                      |
+  IT |                                                    |
+
+=== record 196  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(                                                   |
+
+=== record 197  notiziari  (righe da 52)
+  EN |THIS HAS FORCED A SLOWDOWN OF OUR ADVANCE ON.       |
+  IT |8                                                   |
+
+=== record 198  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 199  notiziari  (righe da 52)
+  EN |THE FRONT AND A HIGHER QUALITY PILOT SELECTION.     |
+  IT |none                                                |
+
+=== record 200  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 201  notiziari  (righe da 52)
+  EN |ACCORDING TO REPORTS FROM A P.D.F. SPOKESMAN,       |
+  IT |frame                                               |
+  EN |A SCUD MISSILE HAS LANDED IN A BATTALION AREA.      |
+  IT |                                                    |
+
+=== record 202  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 203  notiziari  (righe da 52)
+  EN |THE DAMAGE CAUSED BY THIS MISSILE HAS FORCED THE    |
+  IT |5800                                                |
+  EN |P.D.F. TO TEMPORARILY RETREAT.                      |
+  IT |                                                    |
+
+=== record 204  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 205  notiziari  (righe da 52)
+  EN |GRAVELY, THIS MAY LEAD TO LOSING A WAR WHICH MIGHT  |
+  IT |a fra                                               |
+  EN |HAVE BEEN WON IF THE PILOT HAD DESTROYED THE SCUD.  |
+  IT |                                                    |
+
+=== record 206  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 207  notiziari  (righe da 52)
+  EN |A SPOKESMAN FOR THE P.D.F. REPORTS THAT THE MISSION |
+  IT |me 5808                                             |
+  EN |TO CUT OFF THE ENEMY'S FUEL SUPPLY HAS FAILED.      |
+  IT |                                                    |
+
+=== record 208  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 209  notiziari  (righe da 52)
+  EN |IF THIS MISSION WERE SUCCESSFUL, IT WOULD HAVE LED  |
+  IT |none                                                |
+  EN |TO A SWIFT VICTORY. INSTEAD, THIS FAILURE HAS LEFT  |
+  IT |                                                    |
+
+=== record 210  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 211  notiziari  (righe da 52)
+  EN |THE ENEMY IN A STRONGER POSITION.                   |
+  IT |frame                                               |
+  EN |THE COALITION WILL HAVE TO SEND IN IT'S TOP ACES.   |
+  IT |                                                    |
+
+=== record 212  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 213  notiziari  (righe da 52)
+  EN |THE TOWN OF TAFUJI IN KUAGI TRABIA HAS BEEN INVADED |
+  IT |6040 a                                              |
+  EN |BY THE ENEMY. GROUND AND AIR TROOPS WERE SENT TO.   |
+  IT |                                                    |
+
+=== record 214  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 215  notiziari  (righe da 52)
+  EN |PREVENT THIS INVASION, BUT ALLIED PILOTS HAVE FAILED|
+  IT |frame                                               |
+  EN |TO DO THEIR PART. THE ENEMY WILL SURELY USE THIS    |
+  IT |                                                    |
+
+=== record 216  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 217  notiziari  (righe da 52)
+  EN |STRATEGICALLY LOCATED TOWN AS A STAGING AREA TO     |
+  IT |6048                                                |
+  EN |INVADE THE CAPITAL.                                 |
+  IT |                                                    |
+
+=== record 218  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 219  notiziari  (righe da 52)
+  EN |ACCORDING TO REPORTS, CIVILIAN OIL PLANTS HAVE BEEN |
+  IT |none f                                              |
+  EN |BOMBED BY THE ENEMY. COALITION TROOPS WERE SENT TO  |
+  IT |                                                    |
+
+=== record 220  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 221  notiziari  (righe da 52)
+  EN |PREVENT THE INVASION, BUT WERE NOT SUCCESSFUL.      |
+  IT |rame 6                                              |
+  EN |CONSEQUENTLY, AN ENVIRONMENTAL CATASTROPHE          |
+  IT |                                                    |
+
+=== record 222  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 223  notiziari  (righe da 52)
+    AVVISI: non entra: none frame 7240 a frame 7248 none frame 7480 a frame 7488 no
+  EN |HAS BEEN CREATED. AS A RESULT, THE COALITION HAS    |
+  IT |280 a frame 6288 none frame 6520 a frame 6528 none  |
+  EN |REPLACED THE PILOTS.                                |
+  IT |frame 6760 a frame 6768 none frame 7000 a frame 7008|
+
+=== record 224  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 225  notiziari  (righe da 52)
+  EN |P.D.F. TROOPS HAVE SUFFERED SEVERE DAMAGE BECAUSE   |
+  IT |(originale)                                         |
+  EN |THEY WERE FORCED TO WEAR GASMASKS THAT              |
+  IT |                                                    |
+
+=== record 226  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 227  notiziari  (righe da 52)
+  EN |HINDERED THEIR MOBILITY. IF THE AIR TROOPS WOULD    |
+  IT |(originale)                                         |
+  EN |HAVE DESTROYED THE CHEMICAL FACTORIES, THIS WOULD   |
+  IT |                                                    |
+
+=== record 228  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 229  notiziari  (righe da 52)
+  EN |HAVE  BEEN PREVENTED. INSTEAD, THE COALITION HAS    |
+  IT |(originale)                                         |
+  EN |BEEN TO RETREAT.                                    |
+  IT |                                                    |
+
+=== record 230  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 231  notiziari  (righe da 52)
+  EN |ACCORDING TO A SPOKESMAN, P.D.F. FORCES HAVE FAILED |
+  IT |(originale)                                         |
+  EN |TO DESTROY THE MILITARY FACILITIES SURROUNDING      |
+  IT |                                                    |
+
+=== record 232  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 233  notiziari  (righe da 52)
+  EN |THE HQs NORTHEAST OF THE CITY. THIS WAS MOSTLY THE  |
+  IT |(originale)                                         |
+
+=== record 234  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 235  notiziari  (righe da 52)
+  EN |RESPONSIBILITY OF THE A.S.P. PILOTS. AS A RESULT OF |
+  IT |(originale)                                         |
+  EN |THIS FAILURE, THE P.D.F. IS FORCED TO RETREAT.      |
+  IT |                                                    |
+
+=== record 236  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 237  notiziari  (righe da 52)
+  EN |WE REGRET TO INFORM YOU THAT THE COALITION AIR      |
+  IT |(originale)                                         |
+  EN |TROOPS WERE UNABLE TO DESTROY THE ZARAK HQs.        |
+  IT |                                                    |
+
+=== record 238  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 239  notiziari  (righe da 52)
+  EN |IN A FINAL ACT ZARAK LAUNCHED A NUCLEAR WARHEAD AND |
+  IT |(originale)                                         |
+  EN |DESTROYED THE COALITION FORCES.                     |
+  IT |                                                    |
+
+=== record 240  notiziari  (righe da 52)
+  EN |(                                                   |
+  IT |(originale)                                         |
+
+=== record 241  notiziari  (righe da 52)
+  EN |WHAT WILL THE WORLD DO, SINCE THE ZARAK             |
+  IT |(originale)                                         |
+  EN |CONTROLLING ALIENS WILL NOW CONTROL THE WORLD??     |
+  IT |                                                    |
+
+=== record 242  finali  (righe da 48)
+  EN |YOUR STRATEGIC PLANNING WAS SUPERB! YOU HAVE    |
+  IT |(originale)                                     |
+  EN |CONTROLLED YOUR AIRCRAFT WITH SUPERIOR SKILL,   |
+  IT |                                                |
+  EN |ACCURATELY PINPOINTING, THEN                    |
+  IT |                                                |
+  EN |SUCCESSFULLY DESTROYING YOUR TARGETS.           |
+  IT |                                                |
+  EN |THE MANAGEMENT AND STRATEGIC USE OF YOUR WEAPON |
+  IT |                                                |
+  EN |RESOURCES DISPLAYED GREAT KNOWLEDGE.            |
+  IT |                                                |
+  EN |YOU WILL SURELY GO DOWN IN HISTORY AS ONE OF THE|
+  IT |                                                |
+  EN |GREAT WARRIORS.                                 |
+  IT |                                                |
+
+=== record 243  finali  (righe da 48)
+  EN |YOUR STRATEGIC PLANNING, WEAPON CONSERVATION    |
+  IT |(originale)                                     |
+  EN |AND LOW DAMAGE LEVEL KEPT WAR COSTS MUCH        |
+  IT |                                                |
+  EN |LOWER THAN EXPECTED.                            |
+  IT |                                                |
+  EN |YOU WERE ALSO ABLE TO COMPLETE YOUR MISSIONS    |
+  IT |                                                |
+  EN |SUCCESSFULLY AND QUICKLY.                       |
+  IT |                                                |
+  EN |YOU HAVE THE ATTRIBUTES OF A GREAT BUSINESSMAN, |
+  IT |                                                |
+  EN |TRAITS WHICH WILL CONTRIBUTE LARGELY TO SOCIETY.|
+  IT |                                                |
+
+=== record 244  finali  (righe da 48)
+  EN |YOU HAVE FULLY DEMONSTRATED THAT YOU WERE       |
+  IT |(originale)                                     |
+  EN |FIGHTING TO DEFEND THE PEOPLE, RATHER THAN TO   |
+  IT |                                                |
+  EN |DESTROY THE ENEMY.                              |
+  IT |                                                |
+  EN |FOR YOUR PUBLIC DEVOTION, YOU WILL BE REWARDED  |
+  IT |                                                |
+  EN |BY THE PRESIDENT! WITH THIS DEDICATION,         |
+  IT |                                                |
+  EN |YOU WILL BECOME A GREAT POLITICIAN              |
+  IT |                                                |
+  EN |WITH GREAT SUPPORT AND RESPECT FROM THE PEOPLE  |
+  IT |                                                |
+  EN |WORLDWIDE.                                      |
+  IT |                                                |
+
+=== record 245  finali  (righe da 48)
+  EN |THOUGH IT WAS A TOUGH WAR, YOU HAVE WON BY      |
+  IT |(originale)                                     |
+  EN |YOUR CAREFUL PLANNING AND THE ADVICE FROM YOUR  |
+  IT |                                                |
+  EN |ADVISORS.                                       |
+  IT |                                                |
+  EN |EVEN THOUGH YOU HAVE WON THE WAR BY THE         |
+  IT |                                                |
+  EN |SUCCESSFUL DESTRUCTION OF THE MISSION TARGETS   |
+  IT |                                                |
+  EN |WHILE KEEPING CASUALTIES LOW, YOU MUST NOT REST!|
+  IT |                                                |
+  EN |AT THIS MOMENT, THE ENEMY IS QUIETLY LINGERING, |
+  IT |                                                |
+  EN |REGROUPING AND PLANNING TO COME BACK AGAIN.     |
+  IT |                                                |
+
+=== record 246  finali  (righe da 48)
+  EN |YOUR STRATEGIC AND TIMELY COMPLETION OF YOUR    |
+  IT |(originale)                                     |
+  EN |MISSIONS KEPT SOME WAR COSTS LOWER THAN PLANNED.|
+  IT |                                                |
+  EN |UNFORTUNATELY, THE DAMAGE SUSTAINED AND THE     |
+  IT |                                                |
+  EN |NUMBER OF WEAPONS USED PUT THE WAR'S TOTAL      |
+  IT |                                                |
+  EN |COSTS IN THE BILLIONS.                          |
+  IT |                                                |
+  EN |WHEN YOU LEAVE THE MILITARY YOU WILL MAKE A GOOD|
+  IT |                                                |
+  EN |CORPORATE EXECUTIVE.                            |
+  IT |                                                |
+
+=== record 247  finali  (righe da 48)
+  EN |ALTHOUGH YOU PERFORMED WELL POLITICALLY, THE    |
+  IT |(originale)                                     |
+  EN |LARGE NUMBER OF CIVILIANS LOST AND AMOUNT OF    |
+  IT |                                                |
+  EN |ENVIRONMENTAL DAMAGE SUSTAINED WERE HIGH,       |
+  IT |                                                |
+  EN |PREVENTING YOU FROM MOVING STRAIGHT INTO        |
+  IT |                                                |
+  EN |HOUSE POLITICS.                                 |
+  IT |                                                |
+  EN |YOU SHOULD PROBABLY PURSUE A CAREER IN MINOR    |
+  IT |                                                |
+  EN |POLITICS, PERHAPS AS A MAYOR OF YOUR HOMETOWN,  |
+  IT |                                                |
+  EN |THEN WORK YOUR WAY INTO MORE POWERFUL POLITICS. |
+  IT |                                                |
+
+=== record 248  finali  (righe da 48)
+  EN |COALITION FAMILIES HAVE BEEN WAITING WITH YELLOW|
+  IT |(originale)                                     |
+  EN |RIBBONS. DUE TO THE HIGH NUMBER OF              |
+  IT |                                                |
+  EN |CASUALTIES, THEY WERE VERY AFRAID THAT FAMILY   |
+  IT |                                                |
+  EN |MEMBERS WOULD NOT RETURN.                       |
+  IT |                                                |
+  EN |ALTHOUGH YOUR SKILLS WERE ENOUGH TO WIN THE WAR,|
+  IT |                                                |
+  EN |YOU SHOULD GO BACK TO WAR COLLEGE TO STUDY      |
+  IT |                                                |
+  EN |FURTHER.                                        |
+  IT |                                                |
+
+=== record 249  finali  (righe da 48)
+  EN |THE NUMBER OF CASUALTIES AND DAMAGE SUSTAINED   |
+  IT |(originale)                                     |
+  EN |RESULTED IN AN EXTREMELY EXPENSIVE WAR.         |
+  IT |                                                |
+  EN |THOUGH YOUR PERFORMANCE WAS ENOUGH TO WIN, YOUR |
+  IT |                                                |
+  EN |STRUGGLE TO MANAGE SUCH LARGE RESOURCES         |
+  IT |                                                |
+  EN |WOULD NOT BE A SUCCESSFUL TRAIT OF THE          |
+  IT |                                                |
+  EN |CORPORATE WORLD.                                |
+  IT |                                                |
+  EN |THEREFORE, YOU SHOULD CONSIDER OWNING A SMALL   |
+  IT |                                                |
+  EN |BUSINESS AFTER RETIREMENT.                      |
+  IT |                                                |
+
+=== record 250  finali  (righe da 48)
+  EN |THE PEOPLE REGARD YOU AS BEING AVERAGE.         |
+  IT |(originale)                                     |
+  EN |THEY RESENT THE LARGE NUMBER OF LIVES LOST AND  |
+  IT |                                                |
+  EN |THE AMOUNT OF MONEY SPENT.                      |
+  IT |                                                |
+  EN |SINCE THEY DON'T REGARD YOU AS ANOTHER          |
+  IT |                                                |
+  EN |EISENHOWER,                                     |
+  IT |                                                |
+  EN |IF YOU'RE THINKING OF ENTERING POLITICS,        |
+  IT |                                                |
+  EN |YOU SHOULD PROBABLY NOT THINK OF A POSITION     |
+  IT |                                                |
+  EN |BEYOND ASSEMBLYMAN.                             |
+  IT |                                                |
+
+=== record 251  finali  (righe da 48)
+  EN |ALTHOUGH WE WON THE WAR, POOR PUBLIC OPINION    |
+  IT |(originale)                                     |
+  EN |RESULTED FROM THE MASSIVE AMOUNT OF DAMAGES     |
+  IT |                                                |
+  EN |SUSTAINED AND WILL REMAIN WITH US FOR A LONG    |
+  IT |                                                |
+  EN |TIME TO COME.                                   |
+  IT |                                                |
+  EN |YOUR MISSIONS LEFT US WITH MANY CASUALTIES, MUCH|
+  IT |                                                |
+  EN |DAMAGE AND LOTS OF SCARED PEOPLE.               |
+  IT |                                                |
+  EN |YOU SHOULD PROBABLY CONSIDER TAKING AN         A|
+  IT |                                                |
+  EN |DMINISTRATIVE JOB.                              |
+  IT |                                                |
+
+=== record 252  finali  (righe da 48)
+  EN |THIS WAS AN EXTREMELY EXPENSIVE WAR!            |
+  IT |(originale)                                     |
+  EN |BILLIONS OF DOLLARS REQUIRED TO REPAIR OR       |
+  IT |                                                |
+  EN |REPLACE YOUR AIRCRAFT, PLUS THE COST            |
+  IT |                                                |
+  EN |OF AMMUNITION, TAKES THE TOTAL WAR COST         |
+  IT |                                                |
+  EN |WELL BEYOND THE EXPECTED AMOUNT!                |
+  IT |                                                |
+  EN |BECAUSE THIS DISPLAYS A LACK OF MONEY           |
+  IT |                                                |
+  EN |MANAGEMENT,YOU SHOULD PROBABLY STAY IN THE      |
+  IT |                                                |
+  EN |MILITARY AND FLUSH ANY BUSINESS PLANS.          |
+  IT |                                                |
+
+=== record 253  finali  (righe da 48)
+  EN |THE LARGE AMOUNTS OF CIVILIAN CASUALTIES        |
+  IT |(originale)                                     |
+  EN |AND ENVIRONMENTAL DAMAGE HAS RESULTED IN        |
+  IT |                                                |
+  EN |REVOLUTIONARY OUTBREAKS OF TERRORISM.           |
+  IT |                                                |
+  EN |THE PEOPLE REQUIRE MORE FROM THEIR COUNTRY AND  |
+  IT |                                                |
+  EN |ITS MILITARY LEADERS! DON'T ENTER POLITICS, AS  |
+  IT |                                                |
+  EN |IT WOULD REQUIRE A MINOR MIRACLE TO REGAIN      |
+  IT |                                                |
+  EN |PUBLIC TRUST AND LOYALTY.                       |
+  IT |                                                |
+
+=== record 254  finali  (righe da 48)
+  EN |THE P.D.F. HAS LOST THIS WAR....                |
+  IT |(originale)                                     |
+  EN |THE ALIEN PLOT TO DESTROY ALLIED FORCES AND     |
+  IT |                                                |
+  EN |MANIPULATE ZARAK LEADERS HAS BEEN SUCCESSFUL.   |
+  IT |                                                |
+  EN |SURELY THEY WILL USE SIMILAR STRATEGIES IN      |
+  IT |                                                |
+  EN |OTHER AREAS OF THE GLOBE, EVENTUALLY CONQUERING |
+  IT |                                                |
+  EN |THE HUMAN RACE!!                                |
+  IT |                                                |
+  EN |IMAGINE THE PEOPLE LIVING AMONG ALIENS, EATING  |
+  IT |                                                |
+  EN |STRANGE FOOD AND EXISTING LIKE RATS IN THE DARK.|
+  IT |                                                |
+  EN |IS THIS THE END, OR JUST THE BEGINNING....      |
+  IT |                                                |
+
+=== record 255  credits  (righe da 48)
+  EN |                                                |
+  IT |(originale)                                     |
+  EN |                                                |
+  IT |                                                |
+  EN |                                                |
+  IT |                                                |
+  EN |                                                |
+  IT |                                                |
+  EN |                                                |
+  IT |                                                |
+  EN |           AIR STRIKE PATROL STAFF              |
+  IT |                                                |
+  EN |                                                |
+  IT |                                                |
+  EN |PRODUCER                                T.SUZUKI|
+  IT |                                                |
+  EN |                                                |
+  IT |                                                |
+  EN |GAME DESIGN                             K.TAMURA|
+  IT |                                                |
+  EN |                                       T.KISHINE|
+  IT |                                                |
+  EN |                                                |
+  IT |                                                |
+  EN |DIRECTOR                             M.YOSHIHARA|
+  IT |                                                |
+  EN |                                                |
+  IT |                                                |
+  EN |PROGRAMMING / SHOOTING               Y.MATSUMOTO|
+  IT |                                                |
+  EN |              SIMULATION                T.SUZUKI|
+  IT |                                                |
+  EN |                                                |
+  IT |                                                |
+  EN |SOUND AND MUSIC                          J.ENOKI|
+  IT |                                                |
+  EN |                                                |
+  IT |                                                |
+  EN |GAME PRODUCER                            J.TSUDA|
+  IT |                                                |
+  EN |                                                |
+  IT |                                                |
+  EN |ART DIRECTOR                            K.TAMURA|
+  IT |                                                |
+  EN |                                                |
+  IT |                                                |
+  EN |ART DESIGN                            K.KOMIYAMA|
+  IT |                                                |
+  EN |                                        Y.NOMURA|
+  IT |                                                |
+  EN |                                        P.TAVATA|
+  IT |                                                |
+  EN |                                       T.YOSHIBA|
+  IT |                                                |
+  EN |                                       N.MISHIMA|
+  IT |                                                |
+  EN |                                         R.TSUDA|
+  IT |                                                |
+  EN |                                       T.KISHINE|
+  IT |                                                |
+  EN |                                                |
+  IT |                                                |
+  EN |3D MODELS                               K.SUZUKI|
+  IT |                                                |
+  EN |                                                |
+  IT |                                                |
+  EN |MASY/CASY SYSTEM                     M.YOSHIHARA|
+  IT |                                                |
+  EN |                                                |
+  IT |                                                |
+  EN |ENGINEERING SUPPORT                   H.WATANABE|
+  IT |                                                |
+  EN |                                        N.HARADA|
+  IT |                                                |
+  EN |                                     T.MOCHIZUKI|
+  IT |                                                |
+  EN |                                                |
+  IT |                                                |
+  EN |PRODUCT MANAGER                           M.OHNO|
+  IT |                                                |
+  EN |                                        T.TSUBOI|
+  IT |                                                |
+  EN |                                       T.SHIZUMA|
+  IT |                                                |
+  EN |                                         S.FUJII|
+  IT |                                                |
+  EN |                                                |
+  IT |                                                |
+  EN |PRODUCTION ASSISTANT                  M.IWATSUKA|
+  IT |                                                |
+  EN |                                                |
+  IT |                                                |
+  EN |QUALITY ASSURANCE                    T.KIRIBUCHI|
+  IT |                                                |
+  EN |                                                |
+  IT |                                                |
+  EN |ADVERTISEMENT                         Y.ISHIYAMA|
+  IT |                                                |
+  EN |                                                |
+  IT |                                                |
+  EN |ADVERTISE CG MODELING                  Y.KIKUCHI|
+  IT |                                                |
+  EN |                                                |
+  IT |                                                |
+  EN |PRODUCT TESTING                          M.CHIBA|
+  IT |                                                |
+  EN |                                      Y.NAKAMURA|
+  IT |                                                |
+  EN |                                      N.NAKAMURA|
+  IT |                                                |
+  EN |                                         M.MIURA|
+  IT |                                                |
+  EN |                                        A.MIZUNO|
+  IT |                                                |
+  EN |                                                |
+  IT |                                                |
+  EN |SPECIAL THANKS TO                     D.NAKAJIMA|
+  IT |                                                |
+  EN |                          CHUCK 'PACKART' VOWELL|
+  IT |                                                |
+  EN |                        TRACI 'CHIPMACK' McCARTY|
+  IT |                                                |
+  EN |                        CAROL 'CAL KITTY' HARRIS|
+  IT |                                                |
+  EN |                  CRAIG 'STRETCH McGEE' LUNDSKOG|
+  IT |                                                |
+  EN |                       ROLF 'SCOUTS OUT' HINTZKE|
+  IT |                                                |
+  EN |                         ROBERT 'NINJA MAN' BARR|
+  IT |                                                |
+  EN |                                      JAY ZINNER|
+  IT |                                                |
+  EN |                                JOHN F. LaSALVIA|
+  IT |                                                |
+  EN |                                JAY 'MAPLE' SAKA|
+  IT |                                                |
+  EN |                                      AND       |
+  IT |                                                |
+  EN |            DENNY 'LA BEAR' MOORE AND ASSOCIATES|
+  IT |                                                |
+  EN |                                   SETA USA INC.|
+  IT |                                                |
+  EN |                                                |
+  IT |                                                |
+  EN |                                                |
+  IT |                                                |
+  EN |                                                |
+  IT |                                                |
+  EN |               PRESENTED BY SETA                |
+  IT |                                                |
+  EN |                                                |
+  IT |                                                |
+  EN |                                                |
+  IT |                                                |
+  EN |                                                |
+  IT |                                                |
+

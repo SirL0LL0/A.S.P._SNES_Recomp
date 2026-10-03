@@ -1,0 +1,39 @@
+all'inizio ci sono i titoli delle missioni, sono 9 missioni, sono tutte su 2 righe, la prima è lunga 30 e va centrata, la seconda è lunga 24 e va centrata rispetto alla prima riga
+
+poi ci sono 4 screen missione:
+
+1° screen missione: 4 righe totali, le prime tre righe lunghezza max 56 e l'ultima riga lunghezza max 32
+
+2° screen missione: 4 righe totali, tutte iniziano con 14 spazi per l'allineamento, poi le prime tre righe lunghezza max 42 (56-14), l'ultima riga lunghezza max 29
+
+3° screen missione: 4 righe totale, le prime tre righe lunghezza ma 56 ma usabili solo le prime 19 posizioni e al posto 16 c'è obbligatoriamente il carattere ":" contenuto nella stringa, l'ultima riga lunghezza massima 19 sempre con il carattere ":" al posto 16
+
+poi iniziano gli screen "del sergente" sono 2.
+
+1° schermo: 4 righe, le prime 3 lunghezza max 56, la quarta riga lunghezza max 45
+
+2° schermo: 4 righe, le prime 3 lunghezza max 56, la quarta riga lunghezza max 19
+
+poi ci sono le schermate durante il gameplay, sono 4 righe, l'ultima solamente è variabile, si calcola partendo dalla fine fino a trovare almeno un doppio spazio, lì è l'inizio dell'ultima riga, dopo almeno 2 spazi, la rimanenza si spalma sulle prime tre righe
+
+poi dopo c'è altro testo ma non so come è codificato, suppong sempre con la stessa tecnica anche se ho visto che le scritte sembrano centrate, forse sono i finali del gioco
+
+da 0x7e1d alla fine ci sono i titoli di coda, non toccarli li traduco io
+
+
+
+
+Info per sbloccare contenuti:
+
+Unlock unused Cockpit C control scheme on game setup screen by terpsfan101
+
+7E00A2:04
+
+Unlock unused Mania difficulty on game setup screen by terpsfan101
+
+7E00A0:04
+
+
+
+
+

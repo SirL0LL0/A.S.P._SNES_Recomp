@@ -1,0 +1,18 @@
+# ROM e dump derivati da ROM: protetti da copyright, NON vanno nella repo
+*.sfc
+*.smc
+*.swc
+*.fig
+*.zip
+*.bin
+# Build, cache, binari
+__pycache__/
+*.pyc
+asp_run
+asp_run.exe
+build/
+out/
+# File locali (dump grandi rigenerabili dallo scanner)
+ASP_ascii_strings.json
+# Metti la ROM originale in rom/ (ignorata)
+rom/
