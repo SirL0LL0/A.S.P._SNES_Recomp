@@ -14,7 +14,8 @@ Il progetto è diviso in due parti:
 | Parte | Stato |
 |---|---|
 | Traduzione | v7. `translation/patches/ASP_ITA.ips` ricrea esattamente la ROM italiana di riferimento (CRC32 `7d4c26e3`) |
-| Recomp | Lo scaffolding è fatto, la generazione del C e la compilazione funzionano, l'eseguibile arriva alla schermata del titolo in italiano. Il port è in modalità *LLE-first*: quasi tutto il codice è ancora interpretato e va promosso ad AOT funzione per funzione (vedi sotto) |
+| Frame driver | Ancorato al raggio: NMI alla riga 225, IRQ dello scheduler a task gestito con il vero cambio di contesto. Arriva a briefing, mappa missione, Comando HQ e volo come l'emulatore di riferimento (`src/game_rtl.c`) |
+| Codice nativo (AOT) | Promosso in automatico da `tools/asp_auto.py`: copertura, poi promozione, validazione e bisezione delle funzioni che rompono il gioco (vedi [docs/AUTOMAZIONE.md](docs/AUTOMAZIONE.md)) |
 
 ## 1. Creare la ROM italiana
 
@@ -45,9 +46,9 @@ cmake --build build -j
 | Percorso | Contenuto |
 |---|---|
 | `translation/` | progetti `.json`, `correzioni.json`, patch IPS, testo sorgente, revisione |
-| `tools/` | `asp_core.py` (compressore e iniettore), `asp_import.py`, tool grafico v7, `apply_ips.py`, `regen.sh` |
+| `tools/` | `asp_auto.py` (pipeline automatica), `asp_disasm.py` (disassemblatore 65816), `asp_core.py` (compressore e iniettore), `asp_import.py`, tool grafico v7, `apply_ips.py`, `regen.sh` |
 | `scripts/` | script di estrazione e scansione usati durante la ricerca |
-| `emulator/` | sorgenti di `asp_run` (emulatore senza finestra per il tracciamento) |
+| `emulator/` | sorgenti di `asp_run`, l'emulatore di riferimento senza finestra, basato su Snaggletooth (submodule) con `--irqlog` |
 | `examples/` | scenari di input e riferimenti |
 | `docs/` | note tecniche e tabelle verificate. `RECOMP_SCAFFOLD_README.md` è la guida originale di snesrecomp |
 | `recomp/` | input dell'analisi: `bank*.cfg`, `symbols.toml` |
@@ -55,11 +56,19 @@ cmake --build build -j
 | `rom_identity.txt` | digest della ROM italiana, letti da build, regen e CI |
 | `snesrecomp/`, `recomp-ui/` | submodule del framework, fissati ai commit elencati in `framework_pins.txt` |
 
+## Automazione
+
+```sh
+python tools/asp_auto.py cycle examples/scenario_missione1.txt --orig "percorso/ROM USA.sfc"
+```
+
+Crea la ROM, compila, cattura la copertura, promuove il codice a nativo, lo valida e isola da sola le funzioni che non reggono. I dettagli sono in [docs/AUTOMAZIONE.md](docs/AUTOMAZIONE.md).
+
 ## Prossimi passi della recomp
 
-1. Individuare il main loop e l'NMI di A.S.P. (reset `$8100`, NMI `$82D5`) e sistemare il frame driver in `src/game_rtl.c`.
-2. Dare un nome alle routine in `recomp/symbols.toml` e promuoverle ad AOT con `emit = true`, poi rilanciare `tools/regen.sh`.
-3. Risolvere i *dispatch miss*, cioè i salti indiretti non risolti, dopo ogni esecuzione.
+1. Aggiungere scenari che coprano tutte le missioni: ogni scenario estende la copertura e quindi il codice nativo validato.
+2. Capire, una per una, le funzioni escluse da `asp_auto` (blocco in `recomp/symbols.toml`) e correggerne la causa in snesrecomp.
+3. Chiudere lo scarto di temporizzazione residuo usando un terzo emulatore di riferimento (snesref con bsnes o Mesen).
 4. Non modificare mai `src/gen/` a mano.
 
 ## Licenza

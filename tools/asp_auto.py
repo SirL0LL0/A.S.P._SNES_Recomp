@@ -218,17 +218,31 @@ def identity_value(key: str) -> str:
 
 
 def regen(extra_profiles=(), use_accepted=True, logfile=None) -> None:
+    """Rigenera src/gen con v2_emit.
+
+    I profili accettati (catture di build precedenti) entrano come
+    --historical-profile-manifest: v2_emit rifiuta di fondere come profilo
+    corrente catture di build diverse, ma ne conserva i semi come storici.
+    Le catture nuove (stessa build) entrano come --profile-manifest."""
     if not ROM_ITA.exists():
         die("rom/ASP_ITA.sfc mancante — esegui: asp_auto.py rom --orig <ROM USA>")
-    cmd = [PY, CLI, "generate", "--rom", ROM_ITA, "--cfg-dir", "recomp", "--out-dir", "src/gen",
-           "--funcs-h", "recomp/funcs.h", "--project-root", ROOT,
-           "--expected-crc32", identity_value("expected_crc32"),
-           "--expected-sha256", identity_value("expected_sha256")]
-    profiles = (accepted_profiles() if use_accepted else []) + [pathlib.Path(p) for p in extra_profiles]
-    for p in profiles:
-        cmd += ["--profile-manifest", p]
-    log(f"rigenero src/gen ({len(profiles)} profili di copertura)…")
-    run(cmd, cwd=ROOT, logfile=logfile or (RUNS / "logs" / "regen.log"))
+    d = digests(ROM_ITA.read_bytes())
+    if d["crc32"] != identity_value("expected_crc32") or d["sha256"] != identity_value("expected_sha256"):
+        die("rom/ASP_ITA.sfc non corrisponde a rom_identity.txt — se la traduzione e' cambiata: "
+            "asp_auto.py rom --orig <ROM USA> --update-identity")
+    logfile = logfile or (RUNS / "logs" / "regen.log")
+    tools = ROOT / "snesrecomp" / "tools"
+    cmd = [PY, tools / "v2_emit.py", "--rom", ROM_ITA, "--cfg-dir", ROOT / "recomp",
+           "--out-dir", ROOT / "src" / "gen", "--analysis-backend", "auto"]
+    hist = [p for p in accepted_profiles() if p.suffix == ".json"] if use_accepted else []
+    for p in hist:
+        cmd += ["--historical-profile-manifest", p]
+    for p in extra_profiles:
+        cmd += ["--profile-manifest", pathlib.Path(p).resolve()]
+    log(f"rigenero src/gen ({len(hist)} profili storici, {len(list(extra_profiles))} nuovi)…")
+    run(cmd, cwd=ROOT / "snesrecomp", logfile=logfile)
+    run([PY, tools / "v2_sync_funcs_h.py", "--cfg-dir", ROOT / "recomp", "--out", ROOT / "recomp" / "funcs.h"],
+        cwd=ROOT / "snesrecomp", logfile=pathlib.Path(str(logfile) + ".funcs_h"))
 
 
 def cmd_regen(a) -> None:
@@ -242,7 +256,7 @@ def parse_scenario(path: pathlib.Path) -> list[tuple[int, str | None]]:
     """Formato asp_run: 'frame N [1|2] tasti...' ; 'none' rilascia. Commenti con ';' o '#'."""
     events = []
     for raw in path.read_text(encoding="utf-8").splitlines():
-        line = re.split(r"[;#]", raw, 1)[0].strip()
+        line = re.split(r"[;#]", raw, maxsplit=1)[0].strip()
         if not line or not line.startswith("frame"):
             continue
         parts = line.split()
@@ -509,6 +523,19 @@ def validate_against(base: dict, cand: dict, window=180, threshold=6.0, max_pct=
     return {"ok": not problems, "problems": problems, "stats": st, "a": a, "b": b}
 
 
+def save_divergence_sheet(v: dict, path: pathlib.Path, n: int = 6) -> None:
+    """Prime n coppie divergenti: sopra la baseline, sotto il candidato."""
+    from PIL import Image
+    bad = [r for r in v["stats"]["rows"] if r["bad"]][:n]
+    if not bad:
+        return
+    sheet = Image.new("RGB", (256 * len(bad), 224 * 2 + 4), (60, 0, 0))
+    for i, r in enumerate(bad):
+        sheet.paste(Image.open(v["a"][r["a"]]).convert("RGB").resize((256, 224)), (256 * i, 0))
+        sheet.paste(Image.open(v["b"][r["b"]]).convert("RGB").resize((256, 224)), (256 * i, 228))
+    sheet.save(path)
+
+
 def cmd_run(a) -> None:
     for sc in a.scenario:
         run_recomp(pathlib.Path(sc), a.label, a.every, coverage=a.coverage)
@@ -596,6 +623,84 @@ def aot_nodes() -> set[int]:
     return out
 
 
+# Schemi riconosciuti nella ROM che il codice AOT non puo' eseguire: la
+# funzione che li contiene viene esclusa subito, senza bisezione.
+#
+# "Chiamata via RTL": la libreria C del gioco ("DESERT SWORD SYSTEM (C) 1992
+# OPUS CORP.") chiama codice calcolato a runtime spingendo un indirizzo di
+# ritorno COSTANTE che punta a un RTL della funzione stessa, poi spinge il
+# bersaglio e fa RTL. Lo usa per:
+#   - le copie di memoria: scrive MVN/MVP + RTL in direct page con i banchi
+#     decisi a runtime e ci "ritorna" ($80:91EE, $80:9235, $80:927C, ...);
+#   - le chiamate tramite puntatore a funzione ($80:9386).
+# L'interprete lo segue; un corpo AOT no (BRK a meta' istruzione o percorso
+# diverso). Firme: LDA #bank / PHA / REP #$20 / LDA #ret / PHA, oppure
+# PHK / PEA ret, con un RTL all'indirizzo ret dello stesso banco.
+RTL_CALL_NOTE = "chiamata via RTL a codice calcolato (libreria C: copie MVN/MVP in RAM, puntatori a funzione)"
+
+
+def _lorom_off(bank: int, addr: int) -> int:
+    return ((bank & 0x7F) << 15) | (addr & 0x7FFF)
+
+
+def lorom_pc24(offset: int) -> int:
+    return ((0x80 | (offset >> 15)) << 16) | (0x8000 | (offset & 0x7FFF))
+
+
+def pattern_sites() -> list[tuple[int, str]]:
+    rom = ROM_ITA.read_bytes()
+    out = []
+    lda_pha = re.compile(rb"\xA9([\x00-\x3F\x80-\xBF])\x48\xC2\x20\xA9(..)\x48", re.S)
+    for m in lda_pha.finditer(rom):
+        bank, ret = m.group(1)[0], int.from_bytes(m.group(2), "little")
+        o = _lorom_off(bank, ret)
+        if ret >= 0x8000 and o < len(rom) and rom[o] == 0x6B and (o >> 15) == (m.start() >> 15):
+            out.append((lorom_pc24(m.start()), RTL_CALL_NOTE))
+    phk_pea = re.compile(rb"\x4B\xF4(..)", re.S)
+    for m in phk_pea.finditer(rom):
+        ret = int.from_bytes(m.group(1), "little")
+        o = (m.start() & ~0x7FFF) | (ret & 0x7FFF)
+        if ret >= 0x8000 and o < len(rom) and rom[o] == 0x6B:
+            out.append((lorom_pc24(m.start()), RTL_CALL_NOTE))
+    return out
+
+
+def nodes_covering(sites: list[tuple[int, str]]) -> dict[int, str]:
+    """Funzioni AOT dell'ultima generazione che contengono uno dei siti."""
+    pm = json.loads((ROOT / "src" / "gen" / "program_manifest.json").read_text())
+    out = {}
+    for v in pm["nodes"].values():
+        if v.get("disposition") == "lle_only":
+            continue
+        lo, hi = v.get("min_pc24", 0) & 0x7FFFFF, v.get("max_pc24", 0) & 0x7FFFFF
+        for pc, note in sites:
+            if lo <= (pc & 0x7FFFFF) <= hi:
+                out[v["key"]["pc24"] & 0xFFFFFF] = note
+    return out
+
+
+def apply_pattern_exclusions(excl: dict[int, str], profiles) -> dict[int, str]:
+    """Genera con i profili, esclude le funzioni che contengono schemi noti,
+    ripete finche' nessuna nuova funzione ne contiene (escluderne una puo'
+    farne nascere un'altra che copre lo stesso sito)."""
+    sites = pattern_sites()
+    if not sites:
+        return excl
+    excl = dict(excl)
+    for i in range(6):
+        write_exclusions(excl)
+        regen(extra_profiles=profiles, logfile=RUNS / "logs" / f"regen_patterns{i}.log")
+        hit = {pc: n for pc, n in nodes_covering(sites).items() if pc not in excl}
+        if not hit:
+            break
+        log(f"   schemi noti: escludo {len(hit)} funzioni "
+            + ", ".join(f"${p >> 16:02X}:{p & 0xFFFF:04X}" for p in sorted(hit)))
+        stamp = time.strftime("%Y-%m-%d")
+        for pc, note in hit.items():
+            excl[pc] = f"asp_auto {stamp}: {note}"
+    return excl
+
+
 def build_quiet(tag: str) -> bool:
     rc = run(["cmake", "--build", ROOT / "build", "--config", "Release", "-j", str(os.cpu_count() or 4)],
              logfile=RUNS / "logs" / f"build_{tag}.log", check=False)
@@ -615,6 +720,8 @@ def candidate_ok(scenarios, baselines, profiles, excl, tag, every) -> tuple[bool
             json.dumps({k: v[k] for k in ("ok", "problems")} | {"stats": {
                 k: v["stats"][k] for k in ("keyframes", "divergent", "divergent_pct", "median_offset")}},
                 indent=2), encoding="utf-8")
+        if not v["ok"]:
+            save_divergence_sheet(v, pathlib.Path(res["dir"]) / "divergenze.png")
         shutil.rmtree(pathlib.Path(res["dir"]) / "dumps", ignore_errors=True)
         if not v["ok"]:
             problems += [f"{sc.name}: {p}" for p in v["problems"]]
@@ -645,19 +752,28 @@ def cmd_promote(a) -> None:
 
     # 2) cattura copertura con il codice attualmente accettato
     log("== 2/5 cattura copertura")
-    regen(logfile=RUNS / "logs" / "regen_current.log")
+    # Lo stato accettato (profili storici + esclusioni, schemi noti compresi)
+    # deve essere valido prima di misurarlo: una cattura su una build che esce
+    # dai binari esegue meno codice e falsa sia i semi sia la misura.
+    excl = apply_pattern_exclusions(excl, [])
     if not build_quiet("current"):
         die("la build corrente non compila")
     before = aot_nodes()
     new_profiles, interp_before = [], 0
     for sc in scenarios:
         r = run_recomp(sc, "capture", every, coverage=True)
+        v = validate_against(baselines[sc], r)
+        if not v["ok"]:
+            save_divergence_sheet(v, pathlib.Path(r["dir"]) / "divergenze.png")
+            die(f"lo stato accettato non supera la validazione su {sc.name}: {'; '.join(v['problems'])} "
+                f"(vedi {r['dir']})")
         if "coverage" in r:
             new_profiles += [pathlib.Path(r["coverage"]["json"]), pathlib.Path(r["coverage"]["jsonl"])]
             interp_before += r["interpreted"]["instructions"]
 
-    # 3) promozione con i nuovi profili
+    # 3) promozione con i nuovi profili (prima escludendo gli schemi noti)
     log("== 3/5 promozione AOT con i nuovi profili")
+    excl = apply_pattern_exclusions(excl, new_profiles)
     ok, problems = candidate_ok(scenarios, baselines, new_profiles, excl, "full", every)
     added = aot_nodes() - before
     log(f"nuove funzioni AOT: {len(added)}")
@@ -728,8 +844,9 @@ def cmd_promote(a) -> None:
         report["interpreted_after"] = after
         if interp_before:
             report["interpreted_reduction_pct"] = round(100.0 * (1 - after / interp_before), 1)
+        pct = report.get("interpreted_reduction_pct")
         log(f"OK: {report['aot_functions']} funzioni AOT, istruzioni interpretate "
-            f"{interp_before:,} -> {after:,}" + (f" (-{report.get('interpreted_reduction_pct')}%)" if interp_before else ""))
+            f"{interp_before:,} -> {after:,}" + (f" ({-pct:+.1f}%)" if pct is not None else ""))
     else:
         log(f"FALLITO: {problems} — ripristino le esclusioni precedenti")
         write_exclusions(read_exclusions())

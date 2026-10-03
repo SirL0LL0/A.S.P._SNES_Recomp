@@ -48,6 +48,7 @@
 #include "common_cpu_infra.h"
 #include "common_rtl.h"          /* SimpleHdma_*, g_snesrecomp_last_hdmaen */
 #include "cpu_state.h"
+#include "snes/cart.h"
 #include "snes/dma.h"
 #include "snes/interp_bridge.h"
 #include "snes/ppu.h"
@@ -224,12 +225,15 @@ static void game_run_interrupt(const char *what, uint32_t vector, uint64_t frame
 static uint64_t cycles_to_next_vblank(void)
 {
     const uint32_t v = g_snes->vPos, h = g_snes->hPos;
-    const uint32_t lines = (GAME_VBLANK_LINE + GAME_FIELD_LINES - v) % GAME_FIELD_LINES;
-    uint64_t c = (uint64_t)lines * GAME_LINE_CLOCKS;
-    c = c > h ? c - h : 0;
-    if (c < GAME_LINE_CLOCKS)            /* at/just past the edge: next field */
-        c += (uint64_t)GAME_FIELD_LINES * GAME_LINE_CLOCKS;
-    return c;
+    uint32_t lines = (GAME_VBLANK_LINE + GAME_FIELD_LINES - v) % GAME_FIELD_LINES;
+    /* On the vblank line itself (the normal case at a frame boundary) the
+     * next edge is a whole field away. Measuring from the line START — not
+     * from "now" — lands every frame on dot 0 of line 225; adding a fixed
+     * field length instead kept the first frame's horizontal phase and let
+     * the field's short scanline drift it (measured: dot 1248 by frame 1500). */
+    if (lines == 0)
+        lines = GAME_FIELD_LINES;
+    return (uint64_t)lines * GAME_LINE_CLOCKS - h;
 }
 
 /* ── HDMA time ──────────────────────────────────────────────────────────
@@ -268,11 +272,134 @@ static void charge_hdma_debt(uint64_t frame_end)
     snes_sync_master_clock(g_snes, target);
 }
 
+/* ── Idle loops ─────────────────────────────────────────────────────────
+ * A.S.P. waits for the next field in tight WRAM polls:
+ *
+ *     LDA $0202 / CMP $0202 / BEQ -5     NMI counter (4 sites)
+ *     LDA $06A9 / BEQ -5 (BNE/BPL/BMI)   flags its tasks set (9 sites)
+ *
+ * The framework's quiescent detector deliberately treats every read of the
+ * low-WRAM mirror ($0000-$1FFF in the system banks) as dynamic, so it never
+ * parks these, and the interpreter spins until the frame deadline: measured,
+ * 46% of all interpreted instructions on a mission-1 route were this spin.
+ *
+ * With I=1 and a loop that only reads, nothing but the NMI can change WRAM
+ * (no CPU writes, no DMA without a CPU write), so the field's remaining time
+ * passes exactly as on hardware if we advance the clock to the field's end
+ * the moment the loop is about to iterate again. A pre-opcode hook — the
+ * bridge's supported extension point — does that at the loop head. With I=0
+ * an IRQ could end the wait mid-field, so the loop is left to run.
+ *
+ * The sites are found by scanning the ROM at boot, not hard-coded. The SPC
+ * port handshake ($2140 polls) is a device wait and is never matched.
+ * ASP_IDLE_SKIP=0 disables this for A/B comparison. */
+typedef struct {
+    uint32_t pc24;      /* loop head: where the hook fires */
+    uint16_t addr;      /* polled WRAM address (low mirror) */
+    uint8_t cmp_a;      /* 1: LDA/CMP/BEQ — loops while WRAM == A */
+    uint8_t branch;     /* LDA/Bxx form: F0 BEQ, D0 BNE, 10 BPL, 30 BMI */
+} IdleLoop;
+
+static IdleLoop g_idle[32];
+static int g_idle_count;
+static uint64_t g_idle_frame_end;
+static uint64_t g_idle_skips;
+
+static int idle_skip_enabled(void)
+{
+    static int v = -1;
+    if (v < 0) {
+        const char *e = getenv("ASP_IDLE_SKIP");
+        v = (e && *e == '0') ? 0 : 1;
+    }
+    return v;
+}
+
+static void idle_hook(CpuState *cpu, uint32_t pc24)
+{
+    int i;
+    if (!cpu->_flag_I || cpu->emulation || cpu->master_cycles >= g_idle_frame_end)
+        return;
+    for (i = 0; i < g_idle_count; i++) {
+        const IdleLoop *l = &g_idle[i];
+        uint32_t v, a;
+        int loops;
+        if ((l->pc24 & 0x7FFFFFu) != (pc24 & 0x7FFFFFu))
+            continue;
+        v = g_ram[l->addr];
+        if (!cpu->m_flag)
+            v |= (uint32_t)g_ram[(uint16_t)(l->addr + 1u)] << 8;
+        if (l->cmp_a) {
+            a = cpu->m_flag ? (cpu->A & 0xFFu) : cpu->A;
+            loops = (v == a);                       /* CMP equal -> BEQ back */
+        } else {
+            const uint32_t sign = cpu->m_flag ? 0x80u : 0x8000u;
+            switch (l->branch) {
+            case 0xF0: loops = (v == 0); break;     /* BEQ */
+            case 0xD0: loops = (v != 0); break;     /* BNE */
+            case 0x10: loops = !(v & sign); break;  /* BPL */
+            default:   loops = (v & sign) != 0; break; /* BMI */
+            }
+        }
+        if (loops) {
+            cpu->master_cycles = g_idle_frame_end;
+            g_idle_skips++;
+        }
+        return;
+    }
+}
+
+/* Scan the cartridge (LoROM, banks $80-$BF) for the two idle idioms on the
+ * low-WRAM mirror and register a hook at each loop head. */
+static void idle_loops_init(void)
+{
+    uint32_t bank, a, last_bank = 0xBF;
+    if (!idle_skip_enabled())
+        return;
+    /* Only the banks the ROM really fills: past them LoROM mirrors repeat
+     * the same code and would register every loop twice. */
+    if (g_snes->cart && g_snes->cart->romSize >= 0x8000u)
+        last_bank = 0x80u + (g_snes->cart->romSize >> 15) - 1u;
+    if (last_bank > 0xBF)
+        last_bank = 0xBF;
+    for (bank = 0x80; bank <= last_bank && g_idle_count < 32; bank++) {
+        for (a = 0x8000; a <= 0xFFF8 && g_idle_count < 32; a++) {
+            const uint32_t pc = (bank << 16) | a;
+            uint8_t b[8];
+            int k;
+            if (snes_read(g_snes, pc) != 0xAD)      /* LDA abs */
+                continue;
+            for (k = 0; k < 8; k++)
+                b[k] = snes_read(g_snes, pc + (uint32_t)k);
+            {
+                const uint16_t addr = (uint16_t)(b[1] | (b[2] << 8));
+                if (addr >= 0x2000)
+                    continue;
+                if (b[3] == 0xCD && b[4] == b[1] && b[5] == b[2] &&
+                    b[6] == 0xF0 && b[7] == 0xFB) {
+                    /* LDA addr / CMP addr / BEQ -5: the loop is CMP+BEQ. */
+                    g_idle[g_idle_count++] = (IdleLoop){pc + 3u, addr, 1, 0xF0};
+                } else if ((b[3] == 0xF0 || b[3] == 0xD0 || b[3] == 0x10 ||
+                            b[3] == 0x30) && b[4] == 0xFB) {
+                    /* LDA addr / Bxx -5: the loop is the whole pair. */
+                    g_idle[g_idle_count++] = (IdleLoop){pc, addr, 0, b[3]};
+                } else {
+                    continue;
+                }
+                interp_bridge_add_pre_opcode_hook(g_idle[g_idle_count - 1].pc24, idle_hook);
+            }
+        }
+    }
+    if (rtl_trace_enabled())
+        fprintf(stderr, "[asp_rtl] idle loops: %d registered\n", g_idle_count);
+}
+
 /* Run the guest through [now, frame_end) — the part of the field that is
  * CPU time — servicing IRQs as the beam latches them. */
 static void game_run_slices(uint64_t frame_end)
 {
     int slice;
+    g_idle_frame_end = frame_end;
     for (slice = 0; slice < GAME_MAX_SLICES_PER_FRAME; slice++) {
         if (g_cpu.master_cycles >= frame_end)
             break;
@@ -291,12 +418,40 @@ static void game_run_slices(uint64_t frame_end)
             if (resume)
                 g_resume_pc = resume;
         }
+        if (rtl_trace_level() >= 4)
+            fprintf(stderr, "[asp_rtl] f%d slice %d -> pc=$%06X master_left=%lld beam=%u,%u\n",
+                    snes_frame_counter, slice, (unsigned)g_resume_pc,
+                    (long long)(frame_end - g_cpu.master_cycles),
+                    (unsigned)g_snes->vPos, (unsigned)g_snes->hPos);
         if (g_snes->inIrq && !g_cpu._flag_I)
             continue;                    /* serviced at the top of the loop */
         /* Parked on WAI with no interrupt pending: nothing more can happen
          * until the next interrupt edge. */
         if (interp_bridge_lle_took_wai())
             break;
+        /* Parked on a stable poll: a loop that reads only WRAM/ROM (live MMIO
+         * reads never qualify), so only an interrupt can change what it is
+         * waiting for. A.S.P. spends most of every field like this — the
+         * vblank wait `LDA $0202 / CMP $0202 / BEQ` at $8C:827F runs with
+         * I=1 until the next NMI. Re-entering the guest just re-runs the spin
+         * (measured: ~46% of all interpreted instructions in a mission-1
+         * route). The bridge leaves the idle time to its owning scheduler
+         * ("advances idle hardware to the next timer comparator or vblank"):
+         * walk the beam toward the field's end. It stops early where a V-IRQ
+         * latches; if the guest can take it, the top of the loop does. */
+        if (interp_bridge_lle_took_quiescent()) {
+            int walk;
+            for (walk = 0; walk < 4 && g_snes->beamMasterLast < frame_end; walk++) {
+                snes_sync_master_clock(g_snes, frame_end);
+                if (g_snes->inIrq && !g_cpu._flag_I)
+                    break;
+            }
+            if (g_snes->beamMasterLast > g_cpu.master_cycles)
+                g_cpu.master_cycles = g_snes->beamMasterLast < frame_end
+                                    ? g_snes->beamMasterLast : frame_end;
+            if (!(g_snes->inIrq && !g_cpu._flag_I))
+                break;                   /* nothing can happen before vblank */
+        }
     }
 
     /* The guest parked (a vblank-wait spin or WAI) before the field ended.
@@ -337,6 +492,13 @@ void GameRunOneFrame(void)
          * partial field up to the first vblank. Reset runs with no interrupt
          * to deliver (no instruction stream exists yet, and NMI is off). */
         g_resume_pc = reset_vector();
+        {
+            static int idle_ready;
+            if (!idle_ready) {
+                idle_loops_init();
+                idle_ready = 1;
+            }
+        }
         frame_end = g_cpu.master_cycles + cycles_to_next_vblank();
         game_run_slices(frame_end);
         return;

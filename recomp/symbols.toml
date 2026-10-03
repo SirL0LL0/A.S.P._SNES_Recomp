@@ -19,3 +19,79 @@ addr = "82d5"
 bank = 0
 emit = false
 note = "Native NMI vector ($FFEA)"
+
+# >>> asp_auto: esclusioni AOT (generato, non modificare a mano)
+# Funzioni che, compilate AOT, hanno rotto la validazione automatica:
+# restano interpretate. Rimuovile da qui per riprovarle dopo un
+# aggiornamento di snesrecomp.
+
+[[func]]
+name = "asp_auto_lle_0091EE"
+addr = "91ee"
+bank = 0x00
+emit = false
+note = "asp_auto 2026-10-04: chiamata via RTL a codice calcolato (libreria C: copie MVN/MVP in RAM, puntatori a funzione)"
+
+[[func]]
+name = "asp_auto_lle_009235"
+addr = "9235"
+bank = 0x00
+emit = false
+note = "asp_auto 2026-10-04: chiamata via RTL a codice calcolato (libreria C: copie MVN/MVP in RAM, puntatori a funzione)"
+
+[[func]]
+name = "asp_auto_lle_00927C"
+addr = "927c"
+bank = 0x00
+emit = false
+note = "asp_auto 2026-10-04: chiamata via RTL a codice calcolato (libreria C: copie MVN/MVP in RAM, puntatori a funzione)"
+
+[[func]]
+name = "asp_auto_lle_0092CC"
+addr = "92cc"
+bank = 0x00
+emit = false
+note = "asp_auto 2026-10-04: chiamata via RTL a codice calcolato (libreria C: copie MVN/MVP in RAM, puntatori a funzione)"
+
+[[func]]
+name = "asp_auto_lle_009386"
+addr = "9386"
+bank = 0x00
+emit = false
+note = "asp_auto 2026-10-04: chiamata via RTL a codice calcolato (libreria C: copie MVN/MVP in RAM, puntatori a funzione)"
+
+[[func]]
+name = "asp_auto_lle_8091EE"
+addr = "91ee"
+bank = 0x80
+emit = false
+note = "asp_auto 2026-10-04: chiamata via RTL a codice calcolato (libreria C: copie MVN/MVP in RAM, puntatori a funzione)"
+
+[[func]]
+name = "asp_auto_lle_809235"
+addr = "9235"
+bank = 0x80
+emit = false
+note = "asp_auto 2026-10-04: chiamata via RTL a codice calcolato (libreria C: copie MVN/MVP in RAM, puntatori a funzione)"
+
+[[func]]
+name = "asp_auto_lle_80927C"
+addr = "927c"
+bank = 0x80
+emit = false
+note = "asp_auto 2026-10-04: chiamata via RTL a codice calcolato (libreria C: copie MVN/MVP in RAM, puntatori a funzione)"
+
+[[func]]
+name = "asp_auto_lle_8092CC"
+addr = "92cc"
+bank = 0x80
+emit = false
+note = "asp_auto 2026-10-04: chiamata via RTL a codice calcolato (libreria C: copie MVN/MVP in RAM, puntatori a funzione)"
+
+[[func]]
+name = "asp_auto_lle_809386"
+addr = "9386"
+bank = 0x80
+emit = false
+note = "asp_auto 2026-10-04: chiamata via RTL a codice calcolato (libreria C: copie MVN/MVP in RAM, puntatori a funzione)"
+# <<< asp_auto
