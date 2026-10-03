@@ -42,6 +42,7 @@
 #include "game_rtl.h"
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include "common_cpu_infra.h"
@@ -53,6 +54,7 @@
 #include "snes/snes.h"
 
 extern CpuState g_cpu;
+extern int snes_frame_counter;
 extern Ppu *g_ppu;
 
 /* One NTSC frame: 262 scanlines x 1364 master clocks. Bounds a productive
@@ -80,52 +82,207 @@ static uint32_t reset_vector(void) { return read_vector(0x00FFFCu); }
 static uint32_t nmi_vector(void)   { return read_vector(0x00FFEAu); }
 static uint32_t irq_vector(void)   { return read_vector(0x00FFEEu); }
 
-/* Run one interrupt handler to its RTI, entered as hardware enters it: the
- * frame is pushed at the PC the guest was interrupted AT, so the handler's
- * terminal RTI returns into that instruction stream. */
-static void game_run_interrupt(uint32_t vector, uint64_t frame_end)
+/* Optional driver log: ASP_RTL_TRACE=1 logs every delivered interrupt;
+ * ASP_RTL_TRACE=2 also logs each interpreted instruction inside IRQ handlers
+ * (bounded by ASP_RTL_TRACE_MAX, default 4000 lines). */
+static int rtl_trace_level(void)
 {
+    static int v = -1;
+    if (v < 0) {
+        const char *e = getenv("ASP_RTL_TRACE");
+        v = (e && *e) ? atoi(e) : 0;
+    }
+    return v;
+}
+static int rtl_trace_enabled(void) { return rtl_trace_level() > 0; }
+
+static long g_pc_trace_left = -1;
+static void rtl_pc_hook(uint32_t pc24, int m_flag, int x_flag)
+{
+    if (g_pc_trace_left < 0) {
+        const char *e = getenv("ASP_RTL_TRACE_MAX");
+        g_pc_trace_left = (e && *e) ? atol(e) : 4000;
+    }
+    if (g_pc_trace_left == 0)
+        return;
+    g_pc_trace_left--;
+    fprintf(stderr, "[asp_pc] f%d $%06X m%d x%d A=%04X X=%04X Y=%04X S=%04X P=%02X I=%d\n",
+            snes_frame_counter, (unsigned)pc24, m_flag, x_flag, (unsigned)g_cpu.A,
+            (unsigned)g_cpu.X, (unsigned)g_cpu.Y, (unsigned)g_cpu.S,
+            (unsigned)g_cpu.P, (int)g_cpu._flag_I);
+}
+
+/* Where did the interrupt handler's RTI actually go?
+ *
+ * A.S.P. runs a PREEMPTIVE TASK SCHEDULER in its V-IRQ handler ($00:CC04,
+ * reached through the WRAM trampoline at $0218): the handler saves the
+ * interrupted task's S, loads another task's S from the table at $1F00 and
+ * RTIs from THAT stack. The RTI therefore returns into a different task, not
+ * to the instruction that was interrupted.
+ *
+ * The framework's interrupt bridge stops at the RTI and deliberately discards
+ * the popped PC (snesrecomp interp_bridge.c, "host control flow deliberately
+ * discards guest PC/PB"), so a generic driver would resume the OLD task's PC
+ * on the NEW task's stack — the game then never leaves its forced-blank
+ * loading state (black screen after the title menu).
+ *
+ * The popped frame is still in WRAM just below the post-RTI S: P at S-3,
+ * PCL at S-2, PCH at S-1 and, in native mode, PB at S. Reading it back gives
+ * the real continuation. When no task switch happened it equals the PC we
+ * pushed, so this is exact for every interrupt, not just the scheduler's. */
+static uint32_t rti_return_pc(void)
+{
+    const uint16_t s = g_cpu.S;
+    uint32_t pcl, pch, pb;
+    if (g_cpu.emulation) {
+        /* 6502 mode: page-1 stack, 3-byte frame (P, PCL, PCH). */
+        pcl = g_ram[0x0100u | (uint8_t)(s - 1u)];
+        pch = g_ram[0x0100u | (uint8_t)s];
+        pb = 0;
+    } else {
+        pcl = g_ram[(uint16_t)(s - 2u)];
+        pch = g_ram[(uint16_t)(s - 1u)];
+        pb  = g_ram[s];
+    }
+    return (pb << 16) | (pch << 8) | pcl;
+}
+
+/* After a host-delivered interrupt: a yield inside the handler resumes there;
+ * a completed handler resumes wherever its RTI really went.
+ *
+ * interp_bridge_lle_resume_pc() is sticky — it still holds the previous
+ * slice's park PC after a handler that ran cleanly to its RTI — so "nonzero"
+ * cannot tell a yield from a completion. The resume-PC write counter can:
+ * the handler yielded iff it recorded a new resume PC. */
+static void game_after_interrupt(const char *what, uint32_t vector,
+                                 uint64_t resume_writes_before)
+{
+    const uint32_t before = g_resume_pc;
+    const int yielded = interp_bridge_resume_total() != resume_writes_before;
+    const uint32_t resume = yielded ? interp_bridge_lle_resume_pc() : 0;
+    if (resume)
+        g_resume_pc = resume;
+    else
+        g_resume_pc = rti_return_pc();
+    if (rtl_trace_enabled())
+        fprintf(stderr, "[asp_rtl] %s vec=$%06X from=$%06X -> $%06X%s S=$%04X%s\n",
+                what, (unsigned)vector, (unsigned)before, (unsigned)g_resume_pc,
+                resume ? " (yield)" : "", (unsigned)g_cpu.S,
+                (!resume && g_resume_pc != before) ? "  TASK SWITCH" : "");
+}
+
+/* Run one interrupt handler to its RTI, entered as hardware enters it: the
+ * frame is pushed at the PC the guest was interrupted AT. */
+static void game_run_interrupt(const char *what, uint32_t vector, uint64_t frame_end)
+{
+    const uint64_t writes = interp_bridge_resume_total();
+    const int pc_trace = rtl_trace_level() >= 2 && what[0] == 'I';
+    if (rtl_trace_enabled())
+        fprintf(stderr, "[asp_rtl] f%d deliver %s at $%06X P=%02X flagI=%d S=$%04X beam=%u,%u\n",
+                snes_frame_counter, what, (unsigned)g_resume_pc, (unsigned)g_cpu.P,
+                (int)g_cpu._flag_I, (unsigned)g_cpu.S,
+                (unsigned)g_snes->vPos, (unsigned)g_snes->hPos);
     cpu_push_interrupt_frame_at(&g_cpu, g_resume_pc);
     interp_bridge_set_master_deadline(frame_end);
+    if (pc_trace)
+        g_interp_bridge_pc_hook = rtl_pc_hook;
     (void)interp_bridge_run_interrupt(&g_cpu, vector);
+    if (pc_trace)
+        g_interp_bridge_pc_hook = NULL;
     /* Clearing matters: a deadline left armed stays true for every AOT block
      * prologue afterwards, which turns every compiled body into an immediate
      * yield-unwind. */
     interp_bridge_set_master_deadline(0);
-    {
-        uint32_t resume = interp_bridge_lle_resume_pc();
-        if (resume)
-            g_resume_pc = resume;
-    }
+    game_after_interrupt(what, vector, writes);
 }
 
-void GameRunOneFrame(void)
+/* ── Beam-anchored frame ─────────────────────────────────────────────────
+ *
+ * A host frame is one field measured from VBLANK START (scanline 225, the
+ * NMI edge) to the next vblank start, on the framework's own beam (g_snes
+ * vPos/hPos, advanced from the CPU master clock).
+ *
+ * The scaffold's generic driver measured a fixed 357368 master clocks from
+ * whatever the clock happened to read when the frame began. Boot starts the
+ * beam at line 0, so every NMI landed ~225 lines early, and each frame's
+ * overshoot carried into the next: measured on A.S.P., the NMI was delivered
+ * at scanline 8 after boot, drifting to line 27 by frame 2400. Nothing that
+ * depends on WHERE the beam is relative to the NMI — the V-IRQ the task
+ * scheduler runs on (line 239, 14 lines into vblank), HVBJOY/RDNMI polls, how
+ * much vblank time an NMI handler gets — can be right on such a clock.
+ * A.S.P. lost exactly that race at the first mission briefing: the scheduler
+ * IRQ landed before its first task was ready and the game sat in forced
+ * blank for good. Recomputing the end of every frame from the beam removes
+ * both the initial offset and the accumulated drift. */
+#define GAME_LINE_CLOCKS   1364u
+#define GAME_FIELD_LINES   262u
+#define GAME_VBLANK_LINE   225u
+
+/* Master clocks from the beam's current position to the next vblank start.
+ * Called at a frame boundary, where the beam sits at (or a few clocks past)
+ * line 225: that is a whole field away, never "now". */
+static uint64_t cycles_to_next_vblank(void)
 {
-    const uint64_t frame_end = g_cpu.master_cycles + GAME_MASTER_CYCLES_PER_FRAME;
-    const int booting = (g_resume_pc == 0);
-    int slice;
+    const uint32_t v = g_snes->vPos, h = g_snes->hPos;
+    const uint32_t lines = (GAME_VBLANK_LINE + GAME_FIELD_LINES - v) % GAME_FIELD_LINES;
+    uint64_t c = (uint64_t)lines * GAME_LINE_CLOCKS;
+    c = c > h ? c - h : 0;
+    if (c < GAME_LINE_CLOCKS)            /* at/just past the edge: next field */
+        c += (uint64_t)GAME_FIELD_LINES * GAME_LINE_CLOCKS;
+    return c;
+}
 
-    if (booting)
-        g_resume_pc = reset_vector();
+/* ── HDMA time ──────────────────────────────────────────────────────────
+ * On hardware HDMA halts the CPU in the H-blank of every visible line it
+ * transfers on: ~18 master clocks of per-line overhead when any channel is
+ * live, 8 per active channel, 8 per byte moved, and 8 (+16 indirect) when a
+ * channel loads a new table entry. The framework documents this cost (dma.c,
+ * "Estimated master clocks one frame of HDMA steals from the CPU") but does
+ * not charge it, so with HDMA on the guest gets ~5-10% more CPU per field
+ * than the console gives it — fewer lag frames, and every beam race it runs
+ * shifts. GameDrawPpuFrame walks the real tables; we count what it actually
+ * transferred and charge it to the next field's CPU time, after the NMI
+ * (vblank has no HDMA). ASP_HDMA_STEAL=0 turns it off for A/B comparison. */
+static uint64_t g_hdma_debt;
 
-    /* Vblank edge. NMITIMEN gates it: delivering before the guest has enabled
-     * NMI would land an interrupt frame in the middle of its SEI boot
-     * sequence. Nothing is delivered on the very first frame either — reset
-     * has not run yet, so there is no instruction stream to interrupt. */
-    if (!booting && g_snes->nmiEnabled) {
-        g_snes->inNmi = true;
-        game_run_interrupt(nmi_vector(), frame_end);
-        g_snes->inNmi = false;
+static int hdma_steal_enabled(void)
+{
+    static int v = -1;
+    if (v < 0) {
+        const char *e = getenv("ASP_HDMA_STEAL");
+        v = (e && *e == '0') ? 0 : 1;
     }
+    return v;
+}
 
-    /* Run the guest until it parks on a read-only poll (its vblank wait) or
-     * the frame's clock runs out. A single call is not enough: the guest
-     * typically parks several times per frame — on HVBJOY, on a DMA-complete
-     * flag, on its own state machine — and each park needs either an
-     * interrupt or simply more time. */
+static void charge_hdma_debt(uint64_t frame_end)
+{
+    uint64_t target;
+    if (!g_hdma_debt)
+        return;
+    target = g_cpu.master_cycles + g_hdma_debt;
+    if (target > frame_end)
+        target = frame_end;
+    g_hdma_debt = 0;
+    g_cpu.master_cycles = target;
+    snes_sync_master_clock(g_snes, target);
+}
+
+/* Run the guest through [now, frame_end) — the part of the field that is
+ * CPU time — servicing IRQs as the beam latches them. */
+static void game_run_slices(uint64_t frame_end)
+{
+    int slice;
     for (slice = 0; slice < GAME_MAX_SLICES_PER_FRAME; slice++) {
         if (g_cpu.master_cycles >= frame_end)
             break;
+        /* An IRQ latched (by the beam, inside the previous slice or in the
+         * NMI) and the guest has interrupts enabled: take it at this
+         * instruction boundary, before running anything else. */
+        if (g_snes->inIrq && !g_cpu._flag_I) {
+            game_run_interrupt("IRQ", irq_vector(), frame_end);
+            continue;
+        }
         interp_bridge_set_master_deadline(frame_end);
         interp_bridge_run_until_quiescent(&g_cpu, g_resume_pc);
         interp_bridge_set_master_deadline(0);
@@ -134,25 +291,83 @@ void GameRunOneFrame(void)
             if (resume)
                 g_resume_pc = resume;
         }
-
-        /* A raster IRQ asserted while the guest ran: service it before
-         * continuing, exactly as the CPU samples it between instructions. */
-        if (g_snes->inIrq && !g_cpu._flag_I) {
-            game_run_interrupt(irq_vector(), frame_end);
-            continue;
-        }
-        /* Parked with no interrupt pending and clock left over: the guest is
-         * waiting for the next vblank. Nothing more happens this frame. */
+        if (g_snes->inIrq && !g_cpu._flag_I)
+            continue;                    /* serviced at the top of the loop */
+        /* Parked on WAI with no interrupt pending: nothing more can happen
+         * until the next interrupt edge. */
         if (interp_bridge_lle_took_wai())
             break;
     }
+
+    /* The guest parked (a vblank-wait spin or WAI) before the field ended.
+     * On hardware it keeps spinning until the beam reaches vblank: advance
+     * the clock — and with it the beam, which still latches any IRQ due on
+     * the way — so the next NMI is delivered at scanline 225 and not early.
+     * The frame-boundary APU sync (RtlRunFrame) catches the SPC up over the
+     * same master-clock span. */
+    if (g_cpu.master_cycles < frame_end) {
+        g_cpu.master_cycles = frame_end;
+        snes_sync_master_clock(g_snes, frame_end);
+    }
 }
 
+void GameRunOneFrame(void)
+{
+    const int booting = (g_resume_pc == 0);
+    uint64_t frame_end;
+
+    /* Bring the beam up to the CPU clock before reading it. */
+    snes_sync_master_clock(g_snes, g_cpu.master_cycles);
+
+    {
+        /* ASP_RTL_TRACE_FROM/TO: trace interpreted instructions of the main
+         * program (not only interrupt handlers) inside a frame window. */
+        static long from = -2, to = -2;
+        if (from == -2) {
+            const char *f = getenv("ASP_RTL_TRACE_FROM"), *t = getenv("ASP_RTL_TRACE_TO");
+            from = (f && *f) ? atol(f) : -1;
+            to = (t && *t) ? atol(t) : from;
+        }
+        g_interp_bridge_pc_hook = (from >= 0 && snes_frame_counter >= from &&
+                                   snes_frame_counter <= to) ? rtl_pc_hook : NULL;
+    }
+
+    if (booting) {
+        /* Power-on: the beam starts at line 0, so the first frame is the
+         * partial field up to the first vblank. Reset runs with no interrupt
+         * to deliver (no instruction stream exists yet, and NMI is off). */
+        g_resume_pc = reset_vector();
+        frame_end = g_cpu.master_cycles + cycles_to_next_vblank();
+        game_run_slices(frame_end);
+        return;
+    }
+
+    /* Vblank edge: the beam is at scanline 225. NMITIMEN gates the NMI. */
+    frame_end = g_cpu.master_cycles + cycles_to_next_vblank();
+    if (rtl_trace_level() >= 3)
+        fprintf(stderr, "[asp_rtl] f%d frame start beam=%u,%u nmi=%d\n",
+                snes_frame_counter, (unsigned)g_snes->vPos,
+                (unsigned)g_snes->hPos, (int)g_snes->nmiEnabled);
+    if (g_snes->nmiEnabled) {
+        g_snes->inNmi = true;
+        game_run_interrupt("NMI", nmi_vector(), frame_end);
+        g_snes->inNmi = false;
+    }
+    charge_hdma_debt(frame_end);
+    game_run_slices(frame_end);
+}
+
+/* Presentation only. The field is rasterised from the PPU state the guest
+ * left at vblank, with HDMA re-run per line. It must not execute guest code:
+ * the V-IRQ was already latched by the beam and serviced in the CPU slices
+ * (game_run_slices). Running the handler again here — as the scaffold's
+ * generic driver did at line == VTIME — executes it twice per frame, and on
+ * A.S.P. that handler is the task scheduler (a second context switch per
+ * frame; the game programs VTIME 9, a visible line, in some scenes). */
 void GameDrawPpuFrame(void)
 {
     SimpleHdma hdma_chans[8];
     Dma *dma = g_snes->dma;
-    int trigger;
     int line, ch;
 
     /* Re-arm HDMA from the last $420C (HDMAEN) the guest wrote — typically
@@ -161,30 +376,29 @@ void GameDrawPpuFrame(void)
     for (ch = 0; ch < 8; ch++)
         SimpleHdma_Init(&hdma_chans[ch], &dma->channel[ch]);
 
-    /* Mid-frame raster split, if the guest programmed the V comparator. */
-    trigger = g_snes->vIrqEnabled ? (int)g_snes->vTimer : -1;
-
     /* From line 0, not line 1: starting at 1 leaves the top scanline holding
      * the previous frame's state, which shows up as a stripe of stale
-     * tilemap above a HUD. */
+     * tilemap above a HUD. HDMA runs in the H-blank before each line. */
     for (line = 0; line <= 224; line++) {
-        /* HDMA runs in the H-blank BEFORE each visible line, and the raster
-         * IRQ then selects the register set that line is drawn with — so
-         * both must precede ppu_runLine for this line, not follow it. */
-        for (ch = 0; ch < 8; ch++)
-            SimpleHdma_DoLine(&hdma_chans[ch]);
-        if (line == trigger) {
-            g_snes->inIrq = true;
-            cpu_push_interrupt_frame_at(&g_cpu, g_resume_pc);
-            (void)interp_bridge_run_interrupt(&g_cpu, irq_vector());
-            g_snes->inIrq = false;
-            {
-                uint32_t resume = interp_bridge_lle_resume_pc();
-                if (resume)
-                    g_resume_pc = resume;
+        uint32_t line_cost = 0;
+        for (ch = 0; ch < 8; ch++) {
+            SimpleHdma *c = &hdma_chans[ch];
+            if (c->table != NULL) {
+                const int reload = (c->rep_count & 0x7f) == 0;
+                const int repeat = (c->rep_count & 0x80) != 0;
+                static const uint8_t kLen[8] = {1, 2, 2, 4, 4, 4, 2, 4};
+                line_cost += 8;
+                if (reload)
+                    line_cost += 8 + ((c->mode & 0x40) ? 16 : 0);
+                SimpleHdma_DoLine(c);
+                if ((reload && c->table != NULL) || repeat)
+                    line_cost += 8u * kLen[c->mode & 7];
             }
-            trigger = g_snes->vIrqEnabled ? (int)g_snes->vTimer : -1;
         }
+        if (line_cost)
+            line_cost += 18;
+        if (hdma_steal_enabled())
+            g_hdma_debt += line_cost;
         ppu_runLine(g_ppu, line);
     }
 }
@@ -204,4 +418,5 @@ void GameSessionReset(void)
      * been fine" is the usual desync culprit, because single-player never
      * re-enters the boot path twice in one process. */
     g_resume_pc = 0;
+    g_hdma_debt = 0;
 }

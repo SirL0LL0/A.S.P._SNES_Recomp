@@ -6,3 +6,6 @@
 	path = recomp-ui
 	url = https://github.com/mstan/recomp-ui.git
 	branch = master
+[submodule "emulator/Snaggletooth"]
+	path = emulator/Snaggletooth
+	url = https://github.com/etroimcasso/Snaggletooth

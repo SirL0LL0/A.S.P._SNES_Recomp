@@ -15,6 +15,7 @@
 // * --vramwatch LO-HI : who writes VRAM words LO..HI (CPU instruction or DMA source) -> vramwrites.csv
 // * --dmalog  : log every general-purpose DMA transfer (frame, channel, source, bytes, B-bus, VRAM word) -> dma.csv
 // * --pcframe : list every instruction address executed during these frames (pcs_<frame>.txt)
+// * --irqlog  : log every NMI/IRQ the CPU takes (frame, scanline, vector, last instruction) -> irq.csv
 #include <cstdint>
 #include <span>
 #include <cstdio>
@@ -48,6 +49,11 @@ struct Watcher final : BusObserver {
   uint32_t opPc = 0;
   uint32_t frame = 0;
   std::set<uint32_t> pcFrames; std::map<uint32_t, std::set<uint32_t>> pcs;
+  // --irqlog: vector fetches ($FFEA NMI / $FFEE IRQ, native mode) and the
+  // instruction that ran just before the CPU took the interrupt.
+  bool irqLog = false; const Snes* machine = nullptr; uint32_t prevPc = 0;
+  struct Irq { uint32_t frame, line, vector, lastPc; };
+  std::vector<Irq> irqs;
   // (instruction address, data address) -> (first frame, count)
   std::map<std::pair<uint32_t, uint32_t>, std::pair<uint32_t, uint32_t>> hits;
   void access(const BusAccess& a) override {
@@ -56,7 +62,11 @@ struct Watcher final : BusObserver {
     if (a.source == AccessSource::Dma && !a.write && dmaLog) lastDmaSrc[a.channel & 7] = cur[a.channel & 7].src;
     if (a.write && vwLo <= vwHi) vramWrite(a);
     if (a.source != AccessSource::Cpu && a.source != AccessSource::Dma) return;
-    if (a.source == AccessSource::Cpu && a.kind == CycleKind::OpcodeFetch) { opPc = a.address; if (pcFrames.count(frame)) pcs[frame].insert(opPc); return; }
+    if (a.source == AccessSource::Cpu && a.kind == CycleKind::OpcodeFetch) { prevPc = opPc; opPc = a.address; if (pcFrames.count(frame)) pcs[frame].insert(opPc); return; }
+    if (irqLog && a.source == AccessSource::Cpu && !a.write &&
+        (a.address == 0x00FFEA || a.address == 0x00FFEE)) {
+      irqs.push_back({frame, machine ? machine->state().vpos : 0u, a.address, opPc});
+    }
     if (a.write) return;
     if (a.source == AccessSource::Cpu && a.kind != CycleKind::DataRead) return;
     uint32_t ad = a.address;
@@ -134,6 +144,7 @@ int main(int argc, char** argv) {
     else if (a == "--every") every = std::stoul(next());
     else if (a == "--pcframe") for (auto f : parseList(next())) w.pcFrames.insert(f);
     else if (a == "--dmalog") w.dmaLog = true;
+    else if (a == "--irqlog") w.irqLog = true;
     else if (a == "--poke") {        // frame:7EXXXX=AABB..
       std::string r = next(); auto c = r.find(':'), e = r.find('=');
       uint32_t fr = std::stoul(r.substr(0, c)), ad = std::stoul(r.substr(c + 1, e - c - 1), nullptr, 16);
@@ -183,7 +194,8 @@ int main(int argc, char** argv) {
   Snes machine(SnesConfig{.rom = rom, .region = Region::Ntsc});
   Frames fo; fo.shots = shots; fo.every = every; fo.out = out;
   machine.setFrameObserver(&fo);
-  if (!w.ranges.empty() || !w.pcFrames.empty() || w.dmaLog || w.vwLo <= w.vwHi) machine.setObserver(&w);
+  w.machine = &machine;
+  if (!w.ranges.empty() || !w.pcFrames.empty() || w.dmaLog || w.irqLog || w.vwLo <= w.vwHi) machine.setObserver(&w);
   machine.setJoypad(JoypadPort::One, Joypad{});
   const uint64_t perFrame = consoleClock(Region::Ntsc).masterCyclesPerFrame;
   Joypad cur{};
@@ -247,6 +259,15 @@ int main(int argc, char** argv) {
       else
         std::snprintf(b, sizeof b, "%06X,%06X,%u,%u\n", k.first, k.second, v.first, v.second);
       csv << b;
+    }
+  }
+  if (w.irqLog) {
+    std::ofstream o(out + "/irq.csv");
+    o << "frame,line,vector,last_pc\n";
+    for (auto& q : w.irqs) {
+      char b[96]; std::snprintf(b, sizeof b, "%u,%u,%s,%06X\n", q.frame, q.line,
+                                q.vector == 0x00FFEA ? "NMI" : "IRQ", q.lastPc & 0xFFFFFF);
+      o << b;
     }
   }
   if (w.dmaLog) {

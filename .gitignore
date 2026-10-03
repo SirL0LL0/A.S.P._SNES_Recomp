@@ -31,3 +31,10 @@ rom/
 /config.ini
 /input.ini
 .DS_Store
+
+# --- asp_auto ---
+# Risultati delle esecuzioni e profili di copertura: locali. I profili possono
+# contenere byte di codice copiati in RAM dalla ROM, quindi non vanno pubblicati.
+/runs/
+/coverage/
+/build-asp_run/
