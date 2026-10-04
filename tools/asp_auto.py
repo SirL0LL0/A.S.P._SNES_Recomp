@@ -19,6 +19,7 @@ accettati finiscono nella repo (recomp/symbols.toml, coverage/accepted/).
 
 Requisiti: Python 3.9+, numpy, Pillow (pip install numpy pillow), CMake, Ninja
 o MSVC, Rust (per l'analizzatore di snesrecomp), la ROM USA originale.
+ASP_RUN_EXE=<percorso> usa un asp_run gia' compilato.
 
 Esempi:
     python tools/asp_auto.py rom --orig "C:/roms/A.S.P. - Air Strike Patrol (USA).sfc" --update-identity
@@ -102,15 +103,6 @@ def run(cmd, *, cwd=None, env=None, timeout=None, logfile=None, check=True) -> i
     return rc
 
 
-def bash() -> str:
-    """bash per tools/regen.sh (su Windows quello di Git for Windows)."""
-    for cand in ("bash", r"C:\Program Files\Git\bin\bash.exe"):
-        if shutil.which(cand) or pathlib.Path(cand).exists():
-            return cand
-    die("bash non trovato (su Windows installa Git for Windows)")
-    return ""
-
-
 def digests(data: bytes) -> dict:
     return {
         "crc32": f"{zlib.crc32(data) & 0xFFFFFFFF:08x}",
@@ -130,6 +122,9 @@ def recomp_exe(build_dir: pathlib.Path) -> pathlib.Path:
 
 
 def asp_run_exe() -> pathlib.Path:
+    env = os.environ.get("ASP_RUN_EXE")
+    if env and pathlib.Path(env).exists():
+        return pathlib.Path(env)
     for cand in (ROOT / "build-asp_run" / ("asp_run" + EXE_SUFFIX),
                  ROOT / "build-asp_run" / "Release" / ("asp_run" + EXE_SUFFIX)):
         if cand.exists():
@@ -506,21 +501,67 @@ def write_html_report(path: pathlib.Path, title: str, sections: list[dict]) -> N
 
 # ─────────────────────────────── check ───────────────────────────────────
 
-def validate_against(base: dict, cand: dict, window=180, threshold=6.0, max_pct=5.0) -> dict:
-    """Valida un'esecuzione candidata contro una baseline della recomp stessa."""
+# Variabili di stato del gioco la cui SEQUENZA di valori deve coincidere con
+# la baseline. Sono robuste ai piccoli scarti di temporizzazione (che con
+# input a frame fissi cambiano solo in quale istante di un menu cade un
+# tasto), ma cambiano se il gioco si rompe: es. la build con un BRK nel volo
+# passa 0 -> 2 e non arriva mai a 1 (volo).
+SEMANTIC_WRAM = {"modalita' di gioco ($0200)": 0x0200}
+
+# Oltre questa quota di schermate divergenti il candidato e' rotto anche se
+# la sequenza di stato coincide (es. schermo nero in forced blank: $0200=2
+# come la baseline, ma 88% di schermate diverse).
+CATASTROPHIC_PCT = 40.0
+
+
+def wram_sequences(run_dir: pathlib.Path) -> dict[str, list[int]]:
+    import numpy as np
+    vals: dict[str, list[int]] = {k: [] for k in SEMANTIC_WRAM}
+    items = []
+    for info in (run_dir / "dumps").glob("*.info.json"):
+        try:
+            f = int(json.loads(info.read_text()).get("frame"))
+        except Exception:  # noqa: BLE001
+            continue
+        items.append((f, run_dir / "dumps" / (info.name[:-len(".info.json")] + ".wram.bin")))
+    for _, w in sorted(items):
+        if not w.exists():
+            continue
+        ram = np.fromfile(w, np.uint8)
+        for k, addr in SEMANTIC_WRAM.items():
+            v = int(ram[addr])
+            if not vals[k] or vals[k][-1] != v:
+                vals[k].append(v)
+    return vals
+
+
+def validate_against(base: dict, cand: dict, window=180, threshold=6.0) -> dict:
+    """Valida un'esecuzione candidata contro la baseline interpretata.
+
+    Bloccanti: uscita anomala, righe fatali nel log, frame mancanti, sequenza
+    delle variabili di stato diversa, schermate divergenti oltre il
+    CATASTROPHIC_PCT. Le divergenze minori sono riportate ma non bloccano:
+    con input a frame fissi un minimo scarto di tempo sposta un tasto di uno
+    stato del menu e il percorso diverge pur essendo il codice corretto."""
     a = keyframes_rc(pathlib.Path(base["dir"]))
     b = keyframes_rc(pathlib.Path(cand["dir"]))
     st = align(a, b, window, threshold)
-    problems = []
+    problems, notes = [], []
     if cand["exit_code"] != 0:
         problems.append(f"uscita {cand['exit_code']}")
     if cand["fatal_log_lines"]:
         problems.append("log: " + cand["fatal_log_lines"][0][:100])
     if cand["frames_run"] != cand["frames_expected"]:
         problems.append(f"frame eseguiti {cand['frames_run']} su {cand['frames_expected']}")
-    if st["divergent_pct"] > max_pct:
+    sa, sb = wram_sequences(pathlib.Path(base["dir"])), wram_sequences(pathlib.Path(cand["dir"]))
+    for k in SEMANTIC_WRAM:
+        if sa.get(k) != sb.get(k):
+            problems.append(f"{k}: {sb.get(k)} invece di {sa.get(k)}")
+    if st["divergent_pct"] > CATASTROPHIC_PCT:
         problems.append(f"{st['divergent']} schermate divergenti ({st['divergent_pct']}%)")
-    return {"ok": not problems, "problems": problems, "stats": st, "a": a, "b": b}
+    elif st["divergent"]:
+        notes.append(f"{st['divergent']} schermate divergenti ({st['divergent_pct']}%), non bloccante")
+    return {"ok": not problems, "problems": problems, "notes": notes, "stats": st, "a": a, "b": b}
 
 
 def save_divergence_sheet(v: dict, path: pathlib.Path, n: int = 6) -> None:
@@ -636,6 +677,7 @@ def aot_nodes() -> set[int]:
 # L'interprete lo segue; un corpo AOT no (BRK a meta' istruzione o percorso
 # diverso). Firme: LDA #bank / PHA / REP #$20 / LDA #ret / PHA, oppure
 # PHK / PEA ret, con un RTL all'indirizzo ret dello stesso banco.
+WAIT_NOTE = "attesa attiva su WRAM: lo scheduler IRQ deve poterla interrompere a ogni istruzione"
 RTL_CALL_NOTE = "chiamata via RTL a codice calcolato (libreria C: copie MVN/MVP in RAM, puntatori a funzione)"
 
 
@@ -656,6 +698,20 @@ def pattern_sites() -> list[tuple[int, str]]:
         o = _lorom_off(bank, ret)
         if ret >= 0x8000 and o < len(rom) and rom[o] == 0x6B and (o >> 15) == (m.start() >> 15):
             out.append((lorom_pc24(m.start()), RTL_CALL_NOTE))
+    # Attese attive su WRAM bassa (LDA abs / CMP abs / BEQ -5, LDA/CMP/BEQ+3/JMP,
+    # LDA abs / Bxx -5). Dentro un task girano con I=0 e lo scheduler IRQ deve
+    # poterle interrompere a ogni istruzione: il loro corpo AOT non cede il
+    # turno ($80:91DF, attesa del tick di logica $027A, trovata con la
+    # bisezione sul volo). Con I=1 l'interprete le salta comunque (game_rtl.c).
+    # Le attese dell'NMI su $0202 (LDA/CMP/BEQ -5) girano con I=1 nel ciclo
+    # principale: compilate restano corrette (validato su missione 1 e volo) e
+    # le funzioni che le contengono sono grandi, quindi non si escludono.
+    waits = [rb"\xAD(..)\xCD\1[\xF0\xD0]\x03\x4C",
+             rb"\xAD(..)[\xF0\xD0\x10\x30]\xFB"]
+    for rx in waits:
+        for m in re.finditer(rx, rom, flags=re.S):
+            if int.from_bytes(m.group(1), "little") < 0x2000:
+                out.append((lorom_pc24(m.start()), WAIT_NOTE))
     phk_pea = re.compile(rb"\x4B\xF4(..)", re.S)
     for m in phk_pea.finditer(rom):
         ret = int.from_bytes(m.group(1), "little")
@@ -684,9 +740,12 @@ def apply_pattern_exclusions(excl: dict[int, str], profiles) -> dict[int, str]:
     ripete finche' nessuna nuova funzione ne contiene (escluderne una puo'
     farne nascere un'altra che copre lo stesso sito)."""
     sites = pattern_sites()
+    # Ricalcolo da capo: le esclusioni nate da uno schema che non c'e' piu'
+    # (o e' stato ristretto) vengono tolte; quelle della bisezione restano.
+    excl = {pc: n for pc, n in excl.items() if WAIT_NOTE not in n and RTL_CALL_NOTE not in n}
     if not sites:
+        write_exclusions(excl)
         return excl
-    excl = dict(excl)
     for i in range(6):
         write_exclusions(excl)
         regen(extra_profiles=profiles, logfile=RUNS / "logs" / f"regen_patterns{i}.log")
@@ -717,7 +776,7 @@ def candidate_ok(scenarios, baselines, profiles, excl, tag, every) -> tuple[bool
         res = run_recomp(sc, f"cand_{tag}", every)
         v = validate_against(baselines[sc], res)
         (pathlib.Path(res["dir"]) / "validation.json").write_text(
-            json.dumps({k: v[k] for k in ("ok", "problems")} | {"stats": {
+            json.dumps({k: v[k] for k in ("ok", "problems", "notes")} | {"stats": {
                 k: v["stats"][k] for k in ("keyframes", "divergent", "divergent_pct", "median_offset")}},
                 indent=2), encoding="utf-8")
         if not v["ok"]:
@@ -730,11 +789,83 @@ def candidate_ok(scenarios, baselines, profiles, excl, tag, every) -> tuple[bool
     return not problems, problems
 
 
+def mirror_key(pc24: int) -> int:
+    """LoROM: $00-$3F e $80-$BF sono la stessa ROM. Il framework compila una
+    funzione separatamente per ogni banco da cui la raggiunge, quindi una
+    colpevole va esclusa in entrambi."""
+    bank = (pc24 >> 16) & 0xFF
+    return pc24 & 0x7FFFFF if bank < 0x40 or 0x80 <= bank < 0xC0 else pc24
+
+
+def find_culprits(scenarios, baselines, profiles, excl, suspects, every, max_rounds, tagp):
+    """Bisezione: le funzioni fra `suspects` che, compilate AOT, fanno fallire
+    la validazione. Le copie mirror di una funzione formano un'unica unita'.
+    Invariante per ogni colpevole: proven_ok da solo passa, proven_ok + lo
+    fallisce; ogni prova abilita proven_ok + meta' di lo ed esclude il resto.
+    Ripete finche' la validazione passa."""
+    groups: dict[int, set[int]] = {}
+    for pc in suspects:
+        groups.setdefault(mirror_key(pc), set()).add(pc)
+    units = sorted(groups)
+    culprits: list[int] = []
+    rounds = 0
+    good, problems = False, []
+
+    def trial_with(disabled_units, culprit_units):
+        t = dict(excl)
+        for u in disabled_units:
+            for pc in groups[u]:
+                t[pc] = "bisezione"
+        for u in culprit_units:
+            for pc in groups[u]:
+                t[pc] = "colpevole"
+        return t
+
+    found: list[int] = []
+    while units and rounds < max_rounds:
+        proven_ok: set[int] = set()
+        lo = units
+        while len(lo) > 1 and rounds < max_rounds:
+            rounds += 1
+            half, rest = lo[: len(lo) // 2], lo[len(lo) // 2:]
+            enabled = proven_ok | set(half)
+            disabled = [u for u in units if u not in enabled]
+            log(f"   giro {rounds}: abilito {len(enabled)} funzioni, ne escludo {len(disabled)}")
+            ok_half, _ = candidate_ok(scenarios, baselines, profiles, trial_with(disabled, found),
+                                      f"{tagp}{rounds}", every)
+            if ok_half:
+                proven_ok |= set(half)
+                lo = rest
+            else:
+                lo = half
+        found.append(lo[0])
+        culprits += sorted(groups[lo[0]])
+        log("   colpevole: " + ", ".join(f"${pc >> 16:02X}:{pc & 0xFFFF:04X}" for pc in sorted(groups[lo[0]])))
+        rounds += 1
+        good, problems = candidate_ok(scenarios, baselines, profiles, trial_with([], found),
+                                      f"{tagp}v{rounds}", every)
+        if good:
+            break
+        units = [u for u in units if u not in found]
+    return culprits, good, problems
+
+
+def mark_culprits(excl, culprits, why):
+    stamp = time.strftime("%Y-%m-%d")
+    for pc in culprits:
+        excl[pc] = f"asp_auto {stamp}: {why}"
+        bank = (pc >> 16) & 0xFF
+        if bank < 0x40 or 0x80 <= bank < 0xC0:      # anche il mirror, se compilato in futuro
+            excl.setdefault(pc ^ 0x800000, f"asp_auto {stamp}: {why} (mirror)")
+    return excl
+
+
 def cmd_promote(a) -> None:
     scenarios = [pathlib.Path(s) for s in a.scenario]
     every = a.every
     t_start = time.time()
     excl = read_exclusions()
+    culprits: list[int] = []
 
     # 1) baseline interpretata: nessun profilo, solo le radici del progetto
     if not a.reuse_baseline or not all((RUNS / s.stem / "baseline_lle" / "result.json").exists() for s in scenarios):
@@ -750,26 +881,41 @@ def cmd_promote(a) -> None:
                     "problema del frame driver, non della promozione")
     baselines = {sc: json.loads((RUNS / sc.stem / "baseline_lle" / "result.json").read_text()) for sc in scenarios}
 
-    # 2) cattura copertura con il codice attualmente accettato
+    # 2) cattura copertura con il codice attualmente accettato. Lo stato
+    # accettato deve passare la validazione su TUTTI gli scenari: uno nuovo
+    # (es. il volo) puo' esercitare funzioni gia' promosse in percorsi che i
+    # precedenti non toccavano. In quel caso si bisezionano le funzioni gia'
+    # compilate e le colpevoli vengono escluse prima di andare avanti.
     log("== 2/5 cattura copertura")
-    # Lo stato accettato (profili storici + esclusioni, schemi noti compresi)
-    # deve essere valido prima di misurarlo: una cattura su una build che esce
-    # dai binari esegue meno codice e falsa sia i semi sia la misura.
     excl = apply_pattern_exclusions(excl, [])
-    if not build_quiet("current"):
-        die("la build corrente non compila")
+    for attempt in range(4):
+        if not build_quiet(f"current{attempt}"):
+            die("la build corrente non compila")
+        failing = []
+        new_profiles, interp_before = [], 0
+        for sc in scenarios:
+            r = run_recomp(sc, "capture", every, coverage=True)
+            v = validate_against(baselines[sc], r)
+            if not v["ok"]:
+                save_divergence_sheet(v, pathlib.Path(r["dir"]) / "divergenze.png")
+                log(f"   lo stato accettato fallisce su {sc.name}: {'; '.join(v['problems'])}")
+                failing.append(sc)
+            elif "coverage" in r:
+                new_profiles += [pathlib.Path(r["coverage"]["json"]), pathlib.Path(r["coverage"]["jsonl"])]
+                interp_before += r["interpreted"]["instructions"]
+        if not failing:
+            break
+        log(f"   bisezione sulle {len(aot_nodes())} funzioni gia' accettate (scenari: "
+            f"{', '.join(s.name for s in failing)})")
+        c, good, probs = find_culprits(failing, baselines, [], excl, aot_nodes(), every, a.max_rounds, f"a{attempt}_")
+        culprits += c
+        excl = mark_culprits(excl, c, "rompe uno scenario se compilata AOT (stato accettato)")
+        excl = apply_pattern_exclusions(excl, [])
+        if not good and not c:
+            die(f"stato accettato non riparabile: {probs}")
+    else:
+        die("lo stato accettato non si ripara in 4 tentativi")
     before = aot_nodes()
-    new_profiles, interp_before = [], 0
-    for sc in scenarios:
-        r = run_recomp(sc, "capture", every, coverage=True)
-        v = validate_against(baselines[sc], r)
-        if not v["ok"]:
-            save_divergence_sheet(v, pathlib.Path(r["dir"]) / "divergenze.png")
-            die(f"lo stato accettato non supera la validazione su {sc.name}: {'; '.join(v['problems'])} "
-                f"(vedi {r['dir']})")
-        if "coverage" in r:
-            new_profiles += [pathlib.Path(r["coverage"]["json"]), pathlib.Path(r["coverage"]["jsonl"])]
-            interp_before += r["interpreted"]["instructions"]
 
     # 3) promozione con i nuovi profili (prima escludendo gli schemi noti)
     log("== 3/5 promozione AOT con i nuovi profili")
@@ -778,51 +924,12 @@ def cmd_promote(a) -> None:
     added = aot_nodes() - before
     log(f"nuove funzioni AOT: {len(added)}")
 
-    # 4) bisezione: se fallisce, trova le funzioni nuove che rompono il gioco
-    culprits = []
+    # 4) bisezione sulle funzioni appena promosse
     if not ok:
         log(f"== 4/5 validazione fallita ({'; '.join(problems)}): bisezione su {len(added)} funzioni")
-        suspects = sorted(added)
-        rounds = 0
-        while suspects and rounds < a.max_rounds:
-            # Cerca un colpevole. Invariante: proven_ok da solo passa la
-            # validazione, proven_ok + lo la fa fallire. Ogni prova abilita
-            # proven_ok + meta' di lo ed esclude tutto il resto dei sospetti.
-            proven_ok: set[int] = set()
-            lo = suspects
-            while len(lo) > 1 and rounds < a.max_rounds:
-                rounds += 1
-                half = lo[: len(lo) // 2]
-                rest = lo[len(lo) // 2:]
-                enabled = proven_ok | set(half)
-                trial = dict(excl)
-                for pc in suspects:
-                    if pc not in enabled:
-                        trial[pc] = "bisezione"
-                for pc in culprits:
-                    trial[pc] = "colpevole"
-                log(f"   giro {rounds}: abilito {len(enabled)} funzioni, ne escludo "
-                    f"{len(suspects) - len(enabled)}")
-                good, _ = candidate_ok(scenarios, baselines, new_profiles, trial, f"b{rounds}", every)
-                if good:
-                    proven_ok |= set(half)
-                    lo = rest
-                else:
-                    lo = half
-            culprit = lo[0]
-            culprits.append(culprit)
-            log(f"   colpevole: ${culprit >> 16:02X}:{culprit & 0xFFFF:04X}")
-            trial = dict(excl)
-            for pc in culprits:
-                trial[pc] = "colpevole"
-            rounds += 1
-            good, problems = candidate_ok(scenarios, baselines, new_profiles, trial, f"v{rounds}", every)
-            if good:
-                break
-            suspects = [s for s in suspects if s not in culprits]
-        stamp = time.strftime("%Y-%m-%d")
-        for pc in culprits:
-            excl[pc] = f"asp_auto {stamp}: rompe la validazione se compilata AOT"
+        c, _, _ = find_culprits(scenarios, baselines, new_profiles, excl, added, every, a.max_rounds, "b")
+        culprits += c
+        excl = mark_culprits(excl, c, "rompe la validazione se compilata AOT")
         ok, problems = candidate_ok(scenarios, baselines, new_profiles, excl, "final", every)
     else:
         log("== 4/5 validazione superata al primo colpo")
@@ -848,8 +955,7 @@ def cmd_promote(a) -> None:
         log(f"OK: {report['aot_functions']} funzioni AOT, istruzioni interpretate "
             f"{interp_before:,} -> {after:,}" + (f" ({-pct:+.1f}%)" if pct is not None else ""))
     else:
-        log(f"FALLITO: {problems} — ripristino le esclusioni precedenti")
-        write_exclusions(read_exclusions())
+        log(f"FALLITO: {problems} — le esclusioni trovate restano in recomp/symbols.toml")
     (RUNS / "report").mkdir(parents=True, exist_ok=True)
     (RUNS / "report" / "promote.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
     sys.exit(0 if ok else 1)

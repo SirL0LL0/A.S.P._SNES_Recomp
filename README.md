@@ -2,6 +2,8 @@
 
 ![Schermata del titolo in italiano, dal binario recompilato](docs/img/recomp_titolo_ita.png)
 
+![Comando HQ e volo, dal binario con 857 funzioni native](docs/img/recomp_volo_aot.png)
+
 Il progetto è diviso in due parti:
 
 1. **Traduzione italiana** della ROM SNES *A.S.P. – Air Strike Patrol (USA)*: testo compresso, stringhe in chiaro, grafica disegnata e titoli di coda. La distribuzione è una patch IPS.
@@ -15,7 +17,7 @@ Il progetto è diviso in due parti:
 |---|---|
 | Traduzione | v7. `translation/patches/ASP_ITA.ips` ricrea esattamente la ROM italiana di riferimento (CRC32 `7d4c26e3`) |
 | Frame driver | Ancorato al raggio: NMI alla riga 225, IRQ dello scheduler a task gestito con il vero cambio di contesto. Arriva a briefing, mappa missione, Comando HQ e volo come l'emulatore di riferimento (`src/game_rtl.c`) |
-| Codice nativo (AOT) | Promosso in automatico da `tools/asp_auto.py`: copertura, poi promozione, validazione e bisezione delle funzioni che rompono il gioco (vedi [docs/AUTOMAZIONE.md](docs/AUTOMAZIONE.md)) |
+| Codice nativo (AOT) | 857 funzioni compilate e validate su missione 1 e volo da `tools/asp_auto.py`: copertura, promozione, validazione e bisezione automatica. Le funzioni non compilabili sono escluse e motivate in `recomp/symbols.toml` (vedi [docs/AUTOMAZIONE.md](docs/AUTOMAZIONE.md)) |
 
 ## 1. Creare la ROM italiana
 

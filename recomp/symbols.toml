@@ -26,6 +26,20 @@ note = "Native NMI vector ($FFEA)"
 # aggiornamento di snesrecomp.
 
 [[func]]
+name = "asp_auto_lle_0091C8"
+addr = "91c8"
+bank = 0x00
+emit = false
+note = "asp_auto 2026-10-04: attesa attiva su WRAM: lo scheduler IRQ deve poterla interrompere a ogni istruzione"
+
+[[func]]
+name = "asp_auto_lle_0091DF"
+addr = "91df"
+bank = 0x00
+emit = false
+note = "asp_auto 2026-10-04: attesa attiva su WRAM: lo scheduler IRQ deve poterla interrompere a ogni istruzione"
+
+[[func]]
 name = "asp_auto_lle_0091EE"
 addr = "91ee"
 bank = 0x00
@@ -61,6 +75,34 @@ emit = false
 note = "asp_auto 2026-10-04: chiamata via RTL a codice calcolato (libreria C: copie MVN/MVP in RAM, puntatori a funzione)"
 
 [[func]]
+name = "asp_auto_lle_04B044"
+addr = "b044"
+bank = 0x04
+emit = false
+note = "asp_auto 2026-10-04: chiamata via RTL a codice calcolato (libreria C: copie MVN/MVP in RAM, puntatori a funzione)"
+
+[[func]]
+name = "asp_auto_lle_0CB53D"
+addr = "b53d"
+bank = 0x0c
+emit = false
+note = "asp_auto 2026-10-04: rompe il volo se compilata AOT (moltiplicatore PPU $211B/$211C, trovata con la bisezione)"
+
+[[func]]
+name = "asp_auto_lle_0F89A3"
+addr = "89a3"
+bank = 0x0f
+emit = false
+note = "asp_auto 2026-10-04: rompe uno scenario se compilata AOT (stato accettato)"
+
+[[func]]
+name = "asp_auto_lle_8091DF"
+addr = "91df"
+bank = 0x80
+emit = false
+note = "asp_auto 2026-10-04: attesa attiva su WRAM: lo scheduler IRQ deve poterla interrompere a ogni istruzione"
+
+[[func]]
 name = "asp_auto_lle_8091EE"
 addr = "91ee"
 bank = 0x80
@@ -94,4 +136,18 @@ addr = "9386"
 bank = 0x80
 emit = false
 note = "asp_auto 2026-10-04: chiamata via RTL a codice calcolato (libreria C: copie MVN/MVP in RAM, puntatori a funzione)"
+
+[[func]]
+name = "asp_auto_lle_8CB53D"
+addr = "b53d"
+bank = 0x8c
+emit = false
+note = "asp_auto 2026-10-04: rompe il volo se compilata AOT (moltiplicatore PPU $211B/$211C, trovata con la bisezione) (mirror)"
+
+[[func]]
+name = "asp_auto_lle_8F89A3"
+addr = "89a3"
+bank = 0x8f
+emit = false
+note = "asp_auto 2026-10-04: rompe uno scenario se compilata AOT (stato accettato)"
 # <<< asp_auto
