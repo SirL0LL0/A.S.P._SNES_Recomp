@@ -42,6 +42,21 @@
 #define SNES_GAME_VERSION "dev"
 #endif
 
+#include "desktop/config.h"   /* g_config */
+
+/* A.S.P. needs the per-pixel REFERENCE PPU renderer. The span renderer
+ * (config NewRenderer = 1, the scaffold default) drops the mission intro
+ * ("OPERAZIONE DESERT CORRADO / DISTRUGGI SITI RADAR") and the briefing text
+ * under the mission map: measured on the same build and route, the reference
+ * renderer shows both, the span renderer leaves them blank. Force it here,
+ * after config.ini is parsed and before the host derives its render flags,
+ * so an existing config.ini cannot switch it back. (The ToggleRenderer hotkey,
+ * `r` by default, still flips it at runtime: press it again to restore.) */
+static void asp_after_config(void)
+{
+    g_config.new_renderer = false;
+}
+
 static const SnesDesktopHostGame kGameHost = {
     .display_name        = "A.S.P. Air Strike Patrol ITA",
     .window_title        = "A.S.P. Air Strike Patrol ITA",
@@ -56,6 +71,7 @@ static const SnesDesktopHostGame kGameHost = {
     /* Battery-backed SRAM shows the launcher's SAVES panel. Leave NULL for a
      * title without one. The path is exe-relative. */
     .sram_path           = "saves/save.srm",
+    .after_config        = asp_after_config,
 };
 
 #ifndef __ANDROID__
