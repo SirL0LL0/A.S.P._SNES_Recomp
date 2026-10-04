@@ -40,6 +40,7 @@
  */
 
 #include "game_rtl.h"
+#include "asp_cheats.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -575,6 +576,9 @@ void GameRunOneFrame(void)
         return;                          /* diagnosis: draw the loaded PPU state */
 
     beam_render_arm();
+    /* RAM cheats from the mod package, written as a PAR device does: once
+     * per field, before the vblank handler runs. */
+    asp_cheats_apply();
     /* Bring the beam up to the CPU clock before reading it. */
     beam_catch_up(g_cpu.master_cycles);
 

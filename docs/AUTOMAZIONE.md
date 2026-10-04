@@ -81,6 +81,7 @@ Nella repo vanno solo le **decisioni**: le esclusioni in `recomp/symbols.toml`.
 | `ASP_RTL_TRACE_FROM=n`, `ASP_RTL_TRACE_TO=m` | registra le istruzioni del programma principale nei frame n..m |
 | `ASP_HDMA_STEAL=0` | disattiva l'addebito del tempo HDMA alla CPU (per confronti A/B) |
 | `ASP_IDLE_SKIP=0` | non salta le attese del frame successivo (per confronti A/B) |
+| `ASP_CHEATS=fuel,missiles,armor,vulcan,mania,cockpit_c` (o `all`) | attiva i trucchi senza passare dal launcher (test senza finestra) |
 | `ASP_HD=0` | presenta il campo 256x224 invece dell'immagine 512x448 |
 | `ASP_BEAM_RENDER=0` | disegna lo schermo a fine frame invece che riga per riga mentre passa il raggio (per confronti A/B: perde i cambi di modo a metà schermo) |
 | `ASP_FREEZE_AFTER_LOAD=1` | dopo il caricamento di uno stato non esegue più il gioco e ne disegna solo la grafica (diagnosi dei salvataggi) |
@@ -100,3 +101,18 @@ CMake le applica allo snesrecomp fissato al momento della configurazione (solo s
 - **Temporizzazione**: rispetto a `asp_run` la recomp resta in anticipo di circa 7 frame all'avvio, nell'attesa che il driver audio SPC700 sia pronto, e accumula circa l'1% durante le animazioni. Per stabilire chi dei due sbaglia serve un terzo riferimento, come bsnes o Mesen tramite `snesrecomp/tools/snesref`.
 - **Attese con I=0**: le attese dentro i task girano nell'interprete fino all'IRQ successivo. Costa poco (la recomp va a più del doppio del tempo reale anche salvando i dump), ma conta molte istruzioni interpretate. Saltarle richiede di riallineare l'APU a metà frame, cosa che con il framework attuale non è sicura.
 - **Copertura**: la validazione è forte solo quanto gli scenari. Una funzione promossa che gli scenari non eseguono non viene verificata.
+
+## Trucchi (mod `asp.trucchi`)
+
+`mods/preloaded/packages/asp.trucchi/1.0.0/manifest.toml`, codice in `src/asp_cheats.c`. Si attivano dalla pagina **Mod** del launcher, tutti spenti di default. Solo codici Pro Action Replay (scritture in RAM): i Game Genie modificano la ROM e restano fuori.
+
+| Trucco | Codice | Quando agisce |
+|---|---|---|
+| Carburante infinito | `7E080A:C0` `7E080B:A8` (serbatoio pieno) | in volo (`$0200` = 1) |
+| Missili infiniti | `7E081E:63` (99) | in volo |
+| Corazza infinita | `7E0806:20` | in volo |
+| Vulcan infinito | `7E081C:00` `7E081D:02` | in volo |
+| Sblocca difficoltà Mania | `7E00A0:04` (compare "ESPERTO") | menu (`$0200` = 0) |
+| Sblocca comandi Cockpit C | `7E00A2:04` | menu |
+
+Un PAR scrive sempre; qui le scritture sono limitate alla modalità di gioco giusta, perché il gioco riusa quegli indirizzi altrove (es. `$00A0` vale `$10` nel quartier generale). Le scritture avvengono dentro il frame emulato, prima dell'NMI: valgono anche per rewind e replay.

@@ -73,6 +73,7 @@ add_executable(ASPAirStrikePatrolItaSNESRecomp
     src/main.c
     src/host_contract.c
     src/game_rtl.c
+    src/asp_cheats.c
     src/gen_stubs.c
 )
 

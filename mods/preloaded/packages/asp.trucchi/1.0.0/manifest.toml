@@ -1,0 +1,79 @@
+format_version = 1
+id = "asp.trucchi"
+version = "1.0.0"
+name = "Trucchi (RAM)"
+author = "SirL0LL0"
+description = "Codici Pro Action Replay di A.S.P. come opzioni: solo scritture in RAM, nessuna modifica alla ROM. Ogni trucco agisce solo nella schermata a cui appartiene (volo o impostazione), perché il gioco riusa quella RAM altrove."
+license = "MIT"
+resolver = "declarative"
+save_compatibility = "shared"
+
+[[target]]
+game_id = "aspairstrikepatrolita-usa"
+rom_sha256 = "9616b36482af742b6747490780ab763cb708ed22d77326ac757e84fc02107387"
+
+[[feature]]
+id = "fuel"
+name = "Carburante infinito"
+description = "Il serbatoio resta pieno durante il volo (PAR 7E080A:C0 + 7E080B:A8)."
+group = "Volo"
+default_enabled = false
+
+[[plugin]]
+feature = "fuel"
+id = "asp.trucchi.fuel"
+
+[[feature]]
+id = "missiles"
+name = "Missili infiniti"
+description = "99 missili durante il volo (PAR 7E081E:63)."
+group = "Volo"
+default_enabled = false
+
+[[plugin]]
+feature = "missiles"
+id = "asp.trucchi.missiles"
+
+[[feature]]
+id = "armor"
+name = "Corazza infinita"
+description = "La corazza resta piena durante il volo (PAR 7E0806:20)."
+group = "Volo"
+default_enabled = false
+
+[[plugin]]
+feature = "armor"
+id = "asp.trucchi.armor"
+
+[[feature]]
+id = "vulcan"
+name = "Vulcan infinito"
+description = "Munizioni del cannone Vulcan sempre piene durante il volo (PAR 7E081C:00 + 7E081D:02)."
+group = "Volo"
+default_enabled = false
+
+[[plugin]]
+feature = "vulcan"
+id = "asp.trucchi.vulcan"
+
+[[feature]]
+id = "mania"
+name = "Sblocca difficoltà Mania"
+description = "Rende selezionabile la difficoltà inutilizzata \"Mania\" nella schermata di impostazione (PAR 7E00A0:04)."
+group = "Menu"
+default_enabled = false
+
+[[plugin]]
+feature = "mania"
+id = "asp.trucchi.mania"
+
+[[feature]]
+id = "cockpit_c"
+name = "Sblocca comandi Cockpit C"
+description = "Rende selezionabile lo schema di comandi inutilizzato \"Cockpit C\" nella schermata di impostazione (PAR 7E00A2:04)."
+group = "Menu"
+default_enabled = false
+
+[[plugin]]
+feature = "cockpit_c"
+id = "asp.trucchi.cockpit_c"
