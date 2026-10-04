@@ -52,6 +52,7 @@
 #include "snes/dma.h"
 #include "snes/interp_bridge.h"
 #include "snes/ppu.h"
+#include "snes/saveload.h"
 #include "snes/snes.h"
 
 extern CpuState g_cpu;
@@ -69,6 +70,10 @@ extern Ppu *g_ppu;
 
 /* 0 until the first frame has booted from the reset vector. */
 static uint32_t g_resume_pc;
+
+/* ASP_FREEZE_AFTER_LOAD=1: after a state load, stop running the guest and only
+ * draw the restored PPU state (diagnosing screenshots of old states). */
+static int g_freeze_after_load;
 
 static uint32_t read_vector(uint32_t addr)
 {
@@ -394,6 +399,84 @@ static void idle_loops_init(void)
         fprintf(stderr, "[asp_rtl] idle loops: %d registered\n", g_idle_count);
 }
 
+/* ── Beam racing ────────────────────────────────────────────────────────
+ * Each visible scanline is drawn at the moment the beam enters it, with the
+ * PPU registers as the guest has left them by then, and HDMA is run by the
+ * framework's beam at every H-blank. Drawing the whole field once at the end
+ * of the frame (the scaffold model, GameDrawPpuFrame below) applies the
+ * registers the guest wrote LAST to every line: A.S.P. switches BG mode and
+ * layers in the middle of the screen (mission briefing: satellite map on
+ * top, hi-res text below; HQ menu panels), and the end-of-frame draw showed
+ * the bottom half's settings over the whole screen. CPU writes always sync
+ * the beam before they land, so a line drawn here never sees a write the
+ * guest made after the beam passed it. ASP_BEAM_RENDER=0 restores the
+ * end-of-frame draw for A/B comparison. */
+static int beam_render_enabled(void)
+{
+    static int v = -1;
+    if (v < 0) {
+        const char *e = getenv("ASP_BEAM_RENDER");
+        v = (e && *e == '0') ? 0 : 1;
+    }
+    return v;
+}
+
+static void asp_beam_line(Snes *snes, uint32_t line)
+{
+    (void)snes;
+    if (!g_ppu)
+        return;
+    if (line == GAME_VBLANK_LINE) {
+        /* Vblank edge: OAM address reload and the field's interlace latch,
+         * as the PPU does at (0,225). Nothing called it in this host. */
+        ppu_checkOverscan(g_ppu);
+        ppu_handleVblank(g_ppu);
+        return;
+    }
+    if (line > 224 || !g_ppu->renderBuffer)
+        return;
+    if (line >= 1 && hdma_steal_enabled()) {
+        /* CPU time the HDMA that fed this line took (see charge_hdma_debt). */
+        static const uint8_t kLen[8] = {1, 2, 2, 4, 4, 4, 2, 4};
+        Dma *dma = snes->dma;
+        uint32_t cost = 0;
+        int ch;
+        for (ch = 0; ch < 8; ch++) {
+            const DmaChannel *c = &dma->channel[ch];
+            if (!c->hdmaActive || c->terminated)
+                continue;
+            cost += 8;
+            if (c->doTransfer)
+                cost += 8u * kLen[c->mode & 7];
+        }
+        if (cost)
+            g_hdma_debt += cost + 18;
+    }
+    ppu_runLine(g_ppu, (int)line);
+}
+
+static void beam_render_arm(void)
+{
+    if (!beam_render_enabled())
+        return;
+    /* Re-asserted every frame: a save state restores the Snes struct the
+     * HDMA ownership flag lives in. */
+    snes_set_beam_line_hook(asp_beam_line);
+    snes_set_hdma_beam_enabled(g_snes, true);
+}
+
+/* snes_sync_master_clock stops where the beam latches an IRQ and leaves the
+ * rest owed to the next sync. At a frame boundary there is no next sync
+ * before the NMI is delivered, so the beam lagged the CPU clock: measured on
+ * a user log, NMIs delivered at line 232 instead of 225. Keep walking (a
+ * pending IRQ does not stop the beam a second time). */
+static void beam_catch_up(uint64_t target)
+{
+    int k;
+    for (k = 0; k < 16 && g_snes->beamMasterLast < target; k++)
+        snes_sync_master_clock(g_snes, target);
+}
+
 /* Run the guest through [now, frame_end) — the part of the field that is
  * CPU time — servicing IRQs as the beam latches them. */
 static void game_run_slices(uint64_t frame_end)
@@ -460,10 +543,9 @@ static void game_run_slices(uint64_t frame_end)
      * the way — so the next NMI is delivered at scanline 225 and not early.
      * The frame-boundary APU sync (RtlRunFrame) catches the SPC up over the
      * same master-clock span. */
-    if (g_cpu.master_cycles < frame_end) {
+    if (g_cpu.master_cycles < frame_end)
         g_cpu.master_cycles = frame_end;
-        snes_sync_master_clock(g_snes, frame_end);
-    }
+    beam_catch_up(g_cpu.master_cycles);
 }
 
 void GameRunOneFrame(void)
@@ -471,8 +553,12 @@ void GameRunOneFrame(void)
     const int booting = (g_resume_pc == 0);
     uint64_t frame_end;
 
+    if (g_freeze_after_load)
+        return;                          /* diagnosis: draw the loaded PPU state */
+
+    beam_render_arm();
     /* Bring the beam up to the CPU clock before reading it. */
-    snes_sync_master_clock(g_snes, g_cpu.master_cycles);
+    beam_catch_up(g_cpu.master_cycles);
 
     {
         /* ASP_RTL_TRACE_FROM/TO: trace interpreted instructions of the main
@@ -501,6 +587,7 @@ void GameRunOneFrame(void)
         }
         frame_end = g_cpu.master_cycles + cycles_to_next_vblank();
         game_run_slices(frame_end);
+        interp_bridge_set_lle_resume_pc(g_resume_pc);
         return;
     }
 
@@ -517,6 +604,7 @@ void GameRunOneFrame(void)
     }
     charge_hdma_debt(frame_end);
     game_run_slices(frame_end);
+    interp_bridge_set_lle_resume_pc(g_resume_pc);
 }
 
 /* Presentation only. The field is rasterised from the PPU state the guest
@@ -531,6 +619,11 @@ void GameDrawPpuFrame(void)
     SimpleHdma hdma_chans[8];
     Dma *dma = g_snes->dma;
     int line, ch;
+
+    /* Beam racing drew the field while the frame ran. A frozen state
+     * (ASP_FREEZE_AFTER_LOAD) runs no frame, so it still draws here. */
+    if (beam_render_enabled() && !g_freeze_after_load)
+        return;
 
     /* Re-arm HDMA from the last $420C (HDMAEN) the guest wrote — typically
      * during the NMI just run. The framework records it for exactly this. */
@@ -565,12 +658,88 @@ void GameDrawPpuFrame(void)
     }
 }
 
+/* ── Save states, rewind, reset ─────────────────────────────────────────
+ * g_resume_pc (where the guest resumes) and g_hdma_debt live in this file,
+ * not in the emulated machine, so a save state or a rewind snapshot does not
+ * carry them by itself. Loading a state without them resumed the restored
+ * machine at the PRE-load PC: garbage (measured: a state loaded at frame 2
+ * re-entered the boot RAM clear at $00:811A). They travel as the title's
+ * extra chunk; for older states without it, the interpreter bridge's own
+ * resume PC (part of every state) is the best available continuation, and
+ * the driver mirrors g_resume_pc into it at each frame end for that case. */
+#define ASP_STATE_MAGIC 0x41535032u   /* "ASP2": + execution state */
+static int g_state_extra_loaded;
+
+/* The framework's file save state (Shift+F1..F10) stores the emulated
+ * machine (snes_saveload) — but not the recompiler's CpuState g_cpu, nor the
+ * interpreter bridge, nor the beam/APU pacing residue: a title whose C main
+ * loop owns control flow does not need them. A.S.P. resumes in the middle of
+ * interpreted guest code, so it does. The rollback path (rewind) already
+ * carries them; we append the same execution state to the title chunk. */
+static void asp_state_save_extra(struct SaveLoadInfo *sli)
+{
+    uint32_t magic = ASP_STATE_MAGIC;
+    sli->func(sli, &magic, sizeof magic);
+    sli->func(sli, &g_resume_pc, sizeof g_resume_pc);
+    sli->func(sli, &g_hdma_debt, sizeof g_hdma_debt);
+    RtlSaveExecutionState(sli);
+}
+
+static void asp_state_load_extra(struct SaveLoadInfo *sli, uint32_t version)
+{
+    uint32_t magic = 0;
+    (void)version;
+    sli->func(sli, &magic, sizeof magic);
+    if (magic != ASP_STATE_MAGIC)
+        return;
+    sli->func(sli, &g_resume_pc, sizeof g_resume_pc);
+    sli->func(sli, &g_hdma_debt, sizeof g_hdma_debt);
+    if (RtlLoadExecutionState(sli))
+        RtlApplyExecutionState();
+    g_state_extra_loaded = 1;
+}
+
+static void asp_on_state_loaded(uint32_t version)
+{
+    const char *fz = getenv("ASP_FREEZE_AFTER_LOAD");
+    (void)version;
+    if (!g_state_extra_loaded) {
+        /* A state written before the execution chunk existed: the machine is
+         * restored but the CPU registers are not, so execution cannot resume
+         * faithfully. The bridge's resume PC is the best guess. */
+        const uint32_t pc = interp_bridge_lle_resume_pc();
+        if (pc)
+            g_resume_pc = pc;
+        g_hdma_debt = 0;
+        fprintf(stderr, "[asp_rtl] stato senza blocco di esecuzione (versione vecchia): "
+                        "registri CPU non ripristinati, ripresa approssimata a $%06X\n",
+                (unsigned)g_resume_pc);
+    }
+    g_state_extra_loaded = 0;
+    g_freeze_after_load = (fz && *fz && *fz != '0');
+    if (rtl_trace_enabled())
+        fprintf(stderr, "[asp_rtl] f%d state loaded: resume at $%06X%s\n",
+                snes_frame_counter, (unsigned)g_resume_pc,
+                g_freeze_after_load ? " (freeze: solo disegno)" : "");
+}
+
+/* Console reset (Ctrl+R, script `reset`): boot again from the reset vector. */
+static void asp_hardware_reset(void)
+{
+    g_resume_pc = 0;
+    g_hdma_debt = 0;
+}
+
 const RtlGameInfo kGameInfo = {
     .title = "aspairstrikepatrolita",
     .initialize = NULL,
     .run_frame = &GameRunOneFrame,
     .draw_ppu_frame = &GameDrawPpuFrame,
     .save_name_prefix = "save",
+    .state_save_extra = asp_state_save_extra,
+    .state_load_extra = asp_state_load_extra,
+    .on_state_loaded = asp_on_state_loaded,
+    .hardware_reset = asp_hardware_reset,
 };
 
 void GameSessionReset(void)

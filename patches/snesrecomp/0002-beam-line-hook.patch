@@ -1,0 +1,61 @@
+diff --git a/runner/src/snes/snes.c b/runner/src/snes/snes.c
+index 8da20f1..9c98d21 100644
+--- a/runner/src/snes/snes.c
++++ b/runner/src/snes/snes.c
+@@ -68,6 +68,13 @@ void snes_set_hdma_beam_enabled(Snes *snes, bool enabled) {
+   snes->hdmaBeamOff = !enabled;
+ }
+ 
++/* Per-scanline hook (A.S.P. patch): called each time the beam enters a new
++ * scanline, with the new line number. A host that renders while the beam
++ * runs ("beam racing") draws line v here, after the HDMA for v has run at
++ * the previous line's H-blank and before any later CPU write lands. */
++static SnesBeamLineHook s_beam_line_hook;
++void snes_set_beam_line_hook(SnesBeamLineHook hook) { s_beam_line_hook = hook; }
++
+ static bool s_raster_irq_beam_off;
+ void snes_set_raster_irq_beam_enabled(bool enabled) {
+   s_raster_irq_beam_off = !enabled;
+@@ -462,6 +469,9 @@ static uint32_t snes_advance_beam(Snes *snes, uint32_t clocks, bool check_irq) {
+           h = 0; v++; if (v >= 262u) v = 0;
+           if (v == 225u) snes->rdnmiPending = true;
+           if (v == 0u) snes->rdnmiPending = false;
++          snes->hPos = (uint16_t)h;
++          snes->vPos = (uint16_t)v;
++          if (s_beam_line_hook) s_beam_line_hook(snes, v);
+         }
+         snes->hPos = (uint16_t)h;
+         snes->vPos = (uint16_t)v;
+@@ -508,6 +518,12 @@ static uint32_t snes_advance_beam(Snes *snes, uint32_t clocks, bool check_irq) {
+         }
+         snes->dbgLatchedThisField = 0;
+       }
++      if (s_beam_line_hook) {
++        snes->hPos = (uint16_t)h;
++        snes->vPos = (uint16_t)v;
++        snes->inVblank = v >= 225u;
++        s_beam_line_hook(snes, v);
++      }
+     }
+   }
+   snes->hPos = (uint16_t)h;
+diff --git a/runner/src/snes/snes.h b/runner/src/snes/snes.h
+index 013e785..f3f1ec2 100644
+--- a/runner/src/snes/snes.h
++++ b/runner/src/snes/snes.h
+@@ -10,6 +10,7 @@
+ 
+ typedef struct Snes Snes;
+ typedef void (*SnesMasterClockChargeHook)(Snes *snes, uint64_t clocks);
++typedef void (*SnesBeamLineHook)(Snes *snes, uint32_t line);
+ typedef void (*SnesWramWriteLogHook)(uint32_t ram_off, uint8_t value,
+                                      const char *via);
+ 
+@@ -151,6 +152,7 @@ void snes_set_master_clock_charge_hook(SnesMasterClockChargeHook hook);
+ void snes_set_wram_write_log_hook(SnesWramWriteLogHook hook);
+ /* Next comparator edge for hosts that deliver each raster IRQ separately. */
+ void snes_set_hdma_beam_enabled(Snes *snes, bool enabled);
++void snes_set_beam_line_hook(SnesBeamLineHook hook);
+ /* Raster-IRQ ownership. A frame-model host that runs the CPU half of a frame
+  * first and then delivers every H/V IRQ from its own raster walk, at the line
+  * the comparator names, owns the comparator: the CPU-half beam must not ALSO

@@ -27,6 +27,34 @@ if(NOT EXISTS "${SNESRECOMP_ROOT}/runner/runner.cmake")
         "snesrecomp submodule missing at ${SNESRECOMP_ROOT}.\n"
         "Run: git submodule update --init --recursive")
 endif()
+
+# A.S.P. fixes to the framework, kept as patches over the pinned snesrecomp
+# commit (patches/snesrecomp/*.patch) and applied here at configure time:
+#   0001  reference renderer: hi-res half-pixel blend + interlace deinterlace
+#   0002  per-scanline beam hook (the frame driver draws while the beam runs)
+# Idempotent: a patch that already applies in reverse is left alone.
+find_package(Git QUIET)
+file(GLOB ASP_FRAMEWORK_PATCHES "${CMAKE_SOURCE_DIR}/patches/snesrecomp/*.patch")
+list(SORT ASP_FRAMEWORK_PATCHES)
+foreach(asp_patch IN LISTS ASP_FRAMEWORK_PATCHES)
+    if(NOT GIT_EXECUTABLE)
+        message(FATAL_ERROR "git is required to apply ${asp_patch}")
+    endif()
+    execute_process(
+        COMMAND "${GIT_EXECUTABLE}" apply --reverse --check "${asp_patch}"
+        WORKING_DIRECTORY "${SNESRECOMP_ROOT}"
+        RESULT_VARIABLE asp_patch_applied OUTPUT_QUIET ERROR_QUIET)
+    if(NOT asp_patch_applied EQUAL 0)
+        execute_process(
+            COMMAND "${GIT_EXECUTABLE}" apply --whitespace=nowarn "${asp_patch}"
+            WORKING_DIRECTORY "${SNESRECOMP_ROOT}"
+            RESULT_VARIABLE asp_patch_rc)
+        if(NOT asp_patch_rc EQUAL 0)
+            message(FATAL_ERROR "cannot apply ${asp_patch} to ${SNESRECOMP_ROOT}")
+        endif()
+        message(STATUS "snesrecomp: applied ${asp_patch}")
+    endif()
+endforeach()
 # Mod packages are part of every project, not an option. The launcher's Mods
 # page, the .snesmod loader, the trusted-plugin registry and netplay's mod-set
 # gate all hang off this one switch; a build without it cannot exchange mods

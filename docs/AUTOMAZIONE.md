@@ -80,6 +80,18 @@ Nella repo vanno solo le **decisioni**: le esclusioni in `recomp/symbols.toml`.
 | `ASP_RTL_TRACE=2` | registra anche ogni istruzione interpretata dentro gli handler IRQ |
 | `ASP_RTL_TRACE_FROM=n`, `ASP_RTL_TRACE_TO=m` | registra le istruzioni del programma principale nei frame n..m |
 | `ASP_HDMA_STEAL=0` | disattiva l'addebito del tempo HDMA alla CPU (per confronti A/B) |
+| `ASP_IDLE_SKIP=0` | non salta le attese del frame successivo (per confronti A/B) |
+| `ASP_BEAM_RENDER=0` | disegna lo schermo a fine frame invece che riga per riga mentre passa il raggio (per confronti A/B: perde i cambi di modo a metà schermo) |
+| `ASP_FREEZE_AFTER_LOAD=1` | dopo il caricamento di uno stato non esegue più il gioco e ne disegna solo la grafica (diagnosi dei salvataggi) |
+
+## Patch al framework (`patches/snesrecomp/`)
+
+CMake le applica allo snesrecomp fissato al momento della configurazione (solo se non sono già applicate):
+
+| Patch | Cosa corregge |
+|---|---|
+| `0001-hires-blend-deinterlace` | renderer di riferimento: nei modi hi-res (5/6 e pseudo-hires, usati da menu e testi) fonde le due metà di ogni pixel invece di buttarne una; in interlacciato disegna entrambi i campi e li fonde (niente sfarfallio) |
+| `0002-beam-line-hook` | callback a ogni riga del raggio: il frame driver disegna ogni riga quando il raggio la raggiunge, con l'HDMA eseguito dal raggio, così i cambi di modo e di layer a metà schermo restano al loro posto |
 
 ## Limiti noti
 
