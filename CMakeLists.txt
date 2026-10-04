@@ -30,8 +30,10 @@ endif()
 
 # A.S.P. fixes to the framework, kept as patches over the pinned snesrecomp
 # commit (patches/snesrecomp/*.patch) and applied here at configure time:
-#   0001  reference renderer: hi-res half-pixel blend + interlace deinterlace
+#   0001  reference renderer: optional 512x448 output (hi-res dots, both
+#         interlaced fields)
 #   0002  per-scanline beam hook (the frame driver draws while the beam runs)
+#   0003  host: present_scale (present the 512x448 picture)
 # Idempotent: a patch that already applies in reverse is left alone.
 find_package(Git QUIET)
 file(GLOB ASP_FRAMEWORK_PATCHES "${CMAKE_SOURCE_DIR}/patches/snesrecomp/*.patch")
@@ -50,7 +52,9 @@ foreach(asp_patch IN LISTS ASP_FRAMEWORK_PATCHES)
             WORKING_DIRECTORY "${SNESRECOMP_ROOT}"
             RESULT_VARIABLE asp_patch_rc)
         if(NOT asp_patch_rc EQUAL 0)
-            message(FATAL_ERROR "cannot apply ${asp_patch} to ${SNESRECOMP_ROOT}")
+            message(FATAL_ERROR "cannot apply ${asp_patch} to ${SNESRECOMP_ROOT}: "
+                "an older version of the patches is applied there; run "
+                "`git -C snesrecomp checkout -- .` and configure again")
         endif()
         message(STATUS "snesrecomp: applied ${asp_patch}")
     endif()

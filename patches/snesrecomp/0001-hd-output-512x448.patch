@@ -1,0 +1,120 @@
+diff --git a/runner/src/snes/ppu.h b/runner/src/snes/ppu.h
+index 62012ef..5dd946f 100644
+--- a/runner/src/snes/ppu.h
++++ b/runner/src/snes/ppu.h
+@@ -562,6 +562,9 @@ void ppu_reset(Ppu* ppu);
+ bool ppu_checkOverscan(Ppu* ppu);
+ void ppu_handleVblank(Ppu* ppu);
+ void ppu_runLine(Ppu* ppu, int line);
++/* Reference renderer: also draw every line at full resolution (512 dots x
++ * 2 interlaced lines per scanline) into pixels; NULL turns it off. */
++void ppu_legacy_set_hd_target(uint32_t *pixels, int pitch_pixels);
+ 
+ /* Bind an additional XRGB8888 frame with 1..4 samples per native pixel in
+  * each dimension. Width is 256 + twice the current centering budget; height
+diff --git a/runner/src/snes/ppu_legacy.c b/runner/src/snes/ppu_legacy.c
+index 3959f52..c6390ca 100644
+--- a/runner/src/snes/ppu_legacy.c
++++ b/runner/src/snes/ppu_legacy.c
+@@ -76,7 +76,75 @@ void ppu_draw_whole_line_legacy(Ppu *ppu, int line) {
+   }
+ }
+ 
++/* Field used for interlaced BG fetches in modes 5/6. -1 = the hardware's
++ * current field (ppu->evenFrame); 0/1 = forced. */
++static int s_legacy_field = -1;
++
++/* Optional full-resolution target (A.S.P. patch): 512x448, one 32-bit pixel
++ * per hardware dot and per interlaced line. Hi-res modes put the subscreen
++ * on even dots and the main screen on odd dots, interlaced modes put field
++ * 0 on even lines and field 1 on odd lines ("weave": both fields at once,
++ * which is what the eye integrates on a CRT, without the 30 Hz flicker).
++ * Low-res content is simply doubled. NULL = off. */
++static uint32_t *s_hd_pixels;
++static int s_hd_pitch;   /* in pixels */
++
++void ppu_legacy_set_hd_target(uint32_t *pixels, int pitch_pixels) {
++  s_hd_pixels = pixels;
++  s_hd_pitch = pitch_pixels;
++}
++
++static void ppu_compute_pixel(Ppu *ppu, int x, int y,
++                              int *pr, int *pg, int *pb,
++                              int *pr2, int *pg2, int *pb2);
++
++static inline uint32_t ppu_legacy_rgb(Ppu *ppu, int r, int g, int b) {
++  const int br = PPU_brightness(ppu);
++  return (uint32_t)(((b << 3) | (b >> 2)) * br / 15) |
++         (uint32_t)(((g << 3) | (g >> 2)) * br / 15) << 8 |
++         (uint32_t)(((r << 3) | (r >> 2)) * br / 15) << 16;
++}
++
+ static void ppu_render_pixel(Ppu *ppu, int x, int y) {
++  int r, g, b, r2, g2, b2;
++  const bool hires = PPU_pseudoHires(ppu) || PPU_mode(ppu) == 5 || PPU_mode(ppu) == 6;
++  const bool interlaced = !PPU_forcedBlank(ppu) && PPU_interlace(ppu) &&
++                          (PPU_mode(ppu) == 5 || PPU_mode(ppu) == 6);
++  const bool hd = s_hd_pixels && x >= 0 && x < 256 && y >= 1 && y <= 224;
++
++  /* Field 0 for the 256x224 picture: stable (no alternation, no flicker). */
++  if (interlaced) s_legacy_field = 0;
++  ppu_compute_pixel(ppu, x, y, &r, &g, &b, &r2, &g2, &b2);
++  if (hd) {
++    uint32_t *row0 = s_hd_pixels + (size_t)(y - 1) * 2 * s_hd_pitch + x * 2;
++    uint32_t *row1 = row0 + s_hd_pitch;
++    row0[0] = ppu_legacy_rgb(ppu, hires ? r2 : r, hires ? g2 : g, hires ? b2 : b);
++    row0[1] = ppu_legacy_rgb(ppu, r, g, b);
++    if (interlaced) {
++      int fr, fg, fb, fr2, fg2, fb2;
++      s_legacy_field = 1;
++      ppu_compute_pixel(ppu, x, y, &fr, &fg, &fb, &fr2, &fg2, &fb2);
++      row1[0] = ppu_legacy_rgb(ppu, fr2, fg2, fb2);
++      row1[1] = ppu_legacy_rgb(ppu, fr, fg, fb);
++    } else {
++      row1[0] = row0[0];
++      row1[1] = row0[1];
++    }
++  }
++  s_legacy_field = -1;
++  /* 256-wide picture (thumbnails, rewind, dumps, and the screen when no
++   * full-resolution target is set): the main-screen dot, as before. */
++  int row = y - 1;
++  uint8 *pixelBuffer = (uint8 *)&ppu->renderBuffer[row * ppu->renderPitch + (x + ppu->extraLeftRight) * 4];
++  pixelBuffer[0] = ((b << 3) | (b >> 2)) * PPU_brightness(ppu) / 15;
++  pixelBuffer[1] = ((g << 3) | (g >> 2)) * PPU_brightness(ppu) / 15;
++  pixelBuffer[2] = ((r << 3) | (r >> 2)) * PPU_brightness(ppu) / 15;
++  pixelBuffer[3] = 0;
++}
++
++static void ppu_compute_pixel(Ppu *ppu, int x, int y,
++                              int *pr, int *pg, int *pb,
++                              int *pr2, int *pg2, int *pb2) {
+   int r = 0, r2 = 0;
+   int g = 0, g2 = 0;
+   int b = 0, b2 = 0;
+@@ -129,12 +197,8 @@ static void ppu_render_pixel(Ppu *ppu, int x, int y) {
+       r2 = r; g2 = g; b2 = b;
+     }
+   }
+-  int row = y - 1;
+-  uint8 *pixelBuffer = (uint8 *)&ppu->renderBuffer[row * ppu->renderPitch + (x + ppu->extraLeftRight) * 4];
+-  pixelBuffer[0] = ((b << 3) | (b >> 2)) * PPU_brightness(ppu) / 15;
+-  pixelBuffer[1] = ((g << 3) | (g >> 2)) * PPU_brightness(ppu) / 15;
+-  pixelBuffer[2] = ((r << 3) | (r >> 2)) * PPU_brightness(ppu) / 15;
+-  pixelBuffer[3] = 0;
++  *pr = r; *pg = g; *pb = b;
++  *pr2 = r2; *pg2 = g2; *pb2 = b2;
+ }
+ 
+ static int ppu_resolve_pixel(Ppu *ppu, int x, int y, bool sub,
+@@ -171,7 +235,9 @@ static int ppu_resolve_pixel(Ppu *ppu, int x, int y, bool sub,
+             lx += (sub || PPU_mosaicEnabled(ppu, curLayer)) ? 0 : 1;
+             if (PPU_interlace(ppu)) {
+               ly *= 2;
+-              ly += (ppu->evenFrame || PPU_mosaicEnabled(ppu, curLayer)) ? 0 : 1;
++              ly += PPU_mosaicEnabled(ppu, curLayer) ? 0
++                  : s_legacy_field >= 0 ? s_legacy_field
++                  : (ppu->evenFrame ? 0 : 1);
+             }
+           }
+           ly += ppu->vScroll[curLayer];

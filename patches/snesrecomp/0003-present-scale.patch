@@ -1,0 +1,31 @@
+diff --git a/runner/src/desktop/host_main.c b/runner/src/desktop/host_main.c
+index e1d9b54..4598523 100644
+--- a/runner/src/desktop/host_main.c
++++ b/runner/src/desktop/host_main.c
+@@ -1213,7 +1213,7 @@ static void WritePpm(const char *path, const uint8 *pixel_buffer, int pitch,
+ static void DrawPpuFrameWithPerf(void) {
+   double profile_start = ProfileStart();
+   PreparePpuFrame();
+-  const int render_scale = 1;
++  const int render_scale = g_game->present_scale > 1 ? g_game->present_scale : 1;
+   uint8 *present_buffer = 0;
+   int present_pitch = 0;
+ 
+diff --git a/runner/src/desktop/host_main.h b/runner/src/desktop/host_main.h
+index 347ba81..f11f4db 100644
+--- a/runner/src/desktop/host_main.h
++++ b/runner/src/desktop/host_main.h
+@@ -194,6 +194,13 @@ typedef struct SnesDesktopHostGame {
+   int (*prepare_netplay)(int from_lobby, char *reason, size_t reason_cap);
+   /* Validate that required title plugins actually activated before linking. */
+   int (*netplay_ready)(char *reason, size_t reason_cap);
++
++  /* Presentation surface scale (A.S.P. patch). 0/1: the presenter surface is
++   * frame_w x frame_h. 2: it is twice that in both directions, and draw_frame
++   * must fill it (dst is (2*frame_w) x (2*frame_h)); used to present hi-res
++   * and interlaced fields at their real 512x448 resolution. Everything else
++   * (thumbnails, rewind, dumps, window size) keeps the 1x field. */
++  int present_scale;
+ } SnesDesktopHostGame;
+ 
+ /* The whole program. Returns the process exit code. */

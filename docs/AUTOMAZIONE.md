@@ -81,6 +81,7 @@ Nella repo vanno solo le **decisioni**: le esclusioni in `recomp/symbols.toml`.
 | `ASP_RTL_TRACE_FROM=n`, `ASP_RTL_TRACE_TO=m` | registra le istruzioni del programma principale nei frame n..m |
 | `ASP_HDMA_STEAL=0` | disattiva l'addebito del tempo HDMA alla CPU (per confronti A/B) |
 | `ASP_IDLE_SKIP=0` | non salta le attese del frame successivo (per confronti A/B) |
+| `ASP_HD=0` | presenta il campo 256x224 invece dell'immagine 512x448 |
 | `ASP_BEAM_RENDER=0` | disegna lo schermo a fine frame invece che riga per riga mentre passa il raggio (per confronti A/B: perde i cambi di modo a metà schermo) |
 | `ASP_FREEZE_AFTER_LOAD=1` | dopo il caricamento di uno stato non esegue più il gioco e ne disegna solo la grafica (diagnosi dei salvataggi) |
 
@@ -90,7 +91,8 @@ CMake le applica allo snesrecomp fissato al momento della configurazione (solo s
 
 | Patch | Cosa corregge |
 |---|---|
-| `0001-hires-blend-deinterlace` | renderer di riferimento: nei modi hi-res (5/6 e pseudo-hires, usati da menu e testi) fonde le due metà di ogni pixel invece di buttarne una; in interlacciato disegna entrambi i campi e li fonde (niente sfarfallio) |
+| `0001-hd-output-512x448` | renderer di riferimento: disegna anche un'immagine 512x448 con ogni punto hi-res (modi 5/6 e pseudo-hires, usati da menu e testi) e, in interlacciato, entrambi i campi sulle righe pari/dispari: testo nitido e niente sfarfallio |
+| `0003-present-scale` | host: presenta l'immagine 512x448 (il resto, miniature e dump, resta 256x224) |
 | `0002-beam-line-hook` | callback a ogni riga del raggio: il frame driver disegna ogni riga quando il raggio la raggiunge, con l'HDMA eseguito dal raggio, così i cambi di modo e di layer a metà schermo restano al loro posto |
 
 ## Limiti noti

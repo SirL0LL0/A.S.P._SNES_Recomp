@@ -44,6 +44,9 @@
 
 #include "desktop/config.h"   /* g_config */
 
+#include <stdlib.h>
+#include <string.h>
+
 /* A.S.P. needs the per-pixel REFERENCE PPU renderer. The span renderer
  * (config NewRenderer = 1, the scaffold default) drops the mission intro
  * ("OPERAZIONE DESERT CORRADO / DISTRUGGI SITI RADAR") and the briefing text
@@ -57,7 +60,20 @@ static void asp_after_config(void)
     g_config.new_renderer = false;
 }
 
-static const SnesDesktopHostGame kGameHost = {
+/* Present the renderer's 512x448 picture (see asp_hd_enable). */
+static int asp_draw_frame(uint8_t *dst, size_t pitch, const uint8_t *field,
+                          int frame_w, int frame_h, double alpha)
+{
+    const uint32_t *src = asp_hd_frame();
+    int y;
+    (void)field; (void)frame_w; (void)frame_h; (void)alpha;
+    for (y = 0; y < kAspHdHeight; y++)
+        memcpy(dst + (size_t)y * pitch, src + (size_t)y * kAspHdWidth,
+               (size_t)kAspHdWidth * 4u);
+    return 1;
+}
+
+static SnesDesktopHostGame kGameHost = {
     .display_name        = "A.S.P. Air Strike Patrol ITA",
     .window_title        = "A.S.P. Air Strike Patrol ITA",
     .region              = SNESRECOMP_ROM_REGION,
@@ -72,6 +88,8 @@ static const SnesDesktopHostGame kGameHost = {
      * title without one. The path is exe-relative. */
     .sram_path           = "saves/save.srm",
     .after_config        = asp_after_config,
+    .draw_frame          = asp_draw_frame,
+    .present_scale       = 2,
 };
 
 #ifndef __ANDROID__
@@ -79,5 +97,13 @@ static const SnesDesktopHostGame kGameHost = {
 #endif
 int main(int argc, char **argv)
 {
+    /* ASP_HD=0: present the plain 256x224 field (main-screen dots, field 0). */
+    const char *hd = getenv("ASP_HD");
+    if (hd && *hd == '0') {
+        kGameHost.draw_frame = NULL;
+        kGameHost.present_scale = 0;
+    } else {
+        asp_hd_enable(1);
+    }
     return snesrecomp_desktop_main(&kGameHost, argc, argv);
 }

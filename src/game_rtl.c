@@ -455,6 +455,24 @@ static void asp_beam_line(Snes *snes, uint32_t line)
     ppu_runLine(g_ppu, (int)line);
 }
 
+/* ── Full-resolution output ─────────────────────────────────────────────
+ * A.S.P. draws its menus, HQ screens and briefing text in BG mode 5 with
+ * interlace: 512 dots across and 448 lines, alternating the two fields
+ * every frame. A 256x224 picture can only drop half of it (broken glyphs)
+ * or alternate the fields (flicker) — or blend them, which smears the text.
+ * The reference renderer also writes this 512x448 buffer, every dot and both
+ * fields at once, and the host presents it (present_scale = 2). */
+static uint32_t g_hd[kAspHdWidth * kAspHdHeight];
+static int g_hd_on;
+
+void asp_hd_enable(int on)
+{
+    g_hd_on = on;
+    ppu_legacy_set_hd_target(on ? g_hd : NULL, kAspHdWidth);
+}
+
+const uint32_t *asp_hd_frame(void) { return g_hd; }
+
 static void beam_render_arm(void)
 {
     if (!beam_render_enabled())
