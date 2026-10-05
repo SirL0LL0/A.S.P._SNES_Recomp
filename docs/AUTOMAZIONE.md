@@ -82,7 +82,7 @@ Nella repo vanno solo le **decisioni**: le esclusioni in `recomp/symbols.toml`.
 | `ASP_HDMA_STEAL=0` | disattiva l'addebito del tempo HDMA alla CPU (per confronti A/B) |
 | `ASP_IDLE_SKIP=0` | non salta le attese del frame successivo (per confronti A/B) |
 | `ASP_CHEATS=fuel,missiles,armor,vulcan,mania` (o `all`) | attiva i trucchi senza passare dal launcher (test senza finestra) |
-| `ASP_RENDER_THREADS=n` | thread che disegnano le righe (predefinito: core logici − 1, max 4; `1` = solo il thread principale). L'immagine è identica con qualsiasi valore |
+| `ASP_RENDER_THREADS=n` | thread che disegnano le righe (predefinito: metà dei core logici, max 4; `1` = solo il thread principale). L'immagine è identica con qualsiasi valore |
 | `ASP_HD=0` | presenta il campo 256x224 invece dell'immagine 512x448 |
 | `ASP_BEAM_RENDER=0` | disegna lo schermo a fine frame invece che riga per riga mentre passa il raggio (per confronti A/B: perde i cambi di modo a metà schermo) |
 | `ASP_FREEZE_AFTER_LOAD=1` | dopo il caricamento di uno stato non esegue più il gioco e ne disegna solo la grafica (diagnosi dei salvataggi) |

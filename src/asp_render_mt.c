@@ -15,7 +15,7 @@
  * when idle (vblank, presentation), so an idle game does not burn cores.
  *
  * ASP_RENDER_THREADS=n sets the thread count including the caller
- * (default: logical cores - 1, at most 4); 1 renders on the caller only.
+ * (default: half the logical cores, at most 4); 1 renders on the caller only.
  */
 #include "asp_render_mt.h"
 
@@ -26,14 +26,19 @@
 #include "snes/ppu.h"
 
 #define ASP_MT_MAX 8
-#define ASP_MT_SPIN 20000   /* pause iterations before a worker sleeps */
+#define ASP_MT_SPIN 4000    /* pause iterations before a worker sleeps */
+#define ASP_MT_YIELD 2000   /* caller: pause iterations before yielding */
 
 static struct {
     int n;                          /* threads including the caller */
     SDL_AtomicInt gen;              /* bumped once per job */
     SDL_AtomicInt done;             /* workers finished with the job */
-    SDL_AtomicInt sleepers;
-    SDL_Semaphore *wake;
+    /* One semaphore and sleeping flag PER worker. A shared semaphore lost
+     * wake-ups: a fast worker could finish its chunk, go back to sleep and
+     * consume the signal meant for a slower one, which then never ran its
+     * chunk while the caller waited for it forever (black screen at boot). */
+    SDL_AtomicInt sleeping[ASP_MT_MAX];
+    SDL_Semaphore *wake[ASP_MT_MAX];
     PpuLegacySpanFn *fn;
     void *ctx;
     int begin, end;
@@ -57,10 +62,10 @@ static int SDLCALL worker(void *data)
                 SDL_CPUPauseInstruction();
                 continue;
             }
-            SDL_AddAtomicInt(&g_mt.sleepers, 1);
+            SDL_SetAtomicInt(&g_mt.sleeping[index], 1);
             if (SDL_GetAtomicInt(&g_mt.gen) == seen)
-                SDL_WaitSemaphore(g_mt.wake);
-            SDL_AddAtomicInt(&g_mt.sleepers, -1);
+                SDL_WaitSemaphore(g_mt.wake[index]);
+            SDL_SetAtomicInt(&g_mt.sleeping[index], 0);
             spins = 0;
         }
         seen = gen;
@@ -77,21 +82,30 @@ static int SDLCALL worker(void *data)
 
 static void execute(PpuLegacySpanFn *fn, void *ctx, int begin, int end)
 {
-    int b, e, k, sleepers;
+    int b, e, k;
     g_mt.fn = fn;
     g_mt.ctx = ctx;
     g_mt.begin = begin;
     g_mt.end = end;
     SDL_SetAtomicInt(&g_mt.done, 0);
     SDL_AddAtomicInt(&g_mt.gen, 1);         /* publishes the job */
-    sleepers = SDL_GetAtomicInt(&g_mt.sleepers);
-    for (k = 0; k < sleepers; k++)
-        SDL_SignalSemaphore(g_mt.wake);
+    /* Set-then-check on both sides: a worker that went to sleep before the
+     * bump is seen here, one that checks after it sees the new job. A stale
+     * extra signal only wakes that same worker once for nothing. */
+    for (k = 1; k < g_mt.n; k++)
+        if (SDL_GetAtomicInt(&g_mt.sleeping[k]))
+            SDL_SignalSemaphore(g_mt.wake[k]);
     chunk(0, &b, &e);
     if (b < e)
         fn(ctx, b, e);
-    while (SDL_GetAtomicInt(&g_mt.done) != g_mt.n - 1)
-        SDL_CPUPauseInstruction();
+    for (k = 0; SDL_GetAtomicInt(&g_mt.done) != g_mt.n - 1; k++) {
+        /* Never spin unboundedly: with more threads than free cores the
+         * worker we wait for may need this core to run. */
+        if (k < ASP_MT_YIELD)
+            SDL_CPUPauseInstruction();
+        else
+            SDL_DelayNS(0);
+    }
 }
 
 void asp_render_mt_init(void)
@@ -105,7 +119,9 @@ void asp_render_mt_init(void)
     if (env && *env) {
         n = atoi(env);
     } else {
-        n = SDL_GetNumLogicalCPUCores() - 1;
+        /* Half the logical cores (SMT siblings share an execution core, and
+         * the emulation, audio and presenter threads need theirs), max 4. */
+        n = SDL_GetNumLogicalCPUCores() / 2;
         if (n > 4)
             n = 4;
     }
@@ -113,12 +129,11 @@ void asp_render_mt_init(void)
         n = ASP_MT_MAX;
     if (n < 2)
         return;                             /* single thread: no executor */
-    g_mt.wake = SDL_CreateSemaphore(0);
-    if (!g_mt.wake)
-        return;
     g_mt.n = n;
     for (i = 1; i < n; i++) {
-        SDL_Thread *t = SDL_CreateThread(worker, "asp_ppu", (void *)(intptr_t)i);
+        SDL_Thread *t;
+        g_mt.wake[i] = SDL_CreateSemaphore(0);
+        t = g_mt.wake[i] ? SDL_CreateThread(worker, "asp_ppu", (void *)(intptr_t)i) : NULL;
         if (!t) {
             /* Run with the workers that did start. */
             g_mt.n = i;
