@@ -1,28 +1,68 @@
 diff --git a/runner/src/snes/ppu.h b/runner/src/snes/ppu.h
-index 62012ef..5dd946f 100644
+index 62012ef..c069cd4 100644
 --- a/runner/src/snes/ppu.h
 +++ b/runner/src/snes/ppu.h
-@@ -562,6 +562,9 @@ void ppu_reset(Ppu* ppu);
+@@ -562,6 +562,15 @@ void ppu_reset(Ppu* ppu);
  bool ppu_checkOverscan(Ppu* ppu);
  void ppu_handleVblank(Ppu* ppu);
  void ppu_runLine(Ppu* ppu, int line);
 +/* Reference renderer: also draw every line at full resolution (512 dots x
 + * 2 interlaced lines per scanline) into pixels; NULL turns it off. */
 +void ppu_legacy_set_hd_target(uint32_t *pixels, int pitch_pixels);
++/* Reference renderer: let the host split each line's dots [begin, end)
++ * across threads. The executor must call fn(ctx, b, e) over disjoint ranges
++ * covering [begin, end) and return when all are done. NULL: single thread. */
++typedef void PpuLegacySpanFn(void *ctx, int begin, int end);
++typedef void PpuLegacySpanExecutor(PpuLegacySpanFn *fn, void *ctx, int begin, int end);
++void ppu_legacy_set_span_executor(PpuLegacySpanExecutor *executor);
  
  /* Bind an additional XRGB8888 frame with 1..4 samples per native pixel in
   * each dimension. Width is 256 + twice the current centering budget; height
 diff --git a/runner/src/snes/ppu_legacy.c b/runner/src/snes/ppu_legacy.c
-index 3959f52..c6390ca 100644
+index 3959f52..4c13afa 100644
 --- a/runner/src/snes/ppu_legacy.c
 +++ b/runner/src/snes/ppu_legacy.c
-@@ -76,7 +76,75 @@ void ppu_draw_whole_line_legacy(Ppu *ppu, int line) {
-   }
- }
+@@ -65,18 +65,106 @@ static const int bit_depths_per_mode[10][4] = {
+   {8, 7, 5, 5}
+ };
  
++/* Parallel line rendering (A.S.P. patch). The per-dot work below only READS
++ * the PPU (registers, VRAM, CGRAM, the line's sprite buffer) and writes its
++ * own dots, so a host may split a line's dots across threads. The result is
++ * identical for any split. NULL = render on the calling thread. */
++static PpuLegacySpanExecutor *s_span_executor;
++
++void ppu_legacy_set_span_executor(PpuLegacySpanExecutor *executor) {
++  s_span_executor = executor;
++}
++
++typedef struct { Ppu *ppu; int line; } PpuLegacySpanArgs;
++
++static void ppu_render_span(void *ctx, int begin, int end) {
++  const PpuLegacySpanArgs *a = (const PpuLegacySpanArgs *)ctx;
++  for (int x = begin; x < end; x++)
++    ppu_render_pixel(a->ppu, x, a->line);
++}
++
+ void ppu_draw_whole_line_legacy(Ppu *ppu, int line) {
+   // actual line
+   if (PPU_mode(ppu) == 7)
+     ppu_prepare_mode7(ppu, line);
+   int left = -ppu->extraLeftCur;
+   int right = 256 + ppu->extraRightCur;
+-  for (int x = left; x < right; x++) {
+-    ppu_render_pixel(ppu, x, line);
+-  }
++  PpuLegacySpanArgs args = {ppu, line};
++  if (s_span_executor)
++    s_span_executor(ppu_render_span, &args, left, right);
++  else
++    ppu_render_span(&args, left, right);
++}
++
 +/* Field used for interlaced BG fetches in modes 5/6. -1 = the hardware's
 + * current field (ppu->evenFrame); 0/1 = forced. */
-+static int s_legacy_field = -1;
++static _Thread_local int s_legacy_field = -1;   /* per rendering thread */
 +
 +/* Optional full-resolution target (A.S.P. patch): 512x448, one 32-bit pixel
 + * per hardware dot and per interlaced line. Hi-res modes put the subscreen
@@ -47,8 +87,8 @@ index 3959f52..c6390ca 100644
 +  return (uint32_t)(((b << 3) | (b >> 2)) * br / 15) |
 +         (uint32_t)(((g << 3) | (g >> 2)) * br / 15) << 8 |
 +         (uint32_t)(((r << 3) | (r >> 2)) * br / 15) << 16;
-+}
-+
+ }
+ 
  static void ppu_render_pixel(Ppu *ppu, int x, int y) {
 +  int r, g, b, r2, g2, b2;
 +  const bool hires = PPU_pseudoHires(ppu) || PPU_mode(ppu) == 5 || PPU_mode(ppu) == 6;
@@ -92,7 +132,7 @@ index 3959f52..c6390ca 100644
    int r = 0, r2 = 0;
    int g = 0, g2 = 0;
    int b = 0, b2 = 0;
-@@ -129,12 +197,8 @@ static void ppu_render_pixel(Ppu *ppu, int x, int y) {
+@@ -129,12 +217,8 @@ static void ppu_render_pixel(Ppu *ppu, int x, int y) {
        r2 = r; g2 = g; b2 = b;
      }
    }
@@ -107,7 +147,7 @@ index 3959f52..c6390ca 100644
  }
  
  static int ppu_resolve_pixel(Ppu *ppu, int x, int y, bool sub,
-@@ -171,7 +235,9 @@ static int ppu_resolve_pixel(Ppu *ppu, int x, int y, bool sub,
+@@ -171,7 +255,9 @@ static int ppu_resolve_pixel(Ppu *ppu, int x, int y, bool sub,
              lx += (sub || PPU_mosaicEnabled(ppu, curLayer)) ? 0 : 1;
              if (PPU_interlace(ppu)) {
                ly *= 2;

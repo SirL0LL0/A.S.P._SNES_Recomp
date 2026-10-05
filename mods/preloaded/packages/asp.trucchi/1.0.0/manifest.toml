@@ -66,14 +66,3 @@ default_enabled = false
 [[plugin]]
 feature = "mania"
 id = "asp.trucchi.mania"
-
-[[feature]]
-id = "cockpit_c"
-name = "Sblocca comandi Cockpit C"
-description = "Rende selezionabile lo schema di comandi inutilizzato \"Cockpit C\" nella schermata di impostazione (PAR 7E00A2:04)."
-group = "Menu"
-default_enabled = false
-
-[[plugin]]
-feature = "cockpit_c"
-id = "asp.trucchi.cockpit_c"

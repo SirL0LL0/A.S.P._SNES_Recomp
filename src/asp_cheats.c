@@ -16,8 +16,12 @@
  * guest frame (start of GameRunOneFrame, as a PAR would at vblank), so they
  * are part of the simulation: deterministic for replays, rewind, netplay.
  *
- * ASP_CHEATS=fuel,missiles,armor,vulcan,mania,cockpit_c (or "all") enables
+ * ASP_CHEATS=fuel,missiles,armor,vulcan,mania (or "all") enables
  * them without the launcher, for headless tests.
+ *
+ * Removed: "Cockpit C" (7E00A2:04). It makes the unused control scheme
+ * selectable, but the scheme itself is unfinished in the game and plays
+ * wrong (reported in play), so it is not offered.
  */
 #include "asp_cheats.h"
 
@@ -51,8 +55,6 @@ static const AspCheat kCheats[] = {
     {"vulcan",    kModeFlight, 2, {{0x081C, 0x00}, {0x081D, 0x02}}},
     /* 7E00A0:04 — unused "Mania" difficulty on the setup screen. */
     {"mania",     kModeMenu,   1, {{0x00A0, 0x04}}},
-    /* 7E00A2:04 — unused "Cockpit C" control scheme on the setup screen. */
-    {"cockpit_c", kModeMenu,   1, {{0x00A2, 0x04}}},
 };
 #define ASP_CHEAT_COUNT ((int)(sizeof(kCheats) / sizeof(kCheats[0])))
 
@@ -103,7 +105,6 @@ ASP_CHEAT_PLUGIN(1, enable_missiles)
 ASP_CHEAT_PLUGIN(2, enable_armor)
 ASP_CHEAT_PLUGIN(3, enable_vulcan)
 ASP_CHEAT_PLUGIN(4, enable_mania)
-ASP_CHEAT_PLUGIN(5, enable_cockpit_c)
 
 static void reset_cheats(void) { g_cheat_mask = 0; }
 
@@ -114,5 +115,4 @@ SNES_MOD_CONSTRUCTOR(asp_register_cheats) {
     snes_mod_register_activation_plugin("asp.trucchi.armor", enable_armor);
     snes_mod_register_activation_plugin("asp.trucchi.vulcan", enable_vulcan);
     snes_mod_register_activation_plugin("asp.trucchi.mania", enable_mania);
-    snes_mod_register_activation_plugin("asp.trucchi.cockpit_c", enable_cockpit_c);
 }

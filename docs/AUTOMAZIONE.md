@@ -81,7 +81,8 @@ Nella repo vanno solo le **decisioni**: le esclusioni in `recomp/symbols.toml`.
 | `ASP_RTL_TRACE_FROM=n`, `ASP_RTL_TRACE_TO=m` | registra le istruzioni del programma principale nei frame n..m |
 | `ASP_HDMA_STEAL=0` | disattiva l'addebito del tempo HDMA alla CPU (per confronti A/B) |
 | `ASP_IDLE_SKIP=0` | non salta le attese del frame successivo (per confronti A/B) |
-| `ASP_CHEATS=fuel,missiles,armor,vulcan,mania,cockpit_c` (o `all`) | attiva i trucchi senza passare dal launcher (test senza finestra) |
+| `ASP_CHEATS=fuel,missiles,armor,vulcan,mania` (o `all`) | attiva i trucchi senza passare dal launcher (test senza finestra) |
+| `ASP_RENDER_THREADS=n` | thread che disegnano le righe (predefinito: core logici − 1, max 4; `1` = solo il thread principale). L'immagine è identica con qualsiasi valore |
 | `ASP_HD=0` | presenta il campo 256x224 invece dell'immagine 512x448 |
 | `ASP_BEAM_RENDER=0` | disegna lo schermo a fine frame invece che riga per riga mentre passa il raggio (per confronti A/B: perde i cambi di modo a metà schermo) |
 | `ASP_FREEZE_AFTER_LOAD=1` | dopo il caricamento di uno stato non esegue più il gioco e ne disegna solo la grafica (diagnosi dei salvataggi) |
@@ -92,7 +93,7 @@ CMake le applica allo snesrecomp fissato al momento della configurazione (solo s
 
 | Patch | Cosa corregge |
 |---|---|
-| `0001-hd-output-512x448` | renderer di riferimento: disegna anche un'immagine 512x448 con ogni punto hi-res (modi 5/6 e pseudo-hires, usati da menu e testi) e, in interlacciato, entrambi i campi sulle righe pari/dispari: testo nitido e niente sfarfallio |
+| `0001-hd-output-512x448` | renderer di riferimento: disegna anche un'immagine 512x448 con ogni punto hi-res (modi 5/6 e pseudo-hires, usati da menu e testi) e, in interlacciato, entrambi i campi sulle righe pari/dispari: testo nitido e niente sfarfallio. Permette all'host di dividere ogni riga fra più thread |
 | `0003-present-scale` | host: presenta l'immagine 512x448 (il resto, miniature e dump, resta 256x224) |
 | `0002-beam-line-hook` | callback a ogni riga del raggio: il frame driver disegna ogni riga quando il raggio la raggiunge, con l'HDMA eseguito dal raggio, così i cambi di modo e di layer a metà schermo restano al loro posto |
 
@@ -104,7 +105,7 @@ CMake le applica allo snesrecomp fissato al momento della configurazione (solo s
 
 ## Trucchi (mod `asp.trucchi`)
 
-`mods/preloaded/packages/asp.trucchi/1.0.0/manifest.toml`, codice in `src/asp_cheats.c`. Si attivano dalla pagina **Mod** del launcher, tutti spenti di default. Solo codici Pro Action Replay (scritture in RAM): i Game Genie modificano la ROM e restano fuori.
+`mods/preloaded/packages/asp.trucchi/1.0.0/manifest.toml`, codice in `src/asp_cheats.c`. Si attivano dalla pagina **Mod** del launcher, tutti spenti di default. Solo codici Pro Action Replay (scritture in RAM): i Game Genie modificano la ROM e restano fuori. "Cockpit C" (`7E00A2:04`) è stato tolto: lo schema di comandi inutilizzato è incompleto nel gioco.
 
 | Trucco | Codice | Quando agisce |
 |---|---|---|
@@ -113,6 +114,5 @@ CMake le applica allo snesrecomp fissato al momento della configurazione (solo s
 | Corazza infinita | `7E0806:20` | in volo |
 | Vulcan infinito | `7E081C:00` `7E081D:02` | in volo |
 | Sblocca difficoltà Mania | `7E00A0:04` (compare "ESPERTO") | menu (`$0200` = 0) |
-| Sblocca comandi Cockpit C | `7E00A2:04` | menu |
 
 Un PAR scrive sempre; qui le scritture sono limitate alla modalità di gioco giusta, perché il gioco riusa quegli indirizzi altrove (es. `$00A0` vale `$10` nel quartier generale). Le scritture avvengono dentro il frame emulato, prima dell'NMI: valgono anche per rewind e replay.

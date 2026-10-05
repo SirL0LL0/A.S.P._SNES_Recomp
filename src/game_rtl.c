@@ -41,6 +41,7 @@
 
 #include "game_rtl.h"
 #include "asp_cheats.h"
+#include "asp_render_mt.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -476,6 +477,7 @@ const uint32_t *asp_hd_frame(void) { return g_hd; }
 
 static void beam_render_arm(void)
 {
+    asp_render_mt_init();
     if (!beam_render_enabled())
         return;
     /* Re-asserted every frame: a save state restores the Snes struct the
